@@ -1,0 +1,32 @@
+{
+ "no_grounding_no_feedback": {
+  "wrong_place": 263,
+  "right_place_wrong_fix": 132,
+  "unchanged": 34,
+  "validated": 21
+ },
+ "compiler_test_feedback": {
+  "wrong_place": 277,
+  "right_place_wrong_fix": 138,
+  "unchanged": 14,
+  "validated": 21
+ },
+ "cve_text_rag": {
+  "wrong_place": 230,
+  "unchanged": 8,
+  "right_place_wrong_fix": 188,
+  "validated": 24
+ },
+ "slice_grounded_no_feedback": {
+  "wrong_place": 230,
+  "right_place_wrong_fix": 166,
+  "unchanged": 29,
+  "validated": 25
+ },
+ "slice_grounded_full": {
+  "wrong_place": 208,
+  "right_place_wrong_fix": 207,
+  "unchanged": 12,
+  "validated": 23
+ }
+}

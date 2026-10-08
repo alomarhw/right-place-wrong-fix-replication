@@ -1,0 +1,294 @@
+{
+ "arm": "no_grounding_no_feedback",
+ "protocol": "conservative: uncertain -> incorrect",
+ "pool": 41,
+ "labels": [
+  {
+   "k": 1,
+   "item": 7,
+   "cve_id": "CVE-2014-4502",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 2,
+   "item": 8,
+   "cve_id": "CVE-2014-4611",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 3,
+   "item": 16,
+   "cve_id": "CVE-2018-18349",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 4,
+   "item": 18,
+   "cve_id": "CVE-2016-7166",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 5,
+   "item": 19,
+   "cve_id": "CVE-2013-4149",
+   "label": "incorrect",
+   "note": "structurally broken function"
+  },
+  {
+   "k": 6,
+   "item": 20,
+   "cve_id": "CVE-2017-8934",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 7,
+   "item": 21,
+   "cve_id": "CVE-2018-18586",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 8,
+   "item": 25,
+   "cve_id": "CVE-2018-6651",
+   "label": "over_restrictive",
+   "note": "exact origin match instead of suffix match: rejects valid configured origins"
+  },
+  {
+   "k": 9,
+   "item": 28,
+   "cve_id": "CVE-2018-16066",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 10,
+   "item": 29,
+   "cve_id": "CVE-2016-9777",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 11,
+   "item": 47,
+   "cve_id": "CVE-2019-15163",
+   "label": "equivalent",
+   "note": ""
+  },
+  {
+   "k": 12,
+   "item": 48,
+   "cve_id": "CVE-2017-13010",
+   "label": "incorrect",
+   "note": "checks wire length, not captured length"
+  },
+  {
+   "k": 13,
+   "item": 50,
+   "cve_id": "CVE-2018-12232",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 14,
+   "item": 60,
+   "cve_id": "CVE-2011-1180",
+   "label": "equivalent",
+   "note": ""
+  },
+  {
+   "k": 15,
+   "item": 61,
+   "cve_id": "CVE-2015-8953",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 16,
+   "item": 63,
+   "cve_id": "CVE-2018-7648",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 17,
+   "item": 65,
+   "cve_id": "CVE-2019-5759",
+   "label": "equivalent",
+   "note": ""
+  },
+  {
+   "k": 18,
+   "item": 67,
+   "cve_id": "CVE-2016-7126",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 19,
+   "item": 70,
+   "cve_id": "CVE-2013-4270",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 20,
+   "item": 72,
+   "cve_id": "CVE-2012-6538",
+   "label": "equivalent",
+   "note": ""
+  },
+  {
+   "k": 21,
+   "item": 76,
+   "cve_id": "CVE-2017-5552",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 22,
+   "item": 80,
+   "cve_id": "CVE-2017-16526",
+   "label": "equivalent",
+   "note": ""
+  },
+  {
+   "k": 23,
+   "item": 82,
+   "cve_id": "CVE-2017-13198",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 24,
+   "item": 90,
+   "cve_id": "CVE-2019-12111",
+   "label": "equivalent",
+   "note": ""
+  },
+  {
+   "k": 25,
+   "item": 92,
+   "cve_id": "CVE-2013-0925",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 26,
+   "item": 95,
+   "cve_id": "CVE-2016-6561",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 27,
+   "item": 97,
+   "cve_id": "CVE-2014-3615",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 28,
+   "item": 100,
+   "cve_id": "CVE-2017-5850",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 29,
+   "item": 102,
+   "cve_id": "CVE-2016-2482",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 30,
+   "item": 107,
+   "cve_id": "CVE-2013-6624",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 31,
+   "item": 108,
+   "cve_id": "CVE-2016-5357",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 32,
+   "item": 116,
+   "cve_id": "CVE-2018-11380",
+   "label": "equivalent",
+   "note": "same bound check inline instead of a local"
+  },
+  {
+   "k": 33,
+   "item": 117,
+   "cve_id": "CVE-2018-14879",
+   "label": "equivalent",
+   "note": ""
+  },
+  {
+   "k": 34,
+   "item": 124,
+   "cve_id": "CVE-2012-5156",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 35,
+   "item": 126,
+   "cve_id": "CVE-2017-13007",
+   "label": "equivalent",
+   "note": "identical except local variable name"
+  },
+  {
+   "k": 36,
+   "item": 128,
+   "cve_id": "CVE-2016-3921",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 37,
+   "item": 129,
+   "cve_id": "CVE-2017-5940",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 38,
+   "item": 132,
+   "cve_id": "CVE-2015-7804",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 39,
+   "item": 137,
+   "cve_id": "CVE-2013-0911",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 40,
+   "item": 148,
+   "cve_id": "CVE-2011-2895",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 41,
+   "item": 149,
+   "cve_id": "CVE-2013-2929",
+   "label": "incorrect",
+   "note": ""
+  }
+ ]
+}

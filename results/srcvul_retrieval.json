@@ -1,0 +1,802 @@
+{
+ "db_entries": 183,
+ "targets": 88,
+ "top1": 0.4090909090909091,
+ "top5": 0.6931818181818182,
+ "median_rank": 2.0,
+ "median_entries_above_0.8": 176.0,
+ "per_target": [
+  {
+   "cve": "CVE-2025-66199",
+   "func": "tls13_process_compressed_certificate",
+   "branch": "openssl-3.6",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 170
+  },
+  {
+   "cve": "CVE-2025-66199",
+   "func": "tls13_process_compressed_certificate",
+   "branch": "openssl-3.5",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999980455464147,
+   "entries_above_0.8": 170
+  },
+  {
+   "cve": "CVE-2025-66199",
+   "func": "tls13_process_compressed_certificate",
+   "branch": "openssl-3.4",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999980455464147,
+   "entries_above_0.8": 170
+  },
+  {
+   "cve": "CVE-2025-66199",
+   "func": "tls13_process_compressed_certificate",
+   "branch": "openssl-3.3",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999980455464147,
+   "entries_above_0.8": 170
+  },
+  {
+   "cve": "CVE-2026-14456",
+   "func": "expect_quic_for_value",
+   "branch": "openssl-3.6",
+   "rank": 180,
+   "ties": 4,
+   "score": 0.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-14456",
+   "func": "expect_quic_for_value",
+   "branch": "openssl-3.5",
+   "rank": 180,
+   "ties": 4,
+   "score": 0.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-14456",
+   "func": "ossl_quic_get_value_uint",
+   "branch": "openssl-3.6",
+   "rank": 3,
+   "ties": 0,
+   "score": 0.9997752094308919,
+   "entries_above_0.8": 176
+  },
+  {
+   "cve": "CVE-2026-14456",
+   "func": "ossl_quic_get_value_uint",
+   "branch": "openssl-3.5",
+   "rank": 3,
+   "ties": 0,
+   "score": 0.9997752094308919,
+   "entries_above_0.8": 176
+  },
+  {
+   "cve": "CVE-2026-14456",
+   "func": "ossl_quic_port_new",
+   "branch": "openssl-3.6",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-14456",
+   "func": "ossl_quic_port_new",
+   "branch": "openssl-3.5",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-14456",
+   "func": "ossl_quic_set_value_uint",
+   "branch": "openssl-3.6",
+   "rank": 4,
+   "ties": 0,
+   "score": 0.9989622294386002,
+   "entries_above_0.8": 176
+  },
+  {
+   "cve": "CVE-2026-14456",
+   "func": "ossl_quic_set_value_uint",
+   "branch": "openssl-3.5",
+   "rank": 4,
+   "ties": 0,
+   "score": 0.9989622294386002,
+   "entries_above_0.8": 176
+  },
+  {
+   "cve": "CVE-2026-2673",
+   "func": "tuple_cb",
+   "branch": "openssl-3.5",
+   "rank": 21,
+   "ties": 0,
+   "score": 0.9993388515239249,
+   "entries_above_0.8": 176
+  },
+  {
+   "cve": "CVE-2026-28389",
+   "func": "dh_cms_set_shared_info",
+   "branch": "openssl-3.6",
+   "rank": 16,
+   "ties": 0,
+   "score": 0.9996898441941529,
+   "entries_above_0.8": 173
+  },
+  {
+   "cve": "CVE-2026-28389",
+   "func": "dh_cms_set_shared_info",
+   "branch": "openssl-3.5",
+   "rank": 16,
+   "ties": 0,
+   "score": 0.9996898441941529,
+   "entries_above_0.8": 173
+  },
+  {
+   "cve": "CVE-2026-28389",
+   "func": "dh_cms_set_shared_info",
+   "branch": "openssl-3.4",
+   "rank": 16,
+   "ties": 0,
+   "score": 0.9996898441941529,
+   "entries_above_0.8": 173
+  },
+  {
+   "cve": "CVE-2026-28389",
+   "func": "dh_cms_set_shared_info",
+   "branch": "openssl-3.3",
+   "rank": 16,
+   "ties": 0,
+   "score": 0.9996898441941529,
+   "entries_above_0.8": 173
+  },
+  {
+   "cve": "CVE-2026-28389",
+   "func": "dh_cms_set_shared_info",
+   "branch": "openssl-3.0",
+   "rank": 16,
+   "ties": 0,
+   "score": 0.9996898441941529,
+   "entries_above_0.8": 173
+  },
+  {
+   "cve": "CVE-2026-31789",
+   "func": "buf2hexstr_sep",
+   "branch": "openssl-3.3",
+   "rank": 2,
+   "ties": 0,
+   "score": 0.9998326397946498,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-31789",
+   "func": "buf2hexstr_sep",
+   "branch": "openssl-3.0",
+   "rank": 2,
+   "ties": 0,
+   "score": 0.9998326397946498,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-31789",
+   "func": "ossl_buf2hexstr_sep",
+   "branch": "openssl-3.0",
+   "rank": 5,
+   "ties": 0,
+   "score": 0.9993049189653739,
+   "entries_above_0.8": 176
+  },
+  {
+   "cve": "CVE-2026-31790",
+   "func": "rsasve_generate",
+   "branch": "openssl-3.5",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999929615712485,
+   "entries_above_0.8": 174
+  },
+  {
+   "cve": "CVE-2026-31790",
+   "func": "rsasve_generate",
+   "branch": "openssl-3.4",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999929615712485,
+   "entries_above_0.8": 174
+  },
+  {
+   "cve": "CVE-2026-31790",
+   "func": "rsasve_generate",
+   "branch": "openssl-3.3",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999929615712485,
+   "entries_above_0.8": 174
+  },
+  {
+   "cve": "CVE-2026-31790",
+   "func": "rsasve_generate",
+   "branch": "openssl-3.0",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999929615712485,
+   "entries_above_0.8": 174
+  },
+  {
+   "cve": "CVE-2026-34180",
+   "func": "asn1_ex_c2i",
+   "branch": "openssl-3.0",
+   "rank": 3,
+   "ties": 0,
+   "score": 0.9999360421307804,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-34181",
+   "func": "PBMAC1_PBKDF2_HMAC",
+   "branch": "openssl-3.6",
+   "rank": 5,
+   "ties": 0,
+   "score": 0.9997989635742393,
+   "entries_above_0.8": 171
+  },
+  {
+   "cve": "CVE-2026-34181",
+   "func": "PBMAC1_PBKDF2_HMAC",
+   "branch": "openssl-3.5",
+   "rank": 5,
+   "ties": 0,
+   "score": 0.9997989635742393,
+   "entries_above_0.8": 171
+  },
+  {
+   "cve": "CVE-2026-34181",
+   "func": "PBMAC1_PBKDF2_HMAC",
+   "branch": "openssl-3.4",
+   "rank": 5,
+   "ties": 0,
+   "score": 0.9997989635742393,
+   "entries_above_0.8": 171
+  },
+  {
+   "cve": "CVE-2026-34182",
+   "func": "ossl_cms_EncryptedContent_init_bio",
+   "branch": "openssl-3.5",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.999995365901947,
+   "entries_above_0.8": 171
+  },
+  {
+   "cve": "CVE-2026-34182",
+   "func": "ossl_cms_EncryptedContent_init_bio",
+   "branch": "openssl-3.4",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.999995365901947,
+   "entries_above_0.8": 171
+  },
+  {
+   "cve": "CVE-2026-34182",
+   "func": "ossl_cms_EncryptedContent_init_bio",
+   "branch": "openssl-3.0",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999979971278586,
+   "entries_above_0.8": 171
+  },
+  {
+   "cve": "CVE-2026-34183",
+   "func": "txp_pkt_commit",
+   "branch": "openssl-3.6",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-34183",
+   "func": "txp_pkt_commit",
+   "branch": "openssl-3.5",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-34183",
+   "func": "txp_pkt_commit",
+   "branch": "openssl-3.4",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-42766",
+   "func": "ossl_cms_RecipientInfo_pwri_crypt",
+   "branch": "openssl-3.6",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 171
+  },
+  {
+   "cve": "CVE-2026-42766",
+   "func": "ossl_cms_RecipientInfo_pwri_crypt",
+   "branch": "openssl-3.5",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 171
+  },
+  {
+   "cve": "CVE-2026-42766",
+   "func": "ossl_cms_RecipientInfo_pwri_crypt",
+   "branch": "openssl-3.4",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 171
+  },
+  {
+   "cve": "CVE-2026-42766",
+   "func": "ossl_cms_RecipientInfo_pwri_crypt",
+   "branch": "openssl-3.0",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 171
+  },
+  {
+   "cve": "CVE-2026-45445",
+   "func": "aes_ocb_cipher",
+   "branch": "openssl-3.6",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999999999999999,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-45445",
+   "func": "aes_ocb_cipher",
+   "branch": "openssl-3.5",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999999999999999,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-45445",
+   "func": "aes_ocb_cipher",
+   "branch": "openssl-3.4",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999999999999999,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-45445",
+   "func": "aes_ocb_cipher",
+   "branch": "openssl-3.0",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999999999999999,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-45446",
+   "func": "aes_siv_set_ctx_params",
+   "branch": "openssl-3.6",
+   "rank": 35,
+   "ties": 0,
+   "score": 0.9978830218805591,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-45446",
+   "func": "aes_siv_set_ctx_params",
+   "branch": "openssl-3.5",
+   "rank": 35,
+   "ties": 0,
+   "score": 0.9978830218805591,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-45446",
+   "func": "aes_siv_set_ctx_params",
+   "branch": "openssl-3.4",
+   "rank": 35,
+   "ties": 0,
+   "score": 0.9978830218805591,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-45446",
+   "func": "aes_siv_set_ctx_params",
+   "branch": "openssl-3.0",
+   "rank": 35,
+   "ties": 0,
+   "score": 0.9978830218805591,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-54873",
+   "func": "ch_cleanup",
+   "branch": "openssl-3.6",
+   "rank": 61,
+   "ties": 0,
+   "score": 0.9940358390232469,
+   "entries_above_0.8": 176
+  },
+  {
+   "cve": "CVE-2026-54873",
+   "func": "ch_cleanup",
+   "branch": "openssl-3.5",
+   "rank": 76,
+   "ties": 0,
+   "score": 0.9917988813621047,
+   "entries_above_0.8": 176
+  },
+  {
+   "cve": "CVE-2026-54873",
+   "func": "ch_cleanup",
+   "branch": "openssl-3.4",
+   "rank": 84,
+   "ties": 0,
+   "score": 0.9906407772659913,
+   "entries_above_0.8": 176
+  },
+  {
+   "cve": "CVE-2026-54873",
+   "func": "chop_range",
+   "branch": "openssl-3.6",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-54873",
+   "func": "chop_range",
+   "branch": "openssl-3.5",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-54873",
+   "func": "chop_range",
+   "branch": "openssl-3.4",
+   "rank": 1,
+   "ties": 0,
+   "score": 1.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-54873",
+   "func": "new_schunk",
+   "branch": "openssl-3.6",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9998994918182539,
+   "entries_above_0.8": 177
+  },
+  {
+   "cve": "CVE-2026-54873",
+   "func": "new_schunk",
+   "branch": "openssl-3.5",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9998994918182539,
+   "entries_above_0.8": 177
+  },
+  {
+   "cve": "CVE-2026-54873",
+   "func": "new_schunk",
+   "branch": "openssl-3.4",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9998994918182539,
+   "entries_above_0.8": 177
+  },
+  {
+   "cve": "CVE-2026-54875",
+   "func": "ecp_sm2p256_point_P_mul_by_scalar",
+   "branch": "openssl-3.6",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9998209810239886,
+   "entries_above_0.8": 175
+  },
+  {
+   "cve": "CVE-2026-54875",
+   "func": "ecp_sm2p256_point_P_mul_by_scalar",
+   "branch": "openssl-3.5",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9998209810239886,
+   "entries_above_0.8": 175
+  },
+  {
+   "cve": "CVE-2026-54875",
+   "func": "ecp_sm2p256_point_P_mul_by_scalar",
+   "branch": "openssl-3.4",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9998209810239886,
+   "entries_above_0.8": 175
+  },
+  {
+   "cve": "CVE-2026-63074",
+   "func": "ossl_cmp_msg_check_update",
+   "branch": "openssl-3.0",
+   "rank": 19,
+   "ties": 0,
+   "score": 0.9991158193056449,
+   "entries_above_0.8": 173
+  },
+  {
+   "cve": "CVE-2026-72897",
+   "func": "SSL_set_SSL_CTX",
+   "branch": "openssl-3.6",
+   "rank": 3,
+   "ties": 0,
+   "score": 0.9996711629247105,
+   "entries_above_0.8": 175
+  },
+  {
+   "cve": "CVE-2026-72897",
+   "func": "SSL_set_SSL_CTX",
+   "branch": "openssl-3.5",
+   "rank": 3,
+   "ties": 0,
+   "score": 0.9996711629247105,
+   "entries_above_0.8": 175
+  },
+  {
+   "cve": "CVE-2026-72897",
+   "func": "SSL_set_SSL_CTX",
+   "branch": "openssl-3.4",
+   "rank": 8,
+   "ties": 0,
+   "score": 0.9991714026646951,
+   "entries_above_0.8": 175
+  },
+  {
+   "cve": "CVE-2026-7383",
+   "func": "ASN1_mbstring_ncopy",
+   "branch": "openssl-3.6",
+   "rank": 1,
+   "ties": 0,
+   "score": 0.9999999004625684,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-7383",
+   "func": "ASN1_mbstring_ncopy",
+   "branch": "openssl-3.5",
+   "rank": 2,
+   "ties": 0,
+   "score": 0.9999865716241896,
+   "entries_above_0.8": 169
+  },
+  {
+   "cve": "CVE-2026-7383",
+   "func": "ASN1_mbstring_ncopy",
+   "branch": "openssl-3.4",
+   "rank": 2,
+   "ties": 0,
+   "score": 0.9999865716241896,
+   "entries_above_0.8": 169
+  },
+  {
+   "cve": "CVE-2026-7383",
+   "func": "ASN1_mbstring_ncopy",
+   "branch": "openssl-3.0",
+   "rank": 2,
+   "ties": 0,
+   "score": 0.9999863868810374,
+   "entries_above_0.8": 167
+  },
+  {
+   "cve": "CVE-2026-84782",
+   "func": "dtls1_retransmit_message",
+   "branch": "openssl-3.6",
+   "rank": 75,
+   "ties": 0,
+   "score": 0.9972521413495745,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-84782",
+   "func": "dtls1_retransmit_message",
+   "branch": "openssl-3.5",
+   "rank": 75,
+   "ties": 0,
+   "score": 0.9972521413495745,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-84782",
+   "func": "dtls1_retransmit_message",
+   "branch": "openssl-3.4",
+   "rank": 75,
+   "ties": 0,
+   "score": 0.9972521413495745,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-84784",
+   "func": "ch_enqueue_retire_conn_id",
+   "branch": "openssl-3.6",
+   "rank": 30,
+   "ties": 0,
+   "score": 0.9987470637105398,
+   "entries_above_0.8": 175
+  },
+  {
+   "cve": "CVE-2026-84784",
+   "func": "ch_enqueue_retire_conn_id",
+   "branch": "openssl-3.5",
+   "rank": 30,
+   "ties": 0,
+   "score": 0.9987470637105398,
+   "entries_above_0.8": 175
+  },
+  {
+   "cve": "CVE-2026-84784",
+   "func": "ch_enqueue_retire_conn_id",
+   "branch": "openssl-3.4",
+   "rank": 30,
+   "ties": 0,
+   "score": 0.9987470637105398,
+   "entries_above_0.8": 175
+  },
+  {
+   "cve": "CVE-2026-9076",
+   "func": "kek_unwrap_key",
+   "branch": "openssl-3.5",
+   "rank": 1,
+   "ties": 1,
+   "score": 1.0000000000000002,
+   "entries_above_0.8": 173
+  },
+  {
+   "cve": "CVE-2026-9076",
+   "func": "kek_unwrap_key",
+   "branch": "openssl-3.4",
+   "rank": 1,
+   "ties": 1,
+   "score": 1.0000000000000002,
+   "entries_above_0.8": 173
+  },
+  {
+   "cve": "CVE-2026-9076",
+   "func": "kek_unwrap_key",
+   "branch": "openssl-3.0",
+   "rank": 4,
+   "ties": 0,
+   "score": 0.9998791245203665,
+   "entries_above_0.8": 173
+  },
+  {
+   "cve": "CVE-2025-14179",
+   "func": "firebird_handle_quoter",
+   "branch": "PHP-8.5",
+   "rank": 3,
+   "ties": 0,
+   "score": 0.9997516907977426,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2025-14179",
+   "func": "firebird_handle_quoter",
+   "branch": "PHP-8.4",
+   "rank": 3,
+   "ties": 0,
+   "score": 0.9997516907977426,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2025-14179",
+   "func": "firebird_handle_quoter",
+   "branch": "PHP-8.3",
+   "rank": 3,
+   "ties": 0,
+   "score": 0.9997516907977426,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2025-14179",
+   "func": "firebird_handle_quoter",
+   "branch": "PHP-8.2",
+   "rank": 3,
+   "ties": 0,
+   "score": 0.9997516907977426,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2025-14179",
+   "func": "preprocess",
+   "branch": "PHP-8.5",
+   "rank": 97,
+   "ties": 0,
+   "score": 0.9893350717683637,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2025-14179",
+   "func": "preprocess",
+   "branch": "PHP-8.4",
+   "rank": 97,
+   "ties": 0,
+   "score": 0.9893350717683637,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2025-14179",
+   "func": "preprocess",
+   "branch": "PHP-8.3",
+   "rank": 97,
+   "ties": 0,
+   "score": 0.9893350717683637,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2025-14179",
+   "func": "preprocess",
+   "branch": "PHP-8.2",
+   "rank": 97,
+   "ties": 0,
+   "score": 0.9893350717683637,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-7262",
+   "func": "to_zval_map",
+   "branch": "PHP-8.5",
+   "rank": 2,
+   "ties": 1,
+   "score": 1.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-7262",
+   "func": "to_zval_map",
+   "branch": "PHP-8.4",
+   "rank": 2,
+   "ties": 1,
+   "score": 1.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-7262",
+   "func": "to_zval_map",
+   "branch": "PHP-8.3",
+   "rank": 2,
+   "ties": 1,
+   "score": 1.0,
+   "entries_above_0.8": 178
+  },
+  {
+   "cve": "CVE-2026-7262",
+   "func": "to_zval_map",
+   "branch": "PHP-8.2",
+   "rank": 2,
+   "ties": 1,
+   "score": 1.0,
+   "entries_above_0.8": 178
+  }
+ ]
+}

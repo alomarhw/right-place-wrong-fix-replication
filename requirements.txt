@@ -1,0 +1,16 @@
+# Right Place, Wrong Fix — replication package
+# Pinned to the exact versions available in the execution environment.
+numpy==2.2.6
+pandas==2.2.2
+scikit-learn==1.5.1
+scipy==1.13.1
+statsmodels==0.14.6
+matplotlib==3.9.1
+datasketch==1.6.5
+rank-bm25==0.2.2
+pytest==7.4.4
+anthropic==0.105.2  # LLM detectors + patch agent (needs ANTHROPIC_API_KEY)
+# Optional (used only if present; code degrades gracefully to CPU proxies):
+# torch==2.2.2
+# transformers==4.46.2
+# tree-sitter==0.25.2

@@ -1,0 +1,13 @@
+\begin{table}[t]
+\centering\small
+\caption{Dataset composition. Each CVE contributes its vulnerable function (label 1) and the official fixed function (label 0).}
+\label{tab:t1}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Source & CVE pairs & Projects & Top projects & Distinct CWEs & Top CWEs & LOC median [IQR] & CVE years \\
+\midrule
+Big-Vul & 150 & 53 & linux (33), Chrome (27), Android (10) & 30 & CWE-119 (31), CWE-20 (20), CWE-125 (14) & 44 [21-76] & 2010-2019 \\
+Mined (post-cutoff) & 56 & 5 & openssl (44), php-src (7), FFmpeg (3) & 24 & CWE-476 (11), CWE-125 (8), CWE-787 (7) & 47 [28-65] & 2025-2026 \\
+\bottomrule
+\end{tabular}
+\end{table}

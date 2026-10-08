@@ -1,0 +1,357 @@
+{
+ "arm": "slice_grounded_full",
+ "protocol": "conservative: uncertain -> incorrect",
+ "pool": 71,
+ "labels": [
+  {
+   "k": 1,
+   "item": 8,
+   "cve_id": "CVE-2014-4611",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 2,
+   "item": 9,
+   "cve_id": "CVE-2014-4014",
+   "label": "over_restrictive",
+   "note": "capable() instead of capable_wrt_inode_uidgid: closes bypass, breaks userns-root chown"
+  },
+  {
+   "k": 3,
+   "item": 12,
+   "cve_id": "CVE-2010-1152",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 4,
+   "item": 16,
+   "cve_id": "CVE-2018-18349",
+   "label": "over_restrictive",
+   "note": "blocks about:/data: navigations too"
+  },
+  {
+   "k": 5,
+   "item": 19,
+   "cve_id": "CVE-2013-4149",
+   "label": "incorrect",
+   "note": "structurally broken function"
+  },
+  {
+   "k": 6,
+   "item": 20,
+   "cve_id": "CVE-2017-8934",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 7,
+   "item": 21,
+   "cve_id": "CVE-2018-18586",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 8,
+   "item": 22,
+   "cve_id": "CVE-2016-4072",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 9,
+   "item": 26,
+   "cve_id": "CVE-2011-1833",
+   "label": "over_restrictive",
+   "note": "uid check applied unconditionally, breaks root mounts"
+  },
+  {
+   "k": 10,
+   "item": 29,
+   "cve_id": "CVE-2016-9777",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 11,
+   "item": 34,
+   "cve_id": "CVE-2018-7485",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 12,
+   "item": 36,
+   "cve_id": "CVE-2017-8924",
+   "label": "equivalent",
+   "note": "condition operands reordered"
+  },
+  {
+   "k": 13,
+   "item": 39,
+   "cve_id": "CVE-2016-2105",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 14,
+   "item": 43,
+   "cve_id": "CVE-2012-2737",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 15,
+   "item": 44,
+   "cve_id": "CVE-2017-15906",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 16,
+   "item": 45,
+   "cve_id": "CVE-2016-8693",
+   "label": "incorrect",
+   "note": "reformatting only"
+  },
+  {
+   "k": 17,
+   "item": 47,
+   "cve_id": "CVE-2019-15163",
+   "label": "equivalent",
+   "note": ""
+  },
+  {
+   "k": 18,
+   "item": 49,
+   "cve_id": "CVE-2016-1631",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 19,
+   "item": 52,
+   "cve_id": "CVE-2016-5220",
+   "label": "incorrect",
+   "note": "Big-Vul fix unrelated to CVE"
+  },
+  {
+   "k": 20,
+   "item": 54,
+   "cve_id": "CVE-2017-6892",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 21,
+   "item": 55,
+   "cve_id": "CVE-2011-2200",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 22,
+   "item": 61,
+   "cve_id": "CVE-2015-8953",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 23,
+   "item": 65,
+   "cve_id": "CVE-2019-5759",
+   "label": "equivalent",
+   "note": "std::move to local vs swap"
+  },
+  {
+   "k": 24,
+   "item": 67,
+   "cve_id": "CVE-2016-7126",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 25,
+   "item": 70,
+   "cve_id": "CVE-2013-4270",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 26,
+   "item": 72,
+   "cve_id": "CVE-2012-6538",
+   "label": "equivalent",
+   "note": ""
+  },
+  {
+   "k": 27,
+   "item": 76,
+   "cve_id": "CVE-2017-5552",
+   "label": "incorrect",
+   "note": "frees memory now owned by renderer (UAF)"
+  },
+  {
+   "k": 28,
+   "item": 77,
+   "cve_id": "CVE-2015-5232",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 29,
+   "item": 81,
+   "cve_id": "CVE-2018-10887",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 30,
+   "item": 82,
+   "cve_id": "CVE-2017-13198",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 31,
+   "item": 85,
+   "cve_id": "CVE-2017-13189",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 32,
+   "item": 90,
+   "cve_id": "CVE-2019-12111",
+   "label": "equivalent",
+   "note": ""
+  },
+  {
+   "k": 33,
+   "item": 92,
+   "cve_id": "CVE-2013-0925",
+   "label": "incorrect",
+   "note": "restructure only, no semantic change"
+  },
+  {
+   "k": 34,
+   "item": 95,
+   "cve_id": "CVE-2016-6561",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 35,
+   "item": 97,
+   "cve_id": "CVE-2014-3615",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 36,
+   "item": 98,
+   "cve_id": "CVE-2019-15903",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 37,
+   "item": 100,
+   "cve_id": "CVE-2017-5850",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 38,
+   "item": 102,
+   "cve_id": "CVE-2016-2482",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 39,
+   "item": 107,
+   "cve_id": "CVE-2013-6624",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 40,
+   "item": 108,
+   "cve_id": "CVE-2016-5357",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 41,
+   "item": 116,
+   "cve_id": "CVE-2018-11380",
+   "label": "equivalent",
+   "note": "identical except local variable name"
+  },
+  {
+   "k": 42,
+   "item": 117,
+   "cve_id": "CVE-2018-14879",
+   "label": "equivalent",
+   "note": ""
+  },
+  {
+   "k": 43,
+   "item": 119,
+   "cve_id": "CVE-2012-4565",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 44,
+   "item": 124,
+   "cve_id": "CVE-2012-5156",
+   "label": "incorrect",
+   "note": "Big-Vul fix unrelated to CVE"
+  },
+  {
+   "k": 45,
+   "item": 128,
+   "cve_id": "CVE-2016-3921",
+   "label": "incorrect",
+   "note": ""
+  },
+  {
+   "k": 46,
+   "item": 129,
+   "cve_id": "CVE-2017-5940",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 47,
+   "item": 135,
+   "cve_id": "CVE-2016-10251",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 48,
+   "item": 137,
+   "cve_id": "CVE-2013-0911",
+   "label": "plausible",
+   "note": ""
+  },
+  {
+   "k": 49,
+   "item": 141,
+   "cve_id": "CVE-2013-0839",
+   "label": "incorrect",
+   "note": "Big-Vul fix unrelated to CVE"
+  },
+  {
+   "k": 50,
+   "item": 147,
+   "cve_id": "CVE-2016-3920",
+   "label": "incorrect",
+   "note": ""
+  }
+ ]
+}

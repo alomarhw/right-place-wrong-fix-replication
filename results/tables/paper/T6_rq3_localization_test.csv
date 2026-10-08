@@ -1,0 +1,6 @@
+Arm vs. ungrounded,Touch rate (3 reps),Chance touch rate,Edited-line precision,CVEs better / worse,Wilcoxon p,Rank-biserial r,"McNemar rep. 1 (b10/b01, p)",Holm p
+Ungrounded (reference),0.340,0.171,0.289,--,--,--,--,--
++ static feedback,0.353,0.176,0.288,4 / 0,0.0588,+1.00,"3/0, 0.250",0.0588
++ CVE text,0.471,0.190,0.381,52 / 22,0.0006,+0.45,"30/13, 0.014",0.0017
++ CVE text + slice,0.420,0.187,0.342,42 / 28,0.0210,+0.31,"27/12, 0.024",0.0419
+Full agent,0.507,0.239,0.343,58 / 17,<0.0001,+0.60,"35/7, <0.001",<0.0001

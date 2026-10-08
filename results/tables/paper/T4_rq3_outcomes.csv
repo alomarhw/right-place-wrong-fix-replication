@@ -1,0 +1,6 @@
+Arm,VPR (3 reps) [95% CI],Validated (rep. 1),Exact official fix,Misses fix changes,Unchanged,Severed slice,Mean attempts
+Ungrounded,"0.047 [0.023, 0.093]",7,4,132,11,20,1.00
++ static feedback,"0.047 [0.023, 0.093]",7,4,139,4,20,1.11
++ CVE text,"0.053 [0.027, 0.102]",8,6,140,2,29,1.08
++ CVE text + slice,"0.056 [0.027, 0.102]",8,4,133,9,23,1.00
+Full agent,"0.051 [0.027, 0.102]",6,1,140,4,56,3.89

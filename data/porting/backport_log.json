@@ -1,0 +1,47 @@
+{
+  "openssl": {
+    "cve_commits_per_branch": {
+      "master": 80,
+      "openssl-3.6": 80,
+      "openssl-3.5": 75,
+      "openssl-3.4": 67,
+      "openssl-3.3": 20,
+      "openssl-3.2": 3,
+      "openssl-3.0": 40
+    },
+    "families": 103
+  },
+  "php-src": {
+    "cve_commits_per_branch": {
+      "master": 20,
+      "PHP-8.5": 19,
+      "PHP-8.4": 14,
+      "PHP-8.3": 11,
+      "PHP-8.2": 9,
+      "PHP-8.1": 0
+    },
+    "families": 77
+  },
+  "FFmpeg": {
+    "cve_commits_per_branch": {
+      "master": 3,
+      "release/8.1": 3,
+      "release/8.0": 2,
+      "release/7.1": 2,
+      "release/7.0": 0
+    },
+    "families": 3
+  },
+  "summary": {
+    "families": 183,
+    "targets": 647,
+    "clone_type": {
+      "identical": 537,
+      "renamed": 2,
+      "modified": 108
+    },
+    "naive_port_applies": 621,
+    "naive_port_equals_official": 559,
+    "cves": 63
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "bigvul": {
+    "input": 150,
+    "kept": 150,
+    "dropped": []
+  },
+  "postcutoff": {
+    "input": 64,
+    "kept": 56,
+    "dropped": [
+      [
+        "CVE-2025-59375",
+        "CVE record does not name project"
+      ],
+      [
+        "CVE-2026-14456",
+        "test file"
+      ],
+      [
+        "CVE-2026-34182",
+        "test file"
+      ],
+      [
+        "CVE-2026-44927",
+        "CVE record does not name project"
+      ],
+      [
+        "CVE-2026-63072",
+        "test file"
+      ],
+      [
+        "CVE-2026-75805",
+        "test file"
+      ],
+      [
+        "CVE-2026-75806",
+        "test file"
+      ],
+      [
+        "CVE-2026-84784",
+        "test file"
+      ]
+    ]
+  }
+}

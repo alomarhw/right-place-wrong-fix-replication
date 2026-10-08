@@ -1,0 +1,38 @@
+{
+ "n_targets": 88,
+ "n_cves": 23,
+ "mean_reduction_ratio_source_lines": 0.2692864629764592,
+ "pooled_vpr": {
+  "P4_slice_reduced": 0.7840909090909091,
+  "P2": 0.7992424242424242,
+  "P3": 0.8068181818181818
+ },
+ "modified_pooled_vpr": {
+  "P4_slice_reduced": 0.660377358490566,
+  "P2": 0.6855345911949685,
+  "P3": 0.6981132075471698
+ },
+ "cve_level_mean": {
+  "P4": 0.6992753623188407,
+  "P2": 0.7228260869565217,
+  "P3": 0.7391304347826086
+ },
+ "cve_level_mean_modified": {
+  "P4": 0.5925925925925926,
+  "n_cves": 18
+ },
+ "P4_vs_P2": {
+  "better_worse": [
+   2,
+   2
+  ],
+  "p": 1.0
+ },
+ "llm_usage": {
+  "model": "claude-haiku-4-5",
+  "api_calls": 0,
+  "cache_hits": 264,
+  "input_tokens": 0,
+  "output_tokens": 0
+ }
+}

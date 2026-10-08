@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering\small
+\caption{Paired test of patch localization against the ungrounded arm (150 CVEs). Per CVE, the number of repeats (of 3) whose patch modifies at least one line the official fix modifies; Wilcoxon signed-rank with Holm correction across the four arms, rank-biserial effect size, and an exact McNemar test on repeat 1. Chance touch rate: probability that a random edit of the same number of lines touches a fix line. Edited-line precision: share of the agent's edited lines that the official fix also edits. Arms share their first attempt's sampling seed (common random numbers), so arms without retries can tie exactly.}
+\label{tab:t6}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Arm vs. ungrounded & Touch rate (3 reps) & Chance touch rate & Edited-line precision & CVEs better / worse & Wilcoxon p & Rank-biserial r & McNemar rep. 1 (b10/b01, p) & Holm p \\
+\midrule
+Ungrounded (reference) & 0.340 & 0.171 & 0.289 & -- & -- & -- & -- & -- \\
++ static feedback & 0.353 & 0.176 & 0.288 & 4 / 0 & 0.0588 & +1.00 & 3/0, 0.250 & 0.0588 \\
++ CVE text & 0.471 & 0.190 & 0.381 & 52 / 22 & 0.0006 & +0.45 & 30/13, 0.014 & 0.0017 \\
++ CVE text + slice & 0.420 & 0.187 & 0.342 & 42 / 28 & 0.0210 & +0.31 & 27/12, 0.024 & 0.0419 \\
+Full agent & 0.507 & 0.239 & 0.343 & 58 / 17 & <0.0001 & +0.60 & 35/7, <0.001 & <0.0001 \\
+\bottomrule
+\end{tabular}
+\end{table}

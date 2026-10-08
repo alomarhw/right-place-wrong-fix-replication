@@ -1,0 +1,698 @@
+{
+ "judge": "claude-opus-4-8",
+ "arms": {
+  "slice_grounded_full": {
+   "n": 50,
+   "judge_counts": {
+    "equivalent": 5,
+    "plausible": 12,
+    "over_restrictive": 2,
+    "incorrect": 31
+   },
+   "rater1_counts": {
+    "equivalent": 7,
+    "plausible": 14,
+    "over_restrictive": 3,
+    "incorrect": 26
+   },
+   "agreement": 0.76,
+   "kappa_4class": 0.5959595959595959,
+   "kappa_acceptable_vs_not": 0.6627318718381112,
+   "unparsed": 0,
+   "items": [
+    {
+     "k": 1,
+     "cve_id": "CVE-2014-4611",
+     "rater1": "plausible",
+     "judge": "plausible",
+     "reason": "Instead of checking for the integer overflow directly, it bounds the accumulated length against the remaining output buffer space on each iteration and before the final addition, which prevents the overflow-driven memory corruption while allowing legitimate runs that fit in the output."
+    },
+    {
+     "k": 2,
+     "cve_id": "CVE-2014-4014",
+     "rater1": "over_restrictive",
+     "judge": "over_restrictive",
+     "reason": "Replacing inode_capable with capable removes the namespace bypass but checks against the initial user namespace only, breaking legitimate capability-based operations within user namespaces that capable_wrt_inode_uidgid would still allow."
+    },
+    {
+     "k": 3,
+     "cve_id": "CVE-2010-1152",
+     "rater1": "plausible",
+     "judge": "plausible",
+     "reason": "Capping buffer growth at 1MB bounds memory allocation and removes the DoS while allowing legitimate traffic under the limit, just with a different mechanism than the official 4-realloc cap."
+    },
+    {
+     "k": 4,
+     "cve_id": "CVE-2018-18349",
+     "rater1": "over_restrictive",
+     "judge": "incorrect",
+     "reason": "The candidate uses a restricted protocol list and CanAccess semantics instead of CanDisplay, so it misses other non-displayable schemes and uses incorrect origin-comparison logic (e.g. data/about URLs get unique origins that never CanAccess), both failing to properly block the local-resource navigation and potentially breaking valid cases."
+    },
+    {
+     "k": 5,
+     "cve_id": "CVE-2013-4149",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate fixes the original undersized g_malloc0 (now allocates in_use*ETH_ALEN) but introduces potential integer overflow in the multiplication for large in_use values on 32-bit size computations and mangles the surrounding control flow by removing the error_report/return branch, so it does not reliably remove the vulnerability and breaks the function."
+    },
+    {
+     "k": 6,
+     "cve_id": "CVE-2017-8934",
+     "rater1": "plausible",
+     "judge": "plausible",
+     "reason": "Using g_get_home_dir() instead of /tmp places the socket in a user-private directory, removing the shared-/tmp DoS while preserving valid behavior (the runtime-dir choice differs from official but is sound)."
+    },
+    {
+     "k": 7,
+     "cve_id": "CVE-2018-18586",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "It only strips leading '../' sequences but '..' embedded later in the path (e.g. 'a/../../etc/passwd') still permits directory traversal, and leading slashes are only removed before the dotdot loop so paths like '/../' aren't fully neutralized."
+    },
+    {
+     "k": 8,
+     "cve_id": "CVE-2016-4072",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "Checking fname[fname_len] (the position after the string) does not detect embedded null bytes within the filename, which is the actual vulnerability that the \"p\" path parameter type guards against."
+    },
+    {
+     "k": 9,
+     "cve_id": "CVE-2011-1833",
+     "rater1": "over_restrictive",
+     "judge": "over_restrictive",
+     "reason": "The candidate always enforces the uid check unconditionally, ignoring the check_ruid option so it rejects legitimate mounts where the ecryptfs_check_ruid option was not requested."
+    },
+    {
+     "k": 10,
+     "cve_id": "CVE-2016-9777",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "online_vcpus is an atomic_t struct not an integer count and the map is sized to KVM_MAX_VCPU_ID, so this both compiles wrong and fails to zero the full bitmap, not properly addressing the out-of-bounds index."
+    },
+    {
+     "k": 11,
+     "cve_id": "CVE-2018-7485",
+     "rater1": "plausible",
+     "judge": "incorrect",
+     "reason": "The candidate uses sizeof(szFileName)-1 for strncpy instead of reserving the 5 bytes needed for appending \".dsn\", so a filename of maximum length fills the buffer and the subsequent snprintf append has no room, breaking the original logic that reserved space for the extension."
+    },
+    {
+     "k": 12,
+     "cve_id": "CVE-2017-8924",
+     "rater1": "equivalent",
+     "judge": "equivalent",
+     "reason": "urb->actual_length (unsigned) nonzero is equivalent to > 0, and reordering the AND conditions preserves identical behavior."
+    },
+    {
+     "k": 13,
+     "cve_id": "CVE-2016-2105",
+     "rater1": "plausible",
+     "judge": "incorrect",
+     "reason": "The outer if now returns for essentially all inputs (including valid large data that should be buffered into multiple blocks), breaking legitimate encoding behavior and the control flow is logically broken."
+    },
+    {
+     "k": 14,
+     "cve_id": "CVE-2012-2737",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate keeps the polkit_unix_process UID resolution which is racy and exploitable; the official fix replaces it with a direct GetConnectionUnixUser DBus call to close the race."
+    },
+    {
+     "k": 15,
+     "cve_id": "CVE-2017-15906",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "Candidate catches O_CREAT but fails to block O_TRUNC, so a readonly open with O_RDONLY|O_TRUNC can still truncate a file to zero length, leaving the vulnerability partly unremoved."
+    },
+    {
+     "k": 16,
+     "cve_id": "CVE-2016-8693",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate still returns -1 when realloc returns NULL for bufsize==0, failing to handle the zero-size case that causes the double free, so the vulnerability is not removed."
+    },
+    {
+     "k": 17,
+     "cve_id": "CVE-2019-15163",
+     "rater1": "equivalent",
+     "judge": "plausible",
+     "reason": "It checks crypt() for NULL before dereferencing and returns authentication failure on NULL, removing the vulnerability with sound valid-input behaviour despite a different error message."
+    },
+    {
+     "k": 18,
+     "cve_id": "CVE-2016-1631",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate fails to add the willEnterModalLoop/didExitModalLoop calls that actually fix the SOP bypass, and instead removes the ScopedNestableTaskAllower and adds unrelated depth checks that do not address the nested message loop mishandling."
+    },
+    {
+     "k": 19,
+     "cve_id": "CVE-2016-5220",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate omits the feature-flag logic (show_with_caret) entirely, so it does not implement the intended behavior change of the official fix."
+    },
+    {
+     "k": 20,
+     "cve_id": "CVE-2017-6892",
+     "rater1": "plausible",
+     "judge": "plausible",
+     "reason": "It bounds the memcpy to the smaller of the destination and source-map sizes, preventing the out-of-bounds read while preserving valid behavior, though it uses map_info->channels rather than layout_tag&0xffff."
+    },
+    {
+     "k": 21,
+     "cve_id": "CVE-2011-2200",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate adds input validation but never updates the BYTE_ORDER_OFFSET byte in the header data, so the stored byte-order field remains inconsistent after swapping, leaving the vulnerability unfixed."
+    },
+    {
+     "k": 22,
+     "cve_id": "CVE-2015-8953",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate jumps to an undefined label out1 and adds dput/newdentry=NULL that don't match the known cleanup structure, breaking the function rather than reaching the correct out2 cleanup path."
+    },
+    {
+     "k": 23,
+     "cve_id": "CVE-2019-5759",
+     "rater1": "equivalent",
+     "judge": "equivalent",
+     "reason": "The candidate moves ownership out of external_popup_menu_ before calling DidSelectItems, achieving the same lifetime fix via std::move instead of swap."
+    },
+    {
+     "k": 24,
+     "cve_id": "CVE-2016-7126",
+     "rater1": "plausible",
+     "judge": "plausible",
+     "reason": "Capping ncolors at 256 removes the overflow/out-of-bounds vulnerability and is a sound limit for a palette (max 256 colors), though stricter than the official INT_MAX bound."
+    },
+    {
+     "k": 25,
+     "cve_id": "CVE-2013-4270",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate still compares against current_uid()/current_gid() (real IDs) rather than euid/egroup, so it fails to fix the actual bug of using real instead of effective credentials and merely remaps namespaces."
+    },
+    {
+     "k": 26,
+     "cve_id": "CVE-2012-6538",
+     "rater1": "equivalent",
+     "judge": "plausible",
+     "reason": "The candidate zero-pads via strncpy up to size-1 and explicitly null-terminates, which prevents the heap leak while preserving valid behavior, though it doesn't zero-fill the full buffer like the official fix does."
+    },
+    {
+     "k": 27,
+     "cve_id": "CVE-2017-5552",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The official fix frees res_iovs only when attach fails (returns nonzero, indicating iov wasn't taken over); the candidate unconditionally g_free's res_iovs even on success, which frees memory still referenced by the renderer, introducing a use-after-free/double-free."
+    },
+    {
+     "k": 28,
+     "cve_id": "CVE-2015-5232",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate removes the pre-bind unlink and tweaks error paths but still leaves the TOCTOU/race by unlinking and connecting to an attacker-controllable path and doesn't address the fundamental race the official fix targets, while also partially breaking cleanup semantics."
+    },
+    {
+     "k": 29,
+     "cve_id": "CVE-2018-10887",
+     "rater1": "plausible",
+     "judge": "plausible",
+     "reason": "The candidate fixes the sign-extension bug by casting to unsigned char before shifting, adds bounds checks on the delta stream, and rewrites the base_len/off check to avoid overflow, all preserving valid-input behaviour."
+    },
+    {
+     "k": 30,
+     "cve_id": "CVE-2017-13198",
+     "rater1": "plausible",
+     "judge": "incorrect",
+     "reason": "The candidate's `continue` triggers even when cmap is valid but ColorCount != (1<<BitsPerPixel), skipping legitimate frames, and more critically it may skip loop iterations in a way that breaks correct rendering while the official fix only skips when cmap is actually NULL."
+    },
+    {
+     "k": 31,
+     "cve_id": "CVE-2017-13189",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate removes the free entirely on failure, leaking any partially allocated buffers instead of properly freeing dec_hdl (via free_static_bufs or aligned_free), so it introduces a memory leak and does not correctly handle the allocation-failure cleanup."
+    },
+    {
+     "k": 32,
+     "cve_id": "CVE-2019-12111",
+     "rater1": "equivalent",
+     "judge": "plausible",
+     "reason": "Adds the src != NULL check that fixes the vulnerability plus an extra dest != NULL guard, which still allows all legitimate non-null copies."
+    },
+    {
+     "k": 33,
+     "cve_id": "CVE-2013-0925",
+     "rater1": "incorrect",
+     "judge": "equivalent",
+     "reason": "The candidate merely reformats the extension null check into an if-block but preserves identical permission-gating logic that omits privacy-sensitive fields when the extension lacks the kTab permission."
+    },
+    {
+     "k": 34,
+     "cve_id": "CVE-2016-6561",
+     "rater1": "plausible",
+     "judge": "incorrect",
+     "reason": "The candidate guards against a NULL ofile but still dereferences of->f_node->flags directly, which can be NULL for named-pipe ofiles, so the NULL pointer dereference is not fully removed."
+    },
+    {
+     "k": 35,
+     "cve_id": "CVE-2014-3615",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate caps required_size at 16MB rather than asserting bounds, so for high resolutions it allocates an undersized buffer while still creating the full-size surface, leaving the host-memory out-of-bounds read; it also mangles other functions and drops logic from the original code."
+    },
+    {
+     "k": 36,
+     "cve_id": "CVE-2019-15903",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate replaces the doProlog call with an unconditional return XML_ERROR_NONE, breaking legitimate parameter-entity prolog processing and not implementing the haveMore flag fix that actually prevents the premature state change and over-read."
+    },
+    {
+     "k": 37,
+     "cve_id": "CVE-2017-5850",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate only limits the number of ranges parsed per request but does not address the actual DoS, which is unbounded memory consumption from many requests each allocating buffers for a large file's ranges (the official fix moves ranges into per-client state and bounds by SERVER_MAX_RANGES), so the memory-exhaustion vulnerability remains."
+    },
+    {
+     "k": 38,
+     "cve_id": "CVE-2016-2482",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "Clamping to mincount can free fewer buffers than actually allocated (leaking/mishandling buffers) and doesn't use the bitmask to skip already-freed buffers, so it doesn't address the buffer-count mishandling the official fix guards against."
+    },
+    {
+     "k": 39,
+     "cve_id": "CVE-2013-6624",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "Manually ref'ing the StringImpl without ever releasing it leaks memory and doesn't address the removeItemFromMap side, failing to properly fix the use-after-free the official patch solves by storing AtomicString values in the map."
+    },
+    {
+     "k": 40,
+     "cve_id": "CVE-2016-5357",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The vulnerability is the unsigned-integer sscanf mishandling inside parse_netscreen_rec_hdr/hex_dump, which the official fix addresses by rewriting those parsing functions (consolidated into parse_netscreen_packet); the candidate only adds post-hoc length/field checks in the caller without fixing the underlying sscanf parsing, so the crash is not removed."
+    },
+    {
+     "k": 41,
+     "cve_id": "CVE-2018-11380",
+     "rater1": "equivalent",
+     "judge": "equivalent",
+     "reason": "Identical bounds check with only the local variable renamed from indidx to indirect_idx."
+    },
+    {
+     "k": 42,
+     "cve_id": "CVE-2018-14879",
+     "rater1": "equivalent",
+     "judge": "equivalent",
+     "reason": "The candidate computes len = strlen(ptr) once and checks len > 0 before accessing ptr[len-1], identical logic to the official fix."
+    },
+    {
+     "k": 43,
+     "cve_id": "CVE-2012-4565",
+     "rater1": "plausible",
+     "judge": "incorrect",
+     "reason": "The candidate moves nla_put inside the cnt_rtt>0 branch, so when cnt_rtt is zero no VEGASINFO is sent at all, breaking legitimate reporting behavior that the official fix preserves."
+    },
+    {
+     "k": 44,
+     "cve_id": "CVE-2012-5156",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate only adds a null-check but omits the essential peer_pid verification against the actual process ID, so the use-after-free/trust vulnerability from spoofed client PID remains unaddressed."
+    },
+    {
+     "k": 45,
+     "cve_id": "CVE-2016-3921",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "When len == CMD_BUF_SIZE (the full buffer read with no null terminator), buffer[len]='\\0' writes one byte past the array, so the candidate guards with len >= CMD_BUF_SIZE but that rejects the exact full-buffer case while a truncated non-terminated command of len < CMD_BUF_SIZE is still dispatched as a partial/garbage command rather than skipped, failing to properly handle the oversized-command vulnerability."
+    },
+    {
+     "k": 46,
+     "cve_id": "CVE-2017-5940",
+     "rater1": "plausible",
+     "judge": "plausible",
+     "reason": "The candidate uses lstat+S_ISLNK to detect and reject symlinks for the target dotfile (including dangling symlinks) and switches to O_CREAT|O_EXCL for safe creation, soundly addressing the symlink escape while preserving legitimate file-creation behavior."
+    },
+    {
+     "k": 47,
+     "cve_id": "CVE-2016-10251",
+     "rater1": "plausible",
+     "judge": "plausible",
+     "reason": "It guards every shift against negative and oversized shift amounts (and the rpx/rpy shifts), preventing the integer overflow/UB while valid inputs with reasonable exponents still proceed normally."
+    },
+    {
+     "k": 48,
+     "cve_id": "CVE-2013-0911",
+     "rater1": "plausible",
+     "judge": "incorrect",
+     "reason": "An ad-hoc '..' check is weaker than IsValidOriginIdentifier and misses other invalid-origin traversal/injection vectors (e.g. slashes, path separators, null bytes), so it only partly removes the vulnerability."
+    },
+    {
+     "k": 49,
+     "cve_id": "CVE-2013-0839",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate keeps the ownership/lifetime pattern of creating and returning a GDataDirectory rather than refactoring to the in-place InitFromDocumentEntry model that eliminates the use-after-free, so it does not address the actual UAF root cause."
+    },
+    {
+     "k": 50,
+     "cve_id": "CVE-2016-3920",
+     "rater1": "incorrect",
+     "judge": "plausible",
+     "reason": "The candidate prevents zero-length dereferences and bad allocations via len>0 and n<=0 guards, removing the DoS, though it uses a different structure (no marker-skip semantics identical to official) while preserving valid parsing behavior."
+    }
+   ]
+  },
+  "no_grounding_no_feedback": {
+   "n": 41,
+   "judge_counts": {
+    "equivalent": 6,
+    "plausible": 9,
+    "over_restrictive": 1,
+    "incorrect": 25
+   },
+   "rater1_counts": {
+    "equivalent": 9,
+    "plausible": 9,
+    "over_restrictive": 1,
+    "incorrect": 22
+   },
+   "agreement": 0.7073170731707317,
+   "kappa_4class": 0.5055276381909547,
+   "kappa_acceptable_vs_not": 0.5461254612546126,
+   "unparsed": 0,
+   "items": [
+    {
+     "k": 1,
+     "cve_id": "CVE-2014-4502",
+     "rater1": "plausible",
+     "judge": "incorrect",
+     "reason": "If address is a pointer parameter rather than a stack array, sizeof(address) yields pointer size (4/8 bytes) instead of the buffer's 254-byte capacity, breaking normal use and not matching the intended bound."
+    },
+    {
+     "k": 2,
+     "cve_id": "CVE-2014-4611",
+     "rater1": "plausible",
+     "judge": "plausible",
+     "reason": "Bounding the accumulated length against the output buffer size inside the loop prevents the integer overflow and oversized literal run while still accepting legitimate lengths that fit the output, which is a sound alternative to the official overflow check."
+    },
+    {
+     "k": 3,
+     "cve_id": "CVE-2018-18349",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "Checking only URL validity does not enforce the origin's CanDisplay permission, so navigations to local resources are still permitted and the vulnerability remains."
+    },
+    {
+     "k": 4,
+     "cve_id": "CVE-2016-7166",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate keeps the unbounded `for (;;)` loop and adds no recursion/decompression limit, so it does not remove the DoS vulnerability (and even alters the bidder iteration logic)."
+    },
+    {
+     "k": 5,
+     "cve_id": "CVE-2013-4149",
+     "rater1": "incorrect",
+     "judge": "plausible",
+     "reason": "It fixes the undersized allocation by multiplying by ETH_ALEN so the g_malloc0 buffer matches the qemu_get_buffer read length, removing the heap overflow while preserving overflow-flag behavior."
+    },
+    {
+     "k": 6,
+     "cve_id": "CVE-2017-8934",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate still uses g_get_tmp_dir() (/tmp) for the socket path, leaving the insecure temp directory usage unaddressed."
+    },
+    {
+     "k": 7,
+     "cve_id": "CVE-2018-18586",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate only adjusts buffer size calculation and does not address directory traversal from absolute/relative (../) pathnames, so the vulnerability remains."
+    },
+    {
+     "k": 8,
+     "cve_id": "CVE-2018-6651",
+     "rater1": "over_restrictive",
+     "judge": "plausible",
+     "reason": "Requiring a full strcmp equality of the entire origin header against each allowed origin is a sound, even stricter, fix that eliminates the substring-match bypass while still accepting exactly-matching legitimate origins."
+    },
+    {
+     "k": 9,
+     "cve_id": "CVE-2018-16066",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate still defers to DidNotifySubtreeInsertions and does not move the style sheet processing into InsertedInto, so it fails to remove the use-after-free addressed by the official fix."
+    },
+    {
+     "k": 10,
+     "cve_id": "CVE-2016-9777",
+     "rater1": "incorrect",
+     "judge": "plausible",
+     "reason": "Using the actual allocated map length (dest_map.len, which is sized to KVM_MAX_VCPU_ID) correctly zeros the whole bitmap and avoids out-of-bounds access, achieving the same effect as the official fix."
+    },
+    {
+     "k": 11,
+     "cve_id": "CVE-2019-15163",
+     "rater1": "equivalent",
+     "judge": "plausible",
+     "reason": "It checks crypt() for NULL and fails authentication safely, removing the NULL deref while preserving valid-input behavior, differing only in error message wording."
+    },
+    {
+     "k": 12,
+     "cve_id": "CVE-2017-13010",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate guards against the claimed on-wire length but the over-read occurs when the captured snapshot is shorter than length; without ndo-based ND_TTEST bounds checking in l_strnstart the buffer over-read remains."
+    },
+    {
+     "k": 13,
+     "cve_id": "CVE-2018-12232",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The official fix passes the inode to __sock_release so sockfs_setattr can synchronize (sock->sk nulling under inode lock); the candidate only adds a NULL check without any locking, so the race between fchownat and close and the resulting NULL deref remains."
+    },
+    {
+     "k": 14,
+     "cve_id": "CVE-2011-1180",
+     "rater1": "equivalent",
+     "judge": "equivalent",
+     "reason": "name_len > MAX returning is equivalent to asserting name_len < MAX+1, bounding both lengths identically to the official fix."
+    },
+    {
+     "k": 15,
+     "cve_id": "CVE-2015-8953",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The official fix jumps to out2 to release the leaked dentry reference, but the candidate jumps to out1 (a different/undefined label) and does not perform the correct cleanup, so the dentry reference leak is not fixed."
+    },
+    {
+     "k": 16,
+     "cve_id": "CVE-2018-7648",
+     "rater1": "plausible",
+     "judge": "plausible",
+     "reason": "snprintf bounds the write and prevents the buffer overflow; it silently truncates instead of erroring out, but still produces a valid (if truncated) filename rather than overflowing."
+    },
+    {
+     "k": 17,
+     "cve_id": "CVE-2019-5759",
+     "rater1": "equivalent",
+     "judge": "equivalent",
+     "reason": "The candidate moves ownership out of external_popup_menu_ (via std::move) before calling DidSelectItems, so the member is reset before the potentially-deleting call, achieving the same lifetime fix."
+    },
+    {
+     "k": 18,
+     "cve_id": "CVE-2016-7126",
+     "rater1": "plausible",
+     "judge": "over_restrictive",
+     "reason": "Capping at 256 removes the overflow but rejects legitimate ncolors values between 257 and INT_MAX that the official fix allows."
+    },
+    {
+     "k": 19,
+     "cve_id": "CVE-2013-4270",
+     "rater1": "plausible",
+     "judge": "plausible",
+     "reason": "It uses effective uid/egid instead of real ones (fixing the bypass) and adds validity checks; current_egid() comparison is equivalent to in_egroup_p for the primary group, making it a sound alternative fix."
+    },
+    {
+     "k": 20,
+     "cve_id": "CVE-2012-6538",
+     "rater1": "equivalent",
+     "judge": "plausible",
+     "reason": "The candidate zero-pads via strncpy up to size-1 and explicitly null-terminates, which prevents the heap leak while preserving valid behavior, though it doesn't zero-fill the full buffer like the official fix does."
+    },
+    {
+     "k": 21,
+     "cve_id": "CVE-2017-5552",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The official fix frees res_iovs only when attach fails (returns nonzero, indicating iov wasn't taken over); the candidate unconditionally g_free's res_iovs even on success, which frees memory still referenced by the renderer, introducing a use-after-free/double-free."
+    },
+    {
+     "k": 22,
+     "cve_id": "CVE-2017-16526",
+     "rater1": "equivalent",
+     "judge": "equivalent",
+     "reason": "It correctly uses IS_ERR to detect kthread_run failure and sets rc->uwbd.task to NULL, achieving the same fix with reordered statements."
+    },
+    {
+     "k": 23,
+     "cve_id": "CVE-2017-13198",
+     "rater1": "plausible",
+     "judge": "incorrect",
+     "reason": "The candidate uses `continue` to skip frames with a corrupt or missing cmap, but this also skips frames whose color map merely has a nonstandard ColorCount (legitimate behavior the original tolerated), while the `continue` inside the `if` block changes loop semantics and may bypass needed work, breaking valid-input rendering."
+    },
+    {
+     "k": 24,
+     "cve_id": "CVE-2019-12111",
+     "rater1": "equivalent",
+     "judge": "plausible",
+     "reason": "Adds the needed src != NULL check removing the NULL deref, plus an extra dest != NULL guard which is also safe and doesn't break valid input where dest is a real buffer."
+    },
+    {
+     "k": 25,
+     "cve_id": "CVE-2013-0925",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate only adds a null-check for contents but keeps the same permission-gating logic, which the official fix replaced with ScrubTabValueForExtension; it does not change the vulnerability-removing behavior and merely adds an unrelated null guard."
+    },
+    {
+     "k": 26,
+     "cve_id": "CVE-2016-6561",
+     "rater1": "plausible",
+     "judge": "incorrect",
+     "reason": "The NULL check on `of` doesn't address the actual vulnerability of dereferencing `of->f_node` (which can be NULL, e.g. for named pipes), whereas the official fix delegates to smb_ofile_flush which safely handles that case."
+    },
+    {
+     "k": 27,
+     "cve_id": "CVE-2014-3615",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate is a garbled, non-compiling diff that removes the fixed buffer allocation without adding any surface-size bounds check, so it fails to constrain the buffer to the resolution and does not remove the vulnerability."
+    },
+    {
+     "k": 28,
+     "cve_id": "CVE-2017-5850",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate only adds string-copy and loop-fixups but keeps the static ranges array and MAX_RANGES limit, failing to address the per-request memory-consumption DoS the official fix mitigates via SERVER_MAX_RANGES and client-scoped range tracking."
+    },
+    {
+     "k": 29,
+     "cve_id": "CVE-2016-2482",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate does not add the bitmask presence checks or release-done guards that the official fix uses to correctly handle the buffer count, so the buffer-count mishandling vulnerability remains while it adds unrelated frees."
+    },
+    {
+     "k": 30,
+     "cve_id": "CVE-2013-6624",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate still stores raw StringImpl* pointers in the map instead of holding AtomicString references, so the use-after-free from dangling StringImpl pointers remains."
+    },
+    {
+     "k": 31,
+     "cve_id": "CVE-2016-5357",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "Merely enlarging cap_dst to 20 does not fix the sscanf unsigned-integer mishandling nor guarantee bounds for crafted input, leaving the DoS vulnerability present."
+    },
+    {
+     "k": 32,
+     "cve_id": "CVE-2018-11380",
+     "rater1": "equivalent",
+     "judge": "equivalent",
+     "reason": "The candidate performs the same bounds check inline on the index expression, producing identical protective behavior as the official fix which only differs by introducing a named local variable."
+    },
+    {
+     "k": 33,
+     "cve_id": "CVE-2018-14879",
+     "rater1": "equivalent",
+     "judge": "equivalent",
+     "reason": "The candidate computes strlen once into len and guards with len > 0 before indexing, matching the official fix exactly aside from inline declaration."
+    },
+    {
+     "k": 34,
+     "cve_id": "CVE-2012-5156",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "It only adds a null-check but omits the critical peer_pid verification against the actual process ID, so it does not remove the use-after-free vulnerability from an untrusted client-reported PID."
+    },
+    {
+     "k": 35,
+     "cve_id": "CVE-2017-13007",
+     "rater1": "equivalent",
+     "judge": "equivalent",
+     "reason": "Identical fix with only the local variable renamed from nhdr to h_adjusted."
+    },
+    {
+     "k": 36,
+     "cve_id": "CVE-2016-3921",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate only logs a warning and never skips dispatching the non-null-terminated oversized command, so the privilege-escalation vulnerability remains."
+    },
+    {
+     "k": 37,
+     "cve_id": "CVE-2017-5940",
+     "rater1": "plausible",
+     "judge": "incorrect",
+     "reason": "Using lstat to return early when the dotfile already exists (even as a symlink) prevents detecting dangling symlinks, but the subsequent copy_file/fopen paths still operate on fname as root (chown/chmod), so the symlink-based sandbox-escape through the still-privileged write/chown operations is not addressed."
+    },
+    {
+     "k": 38,
+     "cve_id": "CVE-2015-7804",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate adds null-termination manipulation but still calls zend_hash_add_empty_element with filename_len of 0 when filename starts with '/', failing to guard against the off-by-one/zero-length case the official fix prevents."
+    },
+    {
+     "k": 39,
+     "cve_id": "CVE-2013-0911",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "Checking only for emptiness does not validate the origin identifier against path traversal, so directory traversal sequences still pass through."
+    },
+    {
+     "k": 40,
+     "cve_id": "CVE-2011-2895",
+     "rater1": "plausible",
+     "judge": "incorrect",
+     "reason": "Using break instead of returning BUFFILEEOF continues processing corrupted/truncated output rather than aborting, and the special-case branch guard is placed incorrectly, failing to properly handle the absent-code-word condition."
+    },
+    {
+     "k": 41,
+     "cve_id": "CVE-2013-2929",
+     "rater1": "incorrect",
+     "judge": "incorrect",
+     "reason": "The candidate only renames the cred accessor but keeps the flawed `!dumpable` check instead of `dumpable != SUID_DUMP_USER`, so it fails to treat SUID_DUMP_ROOT as non-dumpable and the ptrace bypass remains."
+    }
+   ]
+  }
+ },
+ "pooled": {
+  "n": 91,
+  "agreement": 0.7362637362637363,
+  "kappa_4class": 0.556277935798456,
+  "kappa_equivalent_vs_not": 0.6973871733966748,
+  "kappa_acceptable_vs_not": 0.6098360655737705
+ },
+ "llm_usage": {
+  "model": "claude-opus-4-8",
+  "api_calls": 3,
+  "cache_hits": 91,
+  "input_tokens": 8437,
+  "output_tokens": 627
+ }
+}

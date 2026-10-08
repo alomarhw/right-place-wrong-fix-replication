@@ -1,0 +1,43 @@
+{
+ "n_pairs": 150,
+ "pair_correct_contrastive": [
+  0.10666666666666667,
+  0.06672979536363804,
+  0.16624750076432737
+ ],
+ "per_order_accuracy": {
+  "VF": 0.22,
+  "FV": 0.8466666666666667
+ },
+ "position_bias_A_rate": -0.6266666666666667,
+ "heuristic_longer_is_fix": [
+  0.7666666666666667,
+  0.6928407309593593,
+  0.8271746614962575
+ ],
+ "mcnemar_vs_heuristic": {
+  "llm_only": 1,
+  "heuristic_only": 100,
+  "p": 8.04638123325432e-29
+ },
+ "by_provenance": {
+  "seen": [
+   0.09574468085106383,
+   0.05119138083044319,
+   0.17204290806098949
+  ],
+  "unseen": [
+   0.125,
+   0.06188990138969254,
+   0.23625720697639396
+  ]
+ },
+ "llm_usage": {
+  "model": "claude-haiku-4-5",
+  "api_calls": 0,
+  "cache_hits": 300,
+  "input_tokens": 0,
+  "output_tokens": 0
+ },
+ "mode": "answer only"
+}
