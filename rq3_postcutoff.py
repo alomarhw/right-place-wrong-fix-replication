@@ -94,8 +94,9 @@ def main() -> None:
         # within post-cutoff: grounded arm vs ungrounded (paired by CVE)
         if c != LADDER[0]:
             d = s_post["touch"][c].sum(1) - base_post
+            from rp_stats import wilcoxon_paired  # noqa: PLC0415  (exact on few non-zero pairs)
             row["post_touch_vs_ungrounded_wilcoxon_p"] = (
-                float(wilcoxon(s_post["touch"][c].sum(1), base_post).pvalue) if np.any(d) else 1.0)
+                wilcoxon_paired(s_post["touch"][c].sum(1), base_post)["p_value"] if np.any(d) else 1.0)
             row["post_cves_better_worse"] = [int((d > 0).sum()), int((d < 0).sum())]
         out["arms"][c] = row
         print(f"  {c:28s} VPR post={row['vpr_post'][0]:.3f} pre={row['vpr_pre'][0]:.3f} (p={row['validated_mwu_p']:.3f})"
@@ -108,6 +109,11 @@ def main() -> None:
         running = max(running, min(1.0, (len(ps) - rank) * ps[i]))
         c, m = keys[i]
         out["arms"][c][f"{m}_mwu_p_holm"] = running
+    # Holm over the four within-post-cutoff localization tests (each grounded arm vs ungrounded)
+    from rp_stats import holm  # noqa: PLC0415
+    within = {c: out["arms"][c]["post_touch_vs_ungrounded_wilcoxon_p"] for c in LADDER[1:]}
+    for c, p_adj in holm(within).items():
+        out["arms"][c]["post_touch_vs_ungrounded_holm"] = p_adj
     # covariates that differ between the two CVE sets (confounds for any seen/unseen contrast)
     med = lambda xs: float(np.median(xs))  # noqa: E731
     out["covariates"] = {

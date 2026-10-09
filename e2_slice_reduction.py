@@ -95,7 +95,10 @@ def main():
            "cve_level_mean_modified": (lambda cm: {"P4": float(np.mean([val[[k for k in mod if rows[k]["cve_id"] == c]].mean() for c in cm])),
                                                    "n_cves": len(cm)})(sorted({rows[k]["cve_id"] for k in mod})),
            "P4_vs_P2": {"better_worse": [int((c4 > c2).sum()), int((c4 < c2).sum())],
-                        "p": float(wilcoxon(c4, c2).pvalue) if np.any(c4 != c2) else 1.0},
+                        "p": (__import__("rp_stats").wilcoxon_paired(c4, c2)["p_value"]
+                              if np.any(c4 != c2) else 1.0)},
+           # per-CVE validated rates (same CVE order as porting_pilot's per_target CVEs), for rq4_tests.py
+           "per_cve": {"cve_id": list(cves), "P4": [float(x) for x in c4], "P2": [float(x) for x in c2]},
            "llm_usage": client.stats()}
     Path("results/e2_slice_reduction.json").write_text(json.dumps(out, indent=1))
     print(json.dumps(out, indent=1))

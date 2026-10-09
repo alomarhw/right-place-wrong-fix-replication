@@ -1,6 +1,6 @@
 Arm,Changed patches,Touches fix location [95% CI],Edit size median (agent),Edit size median (official)
 Ungrounded,139,"0.35 [0.27, 0.43]",3,5
 + static feedback,146,"0.35 [0.28, 0.43]",3,5
-+ CVE text,148,"0.44 [0.36, 0.52]",4,5
-+ CVE text + slice,141,"0.45 [0.37, 0.53]",4,4
++ CVE text,147,"0.44 [0.36, 0.52]",4,5
++ CVE text + slice,142,"0.44 [0.36, 0.53]",4,4
 Full agent,146,"0.52 [0.44, 0.60]",6,4

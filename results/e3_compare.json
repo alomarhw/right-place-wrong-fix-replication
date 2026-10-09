@@ -185,10 +185,10 @@
   },
   "claude-sonnet-4-6": {
    "model": "claude-sonnet-4-6",
-   "api_calls": 1022,
-   "cache_hits": 0,
-   "input_tokens": 1529804,
-   "output_tokens": 918718
+   "api_calls": 6,
+   "cache_hits": 1016,
+   "input_tokens": 8870,
+   "output_tokens": 7241
   }
  }
 }

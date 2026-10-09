@@ -32,6 +32,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import threading
 from dataclasses import dataclass, field
 
 import numpy as np
@@ -79,19 +80,29 @@ class AgentRun:
 _CVE_TEXT: dict | None = None
 
 
+_CVE_TEXT_LOCK = threading.Lock()
+
+
 def _cve_text(cve_id: str) -> str:
-    """CVE record description (cveawg.mitre.org), stored with the pair files."""
+    """CVE record description (cveawg.mitre.org), stored with the pair files.
+
+    Built under a lock into a local dict and published only when complete: the agent runs in a thread
+    pool, and an unlocked lazy fill let a thread read the half-built table and send a CVE-text arm a
+    prompt WITHOUT the description (found in 2 of 168 post-cutoff first attempts)."""
     global _CVE_TEXT
     if _CVE_TEXT is None:
-        _CVE_TEXT = {}
-        for p in _pair_files():
-            for ln in p.read_text(errors="ignore").splitlines():
-                try:
-                    r = json.loads(ln)
-                except Exception:  # noqa: BLE001
-                    continue
-                if r.get("cve_id") and r.get("description"):
-                    _CVE_TEXT.setdefault(r["cve_id"], r["description"])
+        with _CVE_TEXT_LOCK:
+            if _CVE_TEXT is None:
+                table: dict = {}
+                for p in _pair_files():
+                    for ln in p.read_text(errors="ignore").splitlines():
+                        try:
+                            r = json.loads(ln)
+                        except Exception:  # noqa: BLE001
+                            continue
+                        if r.get("cve_id") and r.get("description"):
+                            table.setdefault(r["cve_id"], r["description"])
+                _CVE_TEXT = table
     return _CVE_TEXT.get(cve_id, "")
 
 

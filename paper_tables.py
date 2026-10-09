@@ -295,8 +295,10 @@ def t6_localization_test(r3: dict) -> str:
     for key, name in ARMS[1:]:
         h = hits[key]
         d = h.sum(1) - base.sum(1)
-        w = wilcoxon(h.sum(1), base.sum(1), zero_method="wilcox") if np.any(d) else None
-        p = float(w.pvalue) if w is not None else 1.0
+        # Exact signed-rank test on the non-zero differences (rp_stats): a normal approximation on a
+        # handful of non-zero pairs (e.g. 4 vs 0) understates p.
+        from rp_stats import wilcoxon_paired  # noqa: PLC0415
+        p = wilcoxon_paired(h.sum(1), base.sum(1))["p_value"] if np.any(d) else 1.0
         pos, neg = int((d > 0).sum()), int((d < 0).sum())
         # matched-pairs rank-biserial effect size
         nz = d[d != 0]

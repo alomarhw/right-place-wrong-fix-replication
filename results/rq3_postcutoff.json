@@ -68,7 +68,8 @@
     1
    ],
    "touch_mwu_p_holm": 1.0,
-   "validated_mwu_p_holm": 1.0
+   "validated_mwu_p_holm": 1.0,
+   "post_touch_vs_ungrounded_holm": 1.0
   },
   "cve_text_rag": {
    "vpr_post": [
@@ -93,13 +94,14 @@
    ],
    "validated_mwu_p": 0.0398791606119947,
    "touch_mwu_p": 0.09971559965655846,
-   "post_touch_vs_ungrounded_wilcoxon_p": 0.008561916896063825,
+   "post_touch_vs_ungrounded_wilcoxon_p": 0.008215054869651794,
    "post_cves_better_worse": [
     18,
     9
    ],
    "validated_mwu_p_holm": 0.398791606119947,
-   "touch_mwu_p_holm": 0.7977247972524677
+   "touch_mwu_p_holm": 0.7977247972524677,
+   "post_touch_vs_ungrounded_holm": 0.024645164608955383
   },
   "slice_grounded_no_feedback": {
    "vpr_post": [
@@ -124,13 +126,14 @@
    ],
    "validated_mwu_p": 0.4423984906165702,
    "touch_mwu_p": 0.09997095877151593,
-   "post_touch_vs_ungrounded_wilcoxon_p": 0.04268604265465876,
+   "post_touch_vs_ungrounded_wilcoxon_p": 0.046160221099853516,
    "post_cves_better_worse": [
     14,
     8
    ],
    "touch_mwu_p_holm": 0.7977247972524677,
-   "validated_mwu_p_holm": 1.0
+   "validated_mwu_p_holm": 1.0,
+   "post_touch_vs_ungrounded_holm": 0.09232044219970703
   },
   "slice_grounded_full": {
    "vpr_post": [
@@ -155,13 +158,14 @@
    ],
    "validated_mwu_p": 0.4056276308278358,
    "touch_mwu_p": 0.05603285201149147,
-   "post_touch_vs_ungrounded_wilcoxon_p": 0.0011376908702915977,
+   "post_touch_vs_ungrounded_wilcoxon_p": 0.0007376670837402344,
    "post_cves_better_worse": [
     19,
     4
    ],
    "touch_mwu_p_holm": 0.5042956681034232,
-   "validated_mwu_p_holm": 1.0
+   "validated_mwu_p_holm": 1.0,
+   "post_touch_vs_ungrounded_holm": 0.0029506683349609375
   }
  },
  "covariates": {

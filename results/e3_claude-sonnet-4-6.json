@@ -2166,9 +2166,9 @@
  },
  "llm_usage": {
   "model": "claude-sonnet-4-6",
-  "api_calls": 1022,
-  "cache_hits": 0,
-  "input_tokens": 1529804,
-  "output_tokens": 918718
+  "api_calls": 0,
+  "cache_hits": 1022,
+  "input_tokens": 0,
+  "output_tokens": 0
  }
 }

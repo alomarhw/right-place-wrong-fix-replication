@@ -35,6 +35,7 @@ Script names follow the pipeline's internal numbering, which differs from the pa
 | **RQ4** Table VII | Porting vs. inventing on 88 hard clones | `mining/mine_backports.py`, `porting_pilot.py` | `data/porting/`, `results/porting_pilot.json` |
 | RQ4 | srcVul grounding (P3) and retrieval | `srcvul_ground.py`, `srcvul_retrieval.py` | `results/srcvul_retrieval.json` |
 | RQ4 | Porting from slices (P4) | `e2_slice_reduction.py` | `results/e2_slice_reduction.json` |
+| RQ4 | CVE-level tests (exact Wilcoxon, Holm over the four RQ4 comparisons) | `rq4_tests.py` | `results/rq4_tests.json` |
 | Figures | Figs. 2–4 | `paper_figures.py` | `figures/paper/` |
 | Fig. 1 | Architecture (TikZ) | `pdflatex figures/src/fig1_architecture.tex` | `figures/paper/fig0_overview.pdf` |
 
@@ -47,6 +48,18 @@ python3 e3_cross_model.py      # Haiku repeat-1 RQ1/RQ4 arms from the cache (~10
 python3 e3_compare.py          # Haiku vs Sonnet paired comparison
 python3 paper_tables.py        # paper tables, replaying the full ladder from the cache
 ```
+
+## Statistics
+
+All paired arm comparisons use the exact Wilcoxon signed-rank test when at most 50 differences are non-zero
+(`rp_stats.wilcoxon_paired`), and Holm correction within each family. An earlier version let SciPy fall back to a
+normal approximation for a few comparisons with only 2-5 non-zero CVEs; the exact values are reported in the paper.
+
+## Reproducibility note
+
+`patch_agent._cve_text` used to fill its CVE-description table lazily without a lock, so under the thread pool two
+of the 168 post-cutoff CVE-text first attempts were sent without their description. The table is now built under a
+lock; those calls were regenerated with the description and no result changed. Replays are deterministic.
 
 ## Models
 
