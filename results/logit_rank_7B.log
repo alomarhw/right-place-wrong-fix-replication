@@ -1,0 +1,76 @@
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights:   0%|          | 1/339 [00:01<08:48,  1.56s/it]Loading weights:   1%|▏         | 5/339 [00:01<01:29,  3.73it/s]Loading weights:   3%|▎         | 10/339 [00:01<00:39,  8.39it/s]Loading weights:   5%|▍         | 16/339 [00:01<00:21, 14.87it/s]Loading weights:   6%|▌         | 21/339 [00:02<00:17, 18.27it/s]Loading weights:   8%|▊         | 28/339 [00:02<00:11, 26.08it/s]Loading weights:  10%|▉         | 33/339 [00:02<00:11, 27.04it/s]Loading weights:  12%|█▏        | 40/339 [00:02<00:08, 34.08it/s]Loading weights:  13%|█▎        | 45/339 [00:02<00:09, 32.57it/s]Loading weights:  15%|█▌        | 52/339 [00:02<00:07, 38.23it/s]Loading weights:  17%|█▋        | 57/339 [00:02<00:08, 34.50it/s]Loading weights:  19%|█▊        | 63/339 [00:03<00:06, 39.54it/s]Loading weights:  20%|██        | 68/339 [00:03<00:07, 36.33it/s]Loading weights:  22%|██▏       | 76/339 [00:03<00:06, 37.59it/s]Loading weights:  24%|██▍       | 82/339 [00:03<00:06, 41.96it/s]Loading weights:  26%|██▌       | 88/339 [00:03<00:05, 45.82it/s]Loading weights:  27%|██▋       | 93/339 [00:03<00:06, 39.98it/s]Loading weights:  29%|██▉       | 100/339 [00:04<00:06, 37.62it/s]Loading weights:  31%|███▏      | 106/339 [00:04<00:05, 42.12it/s]Loading weights:  33%|███▎      | 112/339 [00:04<00:04, 45.84it/s]Loading weights:  35%|███▍      | 117/339 [00:04<00:05, 40.09it/s]Loading weights:  37%|███▋      | 124/339 [00:04<00:04, 45.28it/s]Loading weights:  38%|███▊      | 129/339 [00:04<00:05, 39.72it/s]Loading weights:  40%|████      | 136/339 [00:04<00:04, 44.92it/s]Loading weights:  42%|████▏     | 141/339 [00:04<00:04, 39.70it/s]Loading weights:  43%|████▎     | 147/339 [00:05<00:04, 42.61it/s]Loading weights:  45%|████▍     | 152/339 [00:05<00:04, 38.28it/s]Loading weights:  47%|████▋     | 160/339 [00:05<00:03, 45.62it/s]Loading weights:  49%|████▊     | 165/339 [00:05<00:04, 39.95it/s]Loading weights:  51%|█████     | 172/339 [00:05<00:04, 38.06it/s]Loading weights:  53%|█████▎    | 178/339 [00:05<00:03, 42.43it/s]Loading weights:  54%|█████▍    | 184/339 [00:06<00:03, 38.96it/s]Loading weights:  56%|█████▌    | 190/339 [00:06<00:03, 43.34it/s]Loading weights:  58%|█████▊    | 196/339 [00:06<00:03, 47.00it/s]Loading weights:  60%|█████▉    | 202/339 [00:06<00:03, 41.34it/s]Loading weights:  61%|██████▏   | 208/339 [00:06<00:02, 45.12it/s]Loading weights:  63%|██████▎   | 213/339 [00:06<00:03, 39.28it/s]Loading weights:  65%|██████▍   | 220/339 [00:06<00:02, 43.78it/s]Loading weights:  66%|██████▋   | 225/339 [00:07<00:02, 38.63it/s]Loading weights:  68%|██████▊   | 232/339 [00:07<00:02, 43.59it/s]Loading weights:  70%|██████▉   | 237/339 [00:07<00:02, 38.90it/s]Loading weights:  72%|███████▏  | 244/339 [00:07<00:02, 37.35it/s]Loading weights:  74%|███████▎  | 250/339 [00:07<00:02, 40.58it/s]Loading weights:  76%|███████▌  | 257/339 [00:07<00:02, 40.69it/s]Loading weights:  77%|███████▋  | 262/339 [00:07<00:01, 42.52it/s]Loading weights:  79%|███████▉  | 268/339 [00:08<00:01, 46.38it/s]Loading weights:  81%|████████  | 273/339 [00:08<00:01, 40.50it/s]Loading weights:  83%|████████▎ | 280/339 [00:08<00:01, 45.34it/s]Loading weights:  84%|████████▍ | 285/339 [00:08<00:01, 39.85it/s]Loading weights:  86%|████████▌ | 292/339 [00:08<00:01, 45.06it/s]Loading weights:  88%|████████▊ | 297/339 [00:08<00:01, 39.68it/s]Loading weights:  90%|████████▉ | 304/339 [00:08<00:00, 37.95it/s]Loading weights:  91%|█████████▏| 310/339 [00:09<00:00, 42.33it/s]Loading weights:  93%|█████████▎| 316/339 [00:09<00:00, 46.12it/s]Loading weights:  95%|█████████▍| 321/339 [00:09<00:00, 40.38it/s]Loading weights:  97%|█████████▋| 328/339 [00:09<00:00, 45.23it/s]Loading weights:  98%|█████████▊| 333/339 [00:09<00:00, 39.62it/s]Loading weights: 100%|██████████| 339/339 [00:09<00:00, 35.17it/s]
+[data_prep] loaded 300 real labelled C functions (150 vulnerable/fixed CVE pairs; 112 unseen/post-cutoff) from data/
+  scored 8/300
+  scored 16/300
+  scored 24/300
+  scored 32/300
+  scored 40/300
+  scored 48/300
+  scored 56/300
+  scored 64/300
+  scored 72/300
+  scored 80/300
+  scored 88/300
+  scored 96/300
+  scored 104/300
+  scored 112/300
+  scored 120/300
+  scored 128/300
+  scored 136/300
+  scored 144/300
+  scored 152/300
+  scored 160/300
+  scored 168/300
+  scored 176/300
+  scored 184/300
+  scored 192/300
+  scored 200/300
+  scored 208/300
+  scored 216/300
+  scored 224/300
+  scored 232/300
+  scored 240/300
+  scored 248/300
+  scored 256/300
+  scored 264/300
+  scored 272/300
+  scored 280/300
+  scored 288/300
+  scored 296/300
+  scored 300/300
+{
+ "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+ "n_pairs": 150,
+ "label_tokens": [
+  "V",
+  "SAFE"
+ ],
+ "ranking_accuracy": [
+  0.5566666666666666,
+  0.4866666666666667,
+  0.6266666666666667
+ ],
+ "pair_correct_default": [
+  0.04,
+  0.018458908886903574,
+  0.08451453912715763
+ ],
+ "pair_correct_cv_tuned_threshold": [
+  0.09333333333333334,
+  0.056411348659597745,
+  0.15056517784558682
+ ],
+ "positive_rate_default": 0.08333333333333333,
+ "accuracy_default": 0.51,
+ "calibration": {
+  "ece_raw": 0.38908483703931174,
+  "brier_raw": 0.41548252724697227,
+  "ece_temperature_cv": 0.0012058242162069092,
+  "brier_temperature_cv": 0.25003145901927637,
+  "accuracy_temperature_cv": 0.51
+ },
+ "ranking_by_provenance": {
+  "seen": 0.5159574468085106,
+  "unseen": 0.625
+ }
+}
