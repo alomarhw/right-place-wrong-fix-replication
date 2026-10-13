@@ -47,6 +47,8 @@ def wilson(k, n, z=1.96):
 def main():
     import sys
     reason = "--reason" in sys.argv
+    thinking = "--thinking" in sys.argv  # native extended thinking on the one-letter prompt
+    budget = 4096
     items, _ = build_corpus(n_cves=300, allow_synthetic=False, seed=42)
     pairs = {}
     for it in items:
@@ -59,8 +61,12 @@ def main():
         i, order = job
         _, v, f = pairs[i]
         a, b = (v.code, f.code) if order == "VF" else (f.code, v.code)
-        got = answer(client.complete(SYSTEM_REASON if reason else SYSTEM, prompt(a, b),
-                                     max_tokens=700 if reason else 4))
+        if thinking:
+            got = answer(client.complete(SYSTEM, prompt(a, b), max_tokens=budget + 16,
+                                         temperature=None, thinking_budget=budget))
+        else:
+            got = answer(client.complete(SYSTEM_REASON if reason else SYSTEM, prompt(a, b),
+                                         max_tokens=700 if reason else 4))
         return i, order, got == ("A" if order == "VF" else "B")
 
     ok = {(i, o): c for i, o, c in llm_map(run, jobs)}
@@ -80,10 +86,15 @@ def main():
         "mcnemar_vs_heuristic": {"llm_only": b10, "heuristic_only": b01,
                                  "p": float(binomtest(b10, b10 + b01, 0.5).pvalue) if b10 + b01 else 1.0},
         "by_provenance": {p: wilson(int(both[prov == p].sum()), int((prov == p).sum())) for p in ("seen", "unseen")},
+        # Where the length cue misleads (the fix is not longer than the vulnerable version).
+        "pair_correct_when_fix_not_longer": [int(both[~longer_fix].sum()), int((~longer_fix).sum())],
         "llm_usage": client.stats(),
     }
-    out["mode"] = "reason-then-answer (max 700 tokens)" if reason else "answer only"
-    Path("results/e1_contrastive_reason.json" if reason else "results/e1_contrastive.json").write_text(json.dumps(out, indent=1))
+    out["mode"] = (f"native extended thinking (budget {budget}), one-letter answer" if thinking else
+                   "reason-then-answer (max 700 tokens)" if reason else "answer only")
+    name = "e1_contrastive_thinking.json" if thinking else (
+        "e1_contrastive_reason.json" if reason else "e1_contrastive.json")
+    Path("results/" + name).write_text(json.dumps(out, indent=1))
     print(json.dumps({k: v for k, v in out.items()}, indent=1))
 
 

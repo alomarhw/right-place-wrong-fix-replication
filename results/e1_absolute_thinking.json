@@ -1,0 +1,30 @@
+{
+ "n_functions": 300,
+ "accuracy": 0.5233333333333333,
+ "positive_rate": 0.8766666666666667,
+ "pair_correct": [
+  0.08666666666666667,
+  0.05134668856955886,
+  0.1426294531242353
+ ],
+ "by_provenance": {
+  "seen": [
+   0.07446808510638298,
+   0.03653811601751902,
+   0.14581376702609433
+  ],
+  "unseen": [
+   0.10714285714285714,
+   0.050038674581190865,
+   0.21468686751661398
+  ]
+ },
+ "llm_usage": {
+  "model": "claude-haiku-4-5",
+  "api_calls": 0,
+  "cache_hits": 300,
+  "input_tokens": 0,
+  "output_tokens": 0
+ },
+ "mode": "native extended thinking (budget 4096), one-word answer"
+}

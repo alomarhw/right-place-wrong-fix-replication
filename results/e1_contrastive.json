@@ -32,6 +32,10 @@
    0.23625720697639396
   ]
  },
+ "pair_correct_when_fix_not_longer": [
+  1,
+  35
+ ],
  "llm_usage": {
   "model": "claude-haiku-4-5",
   "api_calls": 0,

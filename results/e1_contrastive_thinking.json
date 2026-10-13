@@ -1,0 +1,47 @@
+{
+ "n_pairs": 150,
+ "pair_correct_contrastive": [
+  0.76,
+  0.6857071477257108,
+  0.8213078599185155
+ ],
+ "per_order_accuracy": {
+  "VF": 0.8533333333333334,
+  "FV": 0.8066666666666666
+ },
+ "position_bias_A_rate": 0.046666666666666745,
+ "heuristic_longer_is_fix": [
+  0.7666666666666667,
+  0.6928407309593593,
+  0.8271746614962575
+ ],
+ "mcnemar_vs_heuristic": {
+  "llm_only": 17,
+  "heuristic_only": 18,
+  "p": 1.0
+ },
+ "by_provenance": {
+  "seen": [
+   0.7340425531914894,
+   0.6368213225539133,
+   0.8128851417720994
+  ],
+  "unseen": [
+   0.8035714285714286,
+   0.6815514267252283,
+   0.8866151998355589
+  ]
+ },
+ "pair_correct_when_fix_not_longer": [
+  17,
+  35
+ ],
+ "llm_usage": {
+  "model": "claude-haiku-4-5",
+  "api_calls": 0,
+  "cache_hits": 300,
+  "input_tokens": 0,
+  "output_tokens": 0
+ },
+ "mode": "native extended thinking (budget 4096), one-letter answer"
+}

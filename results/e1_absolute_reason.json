@@ -21,9 +21,10 @@
  },
  "llm_usage": {
   "model": "claude-haiku-4-5",
-  "api_calls": 299,
-  "cache_hits": 1,
-  "input_tokens": 211419,
-  "output_tokens": 147528
- }
+  "api_calls": 0,
+  "cache_hits": 300,
+  "input_tokens": 0,
+  "output_tokens": 0
+ },
+ "mode": "reason-then-answer (max 700 tokens)"
 }

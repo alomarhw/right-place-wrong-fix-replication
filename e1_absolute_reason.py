@@ -28,17 +28,35 @@ def verdict(text: str) -> int:
     return int("VULNERABLE" in text.upper()[-200:] and "NOT VULNERABLE" not in text.upper()[-200:])
 
 
+def verdict_first(text: str) -> int:
+    """Thinking mode answers with the one-word verdict first, often followed by an explanation that
+    may itself mention 'vulnerable'; read the first verdict word."""
+    m = re.match(r"\W*(VULNERABLE|SAFE)\b", text.strip().upper())
+    return int(m.group(1) == "VULNERABLE") if m else verdict(text)
+
+
 def wilson(k, n, z=1.96):
     p = k / n; d = 1 + z * z / n; c = (p + z * z / (2 * n)) / d
     h = z * (p * (1 - p) / n + z * z / (4 * n * n)) ** 0.5 / d
     return [p, max(0, c - h), min(1, c + h)]
 
 
+THINKING_BUDGET = 4096  # native extended thinking (--thinking), on the immediate-answer prompt
+
+
 def main():
+    import sys
+    thinking = "--thinking" in sys.argv
     items, _ = build_corpus(n_cves=300, allow_synthetic=False, seed=42)
     client = LLMClient.get()
-    preds = llm_map(lambda it: verdict(client.complete(
-        SYSTEM, f"Function under review:\n```c\n{it.code}\n```", max_tokens=700)), items)
+    if thinking:
+        # Same one-word instruction as the RQ2 instruct detector; the model thinks natively first.
+        preds = llm_map(lambda it: verdict_first(client.complete(
+            _DETECT_SYSTEM, f"Function under review:\n```c\n{it.code}\n```",
+            max_tokens=THINKING_BUDGET + 64, temperature=None, thinking_budget=THINKING_BUDGET)), items)
+    else:
+        preds = llm_map(lambda it: verdict(client.complete(
+            SYSTEM, f"Function under review:\n```c\n{it.code}\n```", max_tokens=700)), items)
     y = np.array([it.label for it in items]); p = np.array(preds)
     by = {}
     for it, pr in zip(items, preds):
@@ -49,7 +67,10 @@ def main():
            "pair_correct": wilson(int(ok.sum()), len(ok)),
            "by_provenance": {q: wilson(int(ok[prov == q].sum()), int((prov == q).sum())) for q in ("seen", "unseen")},
            "llm_usage": client.stats()}
-    Path("results/e1_absolute_reason.json").write_text(json.dumps(out, indent=1))
+    out["mode"] = (f"native extended thinking (budget {THINKING_BUDGET}), one-word answer" if thinking
+                   else "reason-then-answer (max 700 tokens)")
+    Path("results/e1_absolute_thinking.json" if thinking else "results/e1_absolute_reason.json").write_text(
+        json.dumps(out, indent=1))
     print(json.dumps(out, indent=1))
 
 

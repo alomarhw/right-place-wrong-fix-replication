@@ -296,19 +296,26 @@ class LLMClient:
             return cls._instance
 
     def complete(self, system: str, user: str, max_tokens: int = 16,
-                 temperature: float | None = 0.0, sample: int = 0, model: str | None = None) -> str:
+                 temperature: float | None = 0.0, sample: int = 0, model: str | None = None,
+                 thinking_budget: int | None = None) -> str:
+        """``thinking_budget`` enables the model's native extended thinking with that token budget
+        (temperature must then be left unset). It is part of the cache key only when given, so every
+        pre-existing cached response keeps its key."""
         model = model or LLM_MODEL
-        key = hashlib.sha256(json.dumps([model, system, user, max_tokens, temperature, sample])
-                             .encode()).hexdigest()
+        parts = [model, system, user, max_tokens, temperature, sample]
+        if thinking_budget:
+            parts.append({"thinking_budget": int(thinking_budget)})
+        key = hashlib.sha256(json.dumps(parts).encode()).hexdigest()
         # One in-flight request per key: identical concurrent requests (e.g. ladder arms that
         # share their first attempt) wait for the first, and every caller returns the stored
         # value, so a re-run served from the cache reproduces the original run exactly.
         with self._lock:
             key_lock = self._key_locks.setdefault(key, threading.Lock())
         with key_lock:
-            return self._complete_locked(key, model, system, user, max_tokens, temperature)
+            return self._complete_locked(key, model, system, user, max_tokens, temperature, thinking_budget)
 
-    def _complete_locked(self, key, model, system, user, max_tokens, temperature) -> str:
+    def _complete_locked(self, key, model, system, user, max_tokens, temperature,
+                         thinking_budget: int | None = None) -> str:
         with self._lock:
             row = self.db.execute("SELECT v FROM c WHERE k=?", (key,)).fetchone()
             if row is not None:
@@ -320,6 +327,8 @@ class LLMClient:
         for attempt in range(6):
             try:
                 kwargs = {} if temperature is None else {"temperature": temperature}  # newer models reject it
+                if thinking_budget:  # extended thinking: temperature must stay unset
+                    kwargs = {"thinking": {"type": "enabled", "budget_tokens": int(thinking_budget)}}
                 resp = self.client.messages.create(
                     model=model, max_tokens=max_tokens, **kwargs,
                     system=system, messages=[{"role": "user", "content": user}])

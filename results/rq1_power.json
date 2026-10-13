@@ -1,0 +1,103 @@
+{
+ "n_cves": 150,
+ "repeats": 3,
+ "vpr": {
+  "no_grounding_no_feedback": 0.04666666666666667,
+  "compiler_test_feedback": 0.04666666666666667,
+  "cve_text_rag": 0.05333333333333334,
+  "slice_grounded_no_feedback": 0.05555555555555555,
+  "slice_grounded_full": 0.051111111111111114
+ },
+ "arms": {
+  "compiler_test_feedback": {
+   "name": "+ static feedback",
+   "better": 0,
+   "worse": 0,
+   "discordant": 0,
+   "mean_diff_pts": 0.0,
+   "boot95_pts": [
+    0.0,
+    0.0
+   ],
+   "wilcoxon": {
+    "test": "Wilcoxon signed-rank",
+    "p_value": 1.0,
+    "effect_size": 0.0,
+    "effect": "rank-biserial r",
+    "better": 0,
+    "worse": 0,
+    "n": 150
+   }
+  },
+  "cve_text_rag": {
+   "name": "+ CVE text",
+   "better": 7,
+   "worse": 5,
+   "discordant": 12,
+   "mean_diff_pts": 0.6666666666666665,
+   "boot95_pts": [
+    -2.8888888888888893,
+    4.444444444444445
+   ],
+   "wilcoxon": {
+    "test": "Wilcoxon signed-rank",
+    "method": "exact",
+    "p_value": 0.7333984375,
+    "effect_size": 0.1282051282051282,
+    "effect": "rank-biserial r",
+    "better": 7,
+    "worse": 5,
+    "n": 150
+   }
+  },
+  "slice_grounded_no_feedback": {
+   "name": "+ CVE text + slice",
+   "better": 6,
+   "worse": 4,
+   "discordant": 10,
+   "mean_diff_pts": 0.8888888888888888,
+   "boot95_pts": [
+    -2.2222222222222228,
+    4.222222222222222
+   ],
+   "wilcoxon": {
+    "test": "Wilcoxon signed-rank",
+    "method": "exact",
+    "p_value": 0.76953125,
+    "effect_size": 0.14545454545454545,
+    "effect": "rank-biserial r",
+    "better": 6,
+    "worse": 4,
+    "n": 150
+   }
+  },
+  "slice_grounded_full": {
+   "name": "Full agent",
+   "better": 6,
+   "worse": 4,
+   "discordant": 10,
+   "mean_diff_pts": 0.4444444444444442,
+   "boot95_pts": [
+    -2.666666666666667,
+    3.783333333333303
+   ],
+   "wilcoxon": {
+    "test": "Wilcoxon signed-rank",
+    "method": "exact",
+    "p_value": 0.845703125,
+    "effect_size": 0.09090909090909091,
+    "effect": "rank-biserial r",
+    "better": 6,
+    "worse": 4,
+    "n": 150
+   }
+  }
+ },
+ "llm_usage": {
+  "model": "claude-haiku-4-5",
+  "api_calls": 0,
+  "cache_hits": 3648,
+  "input_tokens": 0,
+  "output_tokens": 0
+ }
+}

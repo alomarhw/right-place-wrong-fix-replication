@@ -32,12 +32,16 @@
    0.8590075275434671
   ]
  },
+ "pair_correct_when_fix_not_longer": [
+  14,
+  35
+ ],
  "llm_usage": {
   "model": "claude-haiku-4-5",
-  "api_calls": 300,
-  "cache_hits": 0,
-  "input_tokens": 378430,
-  "output_tokens": 116188
+  "api_calls": 0,
+  "cache_hits": 300,
+  "input_tokens": 0,
+  "output_tokens": 0
  },
  "mode": "reason-then-answer (max 700 tokens)"
 }

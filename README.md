@@ -24,11 +24,13 @@ Script names follow the pipeline's internal numbering, which differs from the pa
 | §III-E, Eq. (1)–(2) | Oracle and its calibration | `oracle.py` (called by `rq3_main.py`) | `results/results.json` (`RQ3`) |
 | **RQ1** Fig. 2, Table III | Grounding ladder, VPR, localization (paper RQ1 = internal "RQ3") | `rq3_main.py`, then `paper_tables.py` | `results/results.json`, `results/rq3_outcomes.json`, `paper_tables/` |
 | RQ1 | Line-level evidence P/R/F1 | `line_evidence.py` | `results/line_evidence.json` |
+| RQ1 | Power of the VPR null (paired-bootstrap interval of the VPR difference) | `rq1_power.py` | `results/rq1_power.json` |
 | RQ1 | Oracle-strictness check (two LLM raters) | `e4_sample.py [arm]`, `e4_judge.py` | `results/e4_*.json`, `results/e4_sample*.md` |
 | RQ1 | Second closed model (Claude Sonnet 4.6, exploratory) | `RP_LLM_MODEL=claude-sonnet-4-6 python3 e3_cross_model.py`, `e3_compare.py` | `results/e3_*.json` |
 | **RQ2** Table IV, Fig. 3 | Detection, pairwise analysis (paper RQ2 = internal "RQ1") | `main.py`, `paper_tables.py` | `results/results.json` |
-| RQ2 Table V | Reasoning and contrastive probes | `e1_absolute_reason.py`, `e1_contrastive.py [--reason]` | `results/e1_*.json` |
+| RQ2 Table V | Reasoning, extended-thinking and contrastive probes | `e1_absolute_reason.py [--thinking]`, `e1_contrastive.py [--reason \| --thinking]` | `results/e1_*.json` |
 | RQ2 Table V | Open-weight replication (Qwen2.5-Coder) | `gpu/open_detect.py` | `results/open_detect_*.json` |
+| RQ2 | Label-token ranking and calibration of the open-weight detectors | `gpu/logit_rank.py --model ...` | `results/logit_rank_*.json` |
 | **RQ3** Fig. 4 | Variant invariance and DiD (internal "RQ1"/"RQ2") | `main.py` (or `rq2_main.py`) | `results/results.json` |
 | RQ3 Table VI | Repair on post-cutoff CVEs | `rq3_postcutoff.py` | `results/rq3_postcutoff.json` |
 | RQ3 | Min-K%++ memorization probe and positive control | `gpu/minkprobe.py`, `gpu/minkprobe_lines.py`, `gpu/positive_control.py`, `gpu/analyze_minkprobe.py` | `results/minkprobe_*`, `results/positive_control_*.json` |
