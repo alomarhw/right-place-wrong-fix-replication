@@ -1,0 +1,64 @@
+{
+ "n": 300,
+ "certified": 226,
+ "yield": 0.7533333333333333,
+ "lines_median": {
+  "certified": 42,
+  "uncertified": 58
+ },
+ "lines_mannwhitney_p": 0.0003740778276608925,
+ "label_vulnerable": {
+  "table": [
+   [
+    111,
+    115
+   ],
+   [
+    39,
+    35
+   ]
+  ],
+  "p": 0.6879997171732283,
+  "rate_certified_if_true": 0.74,
+  "rate_certified_if_false": 0.7666666666666667
+ },
+ "provenance_unseen": {
+  "table": [
+   [
+    86,
+    140
+   ],
+   [
+    26,
+    48
+   ]
+  ],
+  "p": 0.6802208085911285,
+  "rate_certified_if_true": 0.7678571428571429,
+  "rate_certified_if_false": 0.7446808510638298
+ },
+ "top_cwes": [
+  "CWE-119",
+  "CWE-476",
+  "CWE-125",
+  "CWE-20",
+  "CWE-787"
+ ],
+ "cwe_table": [
+  [
+   27,
+   25,
+   23,
+   21,
+   18
+  ],
+  [
+   9,
+   7,
+   7,
+   5,
+   4
+  ]
+ ],
+ "cwe_chi2_p": 0.9711117020715679
+}
