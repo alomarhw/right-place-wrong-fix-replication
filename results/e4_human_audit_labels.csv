@@ -1,31 +1,31 @@
 case,cve_id,label,note
-H01,CVE-2018-18586,,
-H02,CVE-2016-1583,,
-H03,CVE-2015-3331,,
-H04,CVE-2014-4502,,
-H05,CVE-2016-10270,,
-H06,CVE-2013-0925,,
-H07,CVE-2017-15924,,
-H08,CVE-2013-4149,,
-H09,CVE-2018-11380,,
-H10,CVE-2016-7126,,
-H11,CVE-2018-10887,,
-H12,CVE-2011-1180,,
-H13,CVE-2016-5357,,
-H14,CVE-2017-13198,,
-H15,CVE-2018-14879,,
-H16,CVE-2017-16526,,
-H17,CVE-2015-8953,,
-H18,CVE-2011-2895,,
-H19,CVE-2012-2870,,
-H20,CVE-2017-12192,,
-H21,CVE-2017-13198,,
-H22,CVE-2016-2482,,
-H23,CVE-2016-10061,,
-H24,CVE-2018-11380,,
-H25,CVE-2018-12460,,
-H26,CVE-2014-4611,,
-H27,CVE-2016-7166,,
-H28,CVE-2015-5232,,
-H29,CVE-2011-1180,,
-H30,CVE-2013-0911,,
+H01,CVE-2018-18586,incorrect,"Only strips leading ../ sequences; embedded traversal such as a/../../etc still escapes the output dir"
+H02,CVE-2016-1583,incorrect,"Only reorders option parsing before sget(); never sets s_stack_depth so stacking ecryptfs on procfs is still allowed"
+H03,CVE-2015-3331,incorrect,"Fixes the assoc offset but keeps copying req->cryptlen (not tempCipherLen) into req->dst, so the dst overflow remains"
+H04,CVE-2014-4502,plausible,"Bounded snprintf like the official fix; fails on truncation instead of truncating. Sound assuming address is a fixed array so sizeof is its real size"
+H05,CVE-2016-10270,incorrect,"Keeps the cached td_nstrips early return that the official fix removes; added rowsperstrip==0 check does not address the over-read"
+H06,CVE-2013-0925,incorrect,"Adds unrelated NULL checks; privacy-sensitive fields still exposed without tabs permission"
+H07,CVE-2017-15924,incorrect,"JSON escaping and port check in build_config do not stop shell metacharacters reaching construct_command_line/system(); also quotes fast_open, changing a boolean into a string"
+H08,CVE-2013-4149,incorrect,"Buffer size fix is right, but the diff deletes the vnet_hdr error/return -1 path and adds return 0, breaking the function's existing behaviour"
+H09,CVE-2018-11380,incorrect,"New check is redundant with the loop guard (loop already would not run) and only skips the reloc assignment; no protection against the signed/wrapped index the official fix guards"
+H10,CVE-2016-7126,plausible,"Caps ncolors at 256 (palette max) instead of INT_MAX; values above 256 were what triggered the OOB write, so rejecting them is sound, though it returns FALSE where later versions clamp"
+H11,CVE-2018-10887,incorrect,"Adds stream bounds checks but not the (unsigned) cast on the <<24 shift, so the sign extension/overflow remains"
+H12,CVE-2011-1180,equivalent,"name_len > MAX / attr_len > MAX return is the same bound as the official assert < MAX+1"
+H13,CVE-2016-5357,incorrect,"Just enlarges cap_dst; does not fix the sscanf unsigned parsing the official refactor addresses"
+H14,CVE-2017-13198,over_restrictive,"Skips NULL cmap (removes the flaw) but also skips frames whose ColorCount mismatches BitsPerPixel, which previously rendered; adds unrelated frameNr bound"
+H15,CVE-2018-14879,equivalent,"Same len>0 guard as official; rest is whitespace"
+H16,CVE-2017-16526,equivalent,"Same IS_ERR check and NULL reset; only stores ERR_PTR briefly before checking"
+H17,CVE-2015-8953,incorrect,"Jumps to out1 rather than out2 and changes notify_change to two args (does not match this kernel's API); unrelated typo edit"
+H18,CVE-2011-2895,plausible,"Rejects codes > free_ent and bounds the chain walk by free_ent, so prefix chains strictly decrease and the stack cannot overflow; valid streams never hit these breaks"
+H19,CVE-2012-2870,equivalent,"Identical ctxt->error check with braces"
+H20,CVE-2017-12192,incorrect,"key_validate() checks revoked/dead/expired/invalidated but not KEY_FLAG_NEGATIVE, so an unexpired negative key still reaches ->read"
+H21,CVE-2017-13198,over_restrictive,"Skips NULL cmap but also skips frames with mismatched ColorCount that used to render; extra NULL RasterBits check is harmless"
+H22,CVE-2016-2482,incorrect,"Frees the header arrays but does not add the per-buffer bitmask checks; buffer-count mishandling (double/invalid free) remains"
+H23,CVE-2016-10061,plausible,"Checks fputc result, stops and returns NULL on failure instead of continuing; different structure but same effect as the official status/DestroyImage"
+H24,CVE-2018-11380,equivalent,"Same int index with <0 / >=nindirectsyms break as the official fix"
+H25,CVE-2018-12460,incorrect,"Adds NULL checks only; never syncs idsp.mpeg4_studio_profile with studio_profile"
+H26,CVE-2014-4611,plausible,"Bounds the literal length against remaining output during accumulation so it cannot wrap; lengths beyond oend were already errors"
+H27,CVE-2016-7166,plausible,"Caps the filter chain depth (64 vs 25) and returns FATAL; doesn't set an error message but removes the unbounded recursion"
+H28,CVE-2015-5232,incorrect,"Removes the pre-bind unlink (stale socket now makes bind fail) and still unlinks on later error paths; does not match the official race fix"
+H29,CVE-2011-1180,equivalent,"Same bounds as official assert"
+H30,CVE-2013-0911,incorrect,"Only rejects empty strings; no IsValidOriginIdentifier check so traversal in origin_identifier still works"
