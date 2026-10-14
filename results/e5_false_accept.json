@@ -1,0 +1,533 @@
+{
+ "validated_patches": 114,
+ "with_extra_edits": 60,
+ "harmful_by_either_rater": 45,
+ "harmful_by_both_raters": 23,
+ "false_accept_upper": [
+  0.39473684210526316,
+  0.3098480436290092,
+  0.486488733875709
+ ],
+ "false_accept_both": [
+  0.20175438596491227,
+  0.13836966525548047,
+  0.2845845376745544
+ ],
+ "rater_agreement": 0.6333333333333333,
+ "by_arm": {
+  "no_grounding_no_feedback": {
+   "validated": 21,
+   "with_extra": 10,
+   "harmful_either": 6
+  },
+  "compiler_test_feedback": {
+   "validated": 21,
+   "with_extra": 10,
+   "harmful_either": 6
+  },
+  "cve_text_rag": {
+   "validated": 24,
+   "with_extra": 8,
+   "harmful_either": 8
+  },
+  "slice_grounded_no_feedback": {
+   "validated": 25,
+   "with_extra": 14,
+   "harmful_either": 12
+  },
+  "slice_grounded_full": {
+   "validated": 23,
+   "with_extra": 18,
+   "harmful_either": 13
+  }
+ },
+ "items": [
+  {
+   "arm": "no_grounding_no_feedback",
+   "repeat": 1,
+   "item": 34,
+   "cve_id": "CVE-2018-7485",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "no_grounding_no_feedback",
+   "repeat": 1,
+   "item": 103,
+   "cve_id": "CVE-2016-10145",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "no_grounding_no_feedback",
+   "repeat": 1,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "compiler_test_feedback",
+   "repeat": 1,
+   "item": 34,
+   "cve_id": "CVE-2018-7485",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "compiler_test_feedback",
+   "repeat": 1,
+   "item": 103,
+   "cve_id": "CVE-2016-10145",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "compiler_test_feedback",
+   "repeat": 1,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "cve_text_rag",
+   "repeat": 1,
+   "item": 40,
+   "cve_id": "CVE-2016-6833",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "cve_text_rag",
+   "repeat": 1,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 1,
+   "item": 40,
+   "cve_id": "CVE-2016-6833",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 1,
+   "item": 61,
+   "cve_id": "CVE-2015-8953",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 1,
+   "item": 83,
+   "cve_id": "CVE-2017-5577",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 1,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 1,
+   "item": 40,
+   "cve_id": "CVE-2016-6833",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 1,
+   "item": 79,
+   "cve_id": "CVE-2017-0603",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 1,
+   "item": 83,
+   "cve_id": "CVE-2017-5577",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 1,
+   "item": 127,
+   "cve_id": "CVE-2010-5331",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 1,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "no_grounding_no_feedback",
+   "repeat": 2,
+   "item": 34,
+   "cve_id": "CVE-2018-7485",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "no_grounding_no_feedback",
+   "repeat": 2,
+   "item": 103,
+   "cve_id": "CVE-2016-10145",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "no_grounding_no_feedback",
+   "repeat": 2,
+   "item": 117,
+   "cve_id": "CVE-2018-14879",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "no_grounding_no_feedback",
+   "repeat": 2,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "compiler_test_feedback",
+   "repeat": 2,
+   "item": 34,
+   "cve_id": "CVE-2018-7485",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "compiler_test_feedback",
+   "repeat": 2,
+   "item": 103,
+   "cve_id": "CVE-2016-10145",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "compiler_test_feedback",
+   "repeat": 2,
+   "item": 117,
+   "cve_id": "CVE-2018-14879",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "compiler_test_feedback",
+   "repeat": 2,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "cve_text_rag",
+   "repeat": 2,
+   "item": 40,
+   "cve_id": "CVE-2016-6833",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "cve_text_rag",
+   "repeat": 2,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 2,
+   "item": 40,
+   "cve_id": "CVE-2016-6833",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 2,
+   "item": 61,
+   "cve_id": "CVE-2015-8953",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 2,
+   "item": 83,
+   "cve_id": "CVE-2017-5577",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 2,
+   "item": 103,
+   "cve_id": "CVE-2016-10145",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 2,
+   "item": 117,
+   "cve_id": "CVE-2018-14879",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 2,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 2,
+   "item": 31,
+   "cve_id": "CVE-2016-2315",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 2,
+   "item": 40,
+   "cve_id": "CVE-2016-6833",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 2,
+   "item": 61,
+   "cve_id": "CVE-2015-8953",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 2,
+   "item": 79,
+   "cve_id": "CVE-2017-0603",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 2,
+   "item": 83,
+   "cve_id": "CVE-2017-5577",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 2,
+   "item": 117,
+   "cve_id": "CVE-2018-14879",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 2,
+   "item": 127,
+   "cve_id": "CVE-2010-5331",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 2,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "no_grounding_no_feedback",
+   "repeat": 3,
+   "item": 34,
+   "cve_id": "CVE-2018-7485",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "no_grounding_no_feedback",
+   "repeat": 3,
+   "item": 103,
+   "cve_id": "CVE-2016-10145",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "no_grounding_no_feedback",
+   "repeat": 3,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "compiler_test_feedback",
+   "repeat": 3,
+   "item": 34,
+   "cve_id": "CVE-2018-7485",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "compiler_test_feedback",
+   "repeat": 3,
+   "item": 103,
+   "cve_id": "CVE-2016-10145",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "compiler_test_feedback",
+   "repeat": 3,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "cve_text_rag",
+   "repeat": 3,
+   "item": 40,
+   "cve_id": "CVE-2016-6833",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "cve_text_rag",
+   "repeat": 3,
+   "item": 79,
+   "cve_id": "CVE-2017-0603",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "cve_text_rag",
+   "repeat": 3,
+   "item": 83,
+   "cve_id": "CVE-2017-5577",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "cve_text_rag",
+   "repeat": 3,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 3,
+   "item": 40,
+   "cve_id": "CVE-2016-6833",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 3,
+   "item": 83,
+   "cve_id": "CVE-2017-5577",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 3,
+   "item": 103,
+   "cve_id": "CVE-2016-10145",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_no_feedback",
+   "repeat": 3,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 3,
+   "item": 34,
+   "cve_id": "CVE-2018-7485",
+   "claude-opus-5-5": "harmless",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 3,
+   "item": 40,
+   "cve_id": "CVE-2016-6833",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 3,
+   "item": 79,
+   "cve_id": "CVE-2017-0603",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 3,
+   "item": 83,
+   "cve_id": "CVE-2017-5577",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmless"
+  },
+  {
+   "arm": "slice_grounded_full",
+   "repeat": 3,
+   "item": 142,
+   "cve_id": "CVE-2018-8784",
+   "claude-opus-5-5": "harmful",
+   "claude-opus-4-8": "harmful"
+  }
+ ],
+ "llm_usage": {
+  "model": "claude-haiku-4-5",
+  "api_calls": 62,
+  "cache_hits": 3706,
+  "input_tokens": 54258,
+  "output_tokens": 13296
+ }
+}
