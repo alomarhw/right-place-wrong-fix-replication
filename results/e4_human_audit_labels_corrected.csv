@@ -1,0 +1,31 @@
+case,cve_id,label,note
+H01,CVE-2018-18586,incorrect,Only strips leading ../ sequences; embedded traversal such as a/../../etc still escapes the output dir
+H02,CVE-2016-1583,incorrect,Only reorders option parsing before sget(); never sets s_stack_depth so stacking ecryptfs on procfs is still allowed
+H03,CVE-2015-3331,incorrect,"Fixes the assoc offset but keeps copying req->cryptlen (not tempCipherLen) into req->dst, so the dst overflow remains"
+H04,CVE-2014-4502,plausible,"Plausible for the supplied address-formatting fix: the corresponding cgminer parse_reconnect function declares address[256], so sizeof(address) is the buffer capacity; rejecting truncation prevents the overflow. Dataset caveat: the CVE description concerns Extranonc2_size/parse_notify, whereas this diff concerns parse_reconnect; this fragment does not establish a full fix for the described CVE."
+H05,CVE-2016-10270,incorrect,Keeps the cached td_nstrips early return that the official fix removes; added rowsperstrip==0 check does not address the over-read
+H06,CVE-2013-0925,incorrect,Adds NULL checks but leaves the original permission/field-selection logic unchanged and never performs the official ScrubTabValueForExtension step. The privacy defect is not repaired.
+H07,CVE-2017-15924,incorrect,"JSON escaping and port check in build_config do not stop shell metacharacters reaching construct_command_line/system(); also quotes fast_open, changing a boolean into a string"
+H08,CVE-2013-4149,incorrect,"Deletes the vnet_hdr diagnostic and failure return and adds success return, changing existing error handling. The allocation multiplication also lacks the explicit 64-bit arithmetic used by the official fix; changing allocation size alone is not an established complete repair."
+H09,CVE-2018-11380,incorrect,New check is redundant with the loop guard (loop already would not run) and only skips the reloc assignment; no protection against the signed/wrapped index the official fix guards
+H10,CVE-2016-7126,over_restrictive,"Rejects ncolors > 256, including safely representable values from 257 through INT_MAX accepted by the official fix and clamped by the bundled GD quantizer. Prevents the narrowing-conversion vulnerability but changes legitimate accepted-input behavior; the original claim that every value above 256 triggers the OOB write is false."
+H11,CVE-2018-10887,incorrect,"Adds stream bounds checks but not the (unsigned) cast on the <<24 shift, so the sign extension/overflow remains"
+H12,CVE-2011-1180,equivalent,name_len > MAX / attr_len > MAX return is the same bound as the official assert < MAX+1
+H13,CVE-2016-5357,incorrect,Just enlarges cap_dst; does not fix the sscanf unsigned parsing the official refactor addresses
+H14,CVE-2017-13198,plausible,"Skips a missing cmap before copyLine and rejects out-of-range frame indices. The extra ColorCount consistency check rejects malformed state: GifMakeMapObject constructs ColorCount == (1 << BitsPerPixel). No valid-input regression is demonstrated, so over_restrictive is unsupported."
+H15,CVE-2018-14879,equivalent,Same len>0 guard as official; rest is whitespace
+H16,CVE-2017-16526,equivalent,Same IS_ERR check and NULL reset; only stores ERR_PTR briefly before checking
+H17,CVE-2015-8953,incorrect,Jumps to out1 rather than out2 and changes notify_change to two args (does not match this kernel's API); unrelated typo edit
+H18,CVE-2011-2895,incorrect,"Rejecting codes above free_ent does not bound stack usage by STACK_SIZE. The original libXfont stack is 8192 bytes, and an acyclic dictionary chain can exceed that capacity. Candidate neither checks stackp nor enlarges the stack. The later upstream input-validation fix also enlarges the stack to 65300 and fixes initial/reset-code handling."
+H19,CVE-2012-2870,equivalent,Identical ctxt->error check with braces
+H20,CVE-2017-12192,incorrect,"key_validate() checks revoked/dead/expired/invalidated but not KEY_FLAG_NEGATIVE, so an unexpired negative key still reaches ->read"
+H21,CVE-2017-13198,plausible,"Skips a missing cmap before copyLine and also skips NULL raster data. GifMakeMapObject guarantees ColorCount == (1 << BitsPerPixel) for normally decoded maps, so the extra consistency check does not establish a legitimate-input regression. Different defensive checks, but sound for the missing-color-map flaw."
+H22,CVE-2016-2482,incorrect,Frees the header arrays but does not add the per-buffer bitmask checks; buffer-count mishandling (double/invalid free) remains
+H23,CVE-2016-10061,plausible,"Checks fputc result, stops and returns NULL on failure instead of continuing; different structure but same effect as the official status/DestroyImage"
+H24,CVE-2018-11380,equivalent,Same int index with <0 / >=nindirectsyms break as the official fix
+H25,CVE-2018-12460,incorrect,Adds NULL checks only; never syncs idsp.mpeg4_studio_profile with studio_profile
+H26,CVE-2014-4611,plausible,"Plausible for the shown kernel lz4_uncompress function, whose output size is a nonnegative int. Each loop-body check bounds length by remaining output before the +255 increment, keeping accumulation below SIZE_MAX even on 32-bit. The subtraction check can underflow when len exceeds remaining output, but the added post-addition check rejects that case before pointer arithmetic. This reasoning depends on the actual int-sized output bound."
+H27,CVE-2016-7166,plausible,Caps the filter chain depth (64 vs 25) and returns FATAL; doesn't set an error message but removes the unbounded recursion
+H28,CVE-2015-5232,incorrect,Removes the pre-bind unlink (stale socket now makes bind fail) and still unlinks on later error paths; does not match the official race fix
+H29,CVE-2011-1180,equivalent,Same bounds as official assert
+H30,CVE-2013-0911,incorrect,Only rejects empty strings; no IsValidOriginIdentifier check so traversal in origin_identifier still works

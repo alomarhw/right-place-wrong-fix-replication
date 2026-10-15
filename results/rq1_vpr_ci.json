@@ -1,0 +1,72 @@
+{
+ "n_cves": 150,
+ "repeats": 3,
+ "draws": 10000,
+ "arms": {
+  "no_grounding_no_feedback": {
+   "vpr": 0.04666666666666667,
+   "ci95": [
+    0.017777777777777778,
+    0.08222222222222222
+   ],
+   "outcomes": {
+    "validated": 21,
+    "right_place_wrong_fix": 132,
+    "wrong_place": 263,
+    "unchanged_or_malformed": 34
+   }
+  },
+  "compiler_test_feedback": {
+   "vpr": 0.04666666666666667,
+   "ci95": [
+    0.017777777777777778,
+    0.08222222222222222
+   ],
+   "outcomes": {
+    "validated": 21,
+    "right_place_wrong_fix": 138,
+    "wrong_place": 277,
+    "unchanged_or_malformed": 14
+   }
+  },
+  "cve_text_rag": {
+   "vpr": 0.05333333333333334,
+   "ci95": [
+    0.022222222222222223,
+    0.09111111111111111
+   ],
+   "outcomes": {
+    "validated": 24,
+    "right_place_wrong_fix": 188,
+    "wrong_place": 230,
+    "unchanged_or_malformed": 8
+   }
+  },
+  "slice_grounded_no_feedback": {
+   "vpr": 0.05555555555555555,
+   "ci95": [
+    0.024444444444444446,
+    0.09111111111111111
+   ],
+   "outcomes": {
+    "validated": 25,
+    "right_place_wrong_fix": 166,
+    "wrong_place": 230,
+    "unchanged_or_malformed": 29
+   }
+  },
+  "slice_grounded_full": {
+   "vpr": 0.051111111111111114,
+   "ci95": [
+    0.022222222222222223,
+    0.08444444444444445
+   ],
+   "outcomes": {
+    "validated": 23,
+    "right_place_wrong_fix": 207,
+    "wrong_place": 208,
+    "unchanged_or_malformed": 12
+   }
+  }
+ }
+}

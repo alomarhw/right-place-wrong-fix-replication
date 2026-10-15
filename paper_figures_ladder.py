@@ -1,0 +1,176 @@
+"""paper_figures_ladder.py — small-multiple figures for RQ1 (grounding ladder) and RQ4 (retrieval).
+
+One metric per panel, the ladder (or k) on the x-axis, every point labelled with its value. Reads only
+measured results (no LLM calls):
+  results/rq3_outcomes.json, results/rq3_postcutoff.json, results/e3_compare.json,
+  results/line_evidence.json, results/rq1_vpr_ci.json, results/tables/paper/T6_rq3_localization_test.csv, results/srcvul_retrieval.json
+Writes figures/paper/fig3_rq1_ladder.{pdf,png} and figures/paper/fig4_rq4_retrieval.{pdf,png}.
+
+Palette: the validated categorical palette of paper_figures.py (blue / orange / aqua) in fixed order,
+plus grey for reference lines; each series also has its own marker and line style, so identity
+never rests on colour alone.
+"""
+from __future__ import annotations
+
+import csv
+import json
+import math
+from pathlib import Path
+
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt  # noqa: E402
+
+ROOT = Path(__file__).resolve().parent
+RES = ROOT / "results"
+OUT = ROOT / "figures" / "paper"
+
+INK, INK2, GRID, SURFACE = "#0b0b0b", "#52514e", "#e6e5e1", "#ffffff"
+BLUE, ORANGE, AQUA, GREY = "#2a78d6", "#eb6834", "#1baf7a", "#8a8984"
+ARMS = ["no_grounding_no_feedback", "compiler_test_feedback", "cve_text_rag",
+        "slice_grounded_no_feedback", "slice_grounded_full"]
+LABELS = ["A0", "A1", "A2", "A3", "A4"]
+SONNET_IDX = {"A0": 0, "A2": 2, "A4": 4}
+
+
+def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float, float]:
+    p = k / n
+    d = 1 + z * z / n
+    c = (p + z * z / (2 * n)) / d
+    h = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d
+    return p, max(0.0, c - h), min(1.0, c + h)
+
+
+def style() -> None:
+    plt.rcParams.update({
+        "font.family": "DejaVu Sans", "font.size": 7.5, "axes.titlesize": 8, "axes.titleweight": "bold",
+        "axes.labelsize": 7.5, "xtick.labelsize": 7, "ytick.labelsize": 7, "legend.fontsize": 7,
+        "axes.edgecolor": INK2, "axes.labelcolor": INK, "xtick.color": INK2, "ytick.color": INK2,
+        "axes.spines.top": False, "axes.spines.right": False, "axes.grid": True, "grid.color": GRID,
+        "grid.linewidth": 0.6, "axes.axisbelow": True, "figure.facecolor": SURFACE, "axes.facecolor": SURFACE,
+        "savefig.dpi": 300, "pdf.fonttype": 42, "figure.constrained_layout.use": True,
+        "lines.linewidth": 1.6, "lines.markersize": 4.5,
+    })
+
+
+def save(fig, name: str) -> None:
+    OUT.mkdir(parents=True, exist_ok=True)
+    for ext in ("pdf", "png"):
+        fig.savefig(OUT / f"{name}.{ext}", bbox_inches="tight", pad_inches=0.02)
+    plt.close(fig)
+    print(f"[paper_figures_ladder] wrote {OUT / name}.{{pdf,png}}")
+
+
+def label_points(ax, xs, ys, color, dy=4, fmt="{:.0f}", scale=100.0):
+    for x, y in zip(xs, ys):
+        ax.annotate(fmt.format(y * scale), (x, y), textcoords="offset points", xytext=(0, dy),
+                    ha="center", va="bottom" if dy >= 0 else "top", fontsize=6.3, color=INK)
+
+
+def fig3_ladder() -> None:
+    out = json.loads((RES / "rq3_outcomes.json").read_text())
+    post = json.loads((RES / "rq3_postcutoff.json").read_text())["arms"]
+    son = json.loads((RES / "e3_compare.json").read_text())["per_model"]["claude-sonnet-4-6"]["rq1"]
+    ev = json.loads((RES / "line_evidence.json").read_text())["rq1"]
+    with open(RES / "tables" / "paper" / "T6_rq3_localization_test.csv") as fh:
+        chance = [float(r["Chance touch rate"]) for r in csv.DictReader(fh)]
+    n = sum(out[ARMS[0]].values())  # CVEs x repeats = 450
+    x = list(range(5))
+
+    ci = json.loads((RES / "rq1_vpr_ci.json").read_text())["arms"]  # CVE-level bootstrap (rq1_vpr_ci.py)
+    vpr = [(ci[a]["vpr"], *ci[a]["ci95"]) for a in ARMS]
+    touch = [(n - out[a]["wrong_place"] - out[a]["unchanged"]) / n for a in ARMS]
+    rpwf = [out[a]["right_place_wrong_fix"] / n for a in ARMS]
+    wrong = [out[a]["wrong_place"] / n for a in ARMS]
+    sx = [SONNET_IDX[k] for k in ("A0", "A2", "A4")]
+
+    fig, axs = plt.subplots(1, 4, figsize=(7.0, 2.45))
+    pre_v, post_v = [v[0] for v in vpr], [post[a]["vpr_post"][0] for a in ARMS]
+    son_v, son_t = [son[k]["vpr"] for k in ("A0", "A2", "A4")], [son[k]["touch"] for k in ("A0", "A2", "A4")]
+    post_t = [post[a]["touch_post"][0] for a in ARMS]
+    # (a) validated-patch rate: pre labelled below, post above, Sonnet to the right
+    ax = axs[0]
+    ax.fill_between(x, [v[1] for v in vpr], [v[2] for v in vpr], color=BLUE, alpha=0.12, lw=0)
+    ax.plot(x, pre_v, "-o", color=BLUE, label="Haiku 4.5, pre-cutoff")
+    ax.plot(x, post_v, "--s", color=ORANGE, label="Haiku 4.5, post-cutoff")
+    ax.plot(sx, son_v, ":^", color=AQUA, label="Sonnet 4.6, pre-cutoff (1 rep.)")
+    label_points(ax, x, pre_v, BLUE, dy=-5)
+    label_points(ax, x, post_v, ORANGE)
+    for xx, yy in zip(sx[1:], son_v[1:]):
+        ax.annotate(f"{yy * 100:.0f}", (xx, yy), textcoords="offset points", xytext=(-7, 1), ha="right",
+                    va="center", fontsize=6.3, color=AQUA)
+    ax.set_title("(a) Validated patches (%)")
+    ax.set_ylim(0, 0.17)
+    ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(0.05))
+    # (b) touch rate, with the chance line
+    ax = axs[1]
+    ax.plot(x, chance, "-", color=GREY, lw=1.0, label="Chance (random edit)")
+    ax.plot(x, touch, "-o", color=BLUE)
+    ax.plot(x, post_t, "--s", color=ORANGE)
+    ax.plot(sx, son_t, ":^", color=AQUA)
+    label_points(ax, x, touch, BLUE, dy=-5)
+    label_points(ax, x, post_t, ORANGE)
+    label_points(ax, x, chance, GREY, dy=-4)
+    ax.set_title("(b) Touch a fix line (%)")
+    ax.set_ylim(0, 0.75)
+    # (c) line-level evidence, pre-cutoff Haiku
+    ax = axs[2]
+    rec, f1 = [ev[a]["recall"] for a in ARMS], [ev[a]["f1"] for a in ARMS]
+    ax.plot(x, f1, "-D", color=INK2, lw=1.2, label="F1")
+    ax.plot(x, rec, "-o", color=BLUE, label="Recall")
+    label_points(ax, x, f1, INK2)
+    label_points(ax, x, rec, BLUE, dy=-5)
+    ax.set_title("(c) Fix lines found (%)")
+    ax.set_ylim(0.08, 0.33)
+    ax.legend(loc="upper left", frameon=False, handlelength=1.4, borderaxespad=0.1)
+    # (d) outcome shares, pre-cutoff Haiku
+    ax = axs[3]
+    ax.plot(x, wrong, "-o", color=GREY, label="Wrong place")
+    ax.plot(x, rpwf, "-s", color=ORANGE, label="Right place,\nwrong fix")
+    label_points(ax, x, wrong, GREY)
+    label_points(ax, x, rpwf, ORANGE, dy=-5)
+    ax.set_title("(d) Rejected patches (%)")
+    ax.set_ylim(0.0, 0.72)
+    ax.legend(loc="lower right", frameon=False, handlelength=1.4, borderaxespad=0.1)
+
+    for ax in axs:
+        ax.set_xticks(x, LABELS)
+        ax.set_xlim(-0.4, 4.4)
+        ax.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v * 100:.0f}"))
+    h, lab = axs[0].get_legend_handles_labels()
+    h2, lab2 = axs[1].get_legend_handles_labels()
+    fig.legend(h + h2, lab + lab2, loc="outside lower center", ncol=4, frameon=False, handlelength=2.0,
+               columnspacing=1.0)
+    save(fig, "fig3_rq1_ladder")
+
+
+def fig4_retrieval() -> None:
+    r = json.loads((RES / "srcvul_retrieval.json").read_text())
+    ranks = [t["rank"] for t in r["per_target"]]
+    above = [t["entries_above_0.8"] for t in r["per_target"]]
+    ks = list(range(1, 11))
+    hit = [sum(rk <= k for rk in ranks) / len(ranks) for k in ks]
+
+    fig, axs = plt.subplots(1, 2, figsize=(3.5, 1.6), gridspec_kw={"width_ratios": [1.15, 1]})
+    ax = axs[0]
+    ax.plot(ks, hit, "-o", color=BLUE)
+    label_points(ax, ks, hit, BLUE)
+    ax.set_title("(a) Right fix in top-$k$ (%)")
+    ax.set_xlabel("$k$ (of %d fixes)" % r["db_entries"])
+    ax.set_xticks(ks)
+    ax.set_ylim(0.3, 0.9)
+    ax.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v * 100:.0f}"))
+    ax = axs[1]
+    ax.hist(above, bins=range(164, r["db_entries"] + 2, 2), color=ORANGE, edgecolor=SURFACE, lw=0.6)
+    ax.axvline(r["db_entries"], color=GREY, lw=1.0, ls="--")
+    ax.set_title("(b) Cosine $\\geq$ 0.8")
+    ax.set_xlabel("of %d, per target" % r["db_entries"])
+    ax.set_ylabel("targets")
+    save(fig, "fig4_rq4_retrieval")
+
+
+if __name__ == "__main__":
+    style()
+    fig3_ladder()
+    fig4_retrieval()
