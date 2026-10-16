@@ -16,12 +16,12 @@
 \definecolor{llmC} {HTML}{DCEAF8}  \definecolor{llmD} {HTML}{2E6DB4} % LLM components
 \definecolor{evC}  {HTML}{F9DADF}  \definecolor{evD}  {HTML}{B23A48} % evaluation / oracle
 \definecolor{laneC}{HTML}{F4F5F7}  \definecolor{laneD}{HTML}{CDD1D7} % frames
-\definecolor{inkC} {HTML}{262626}  \definecolor{subC} {HTML}{555555} % text
+\definecolor{inkC} {HTML}{262626}  \definecolor{subC} {HTML}{333333} % text
 \definecolor{rqC}  {HTML}{3A3F47}                                     % RQ badges
 
 % ----------------------------- GRID ---------------------------------
-\def\xIn{0}   \def\xGr{4.1}   \def\xAg{8.2}   \def\xOut{11.8}   \def\xEv{16.05}
-\def\boxw{3.0cm}   \def\boxh{1.0cm}
+\def\xIn{0}   \def\xGr{3.75}   \def\xAg{7.55}   \def\xOut{10.95}   \def\xEv{14.55}
+\def\boxw{3.05cm}   \def\boxh{1.0cm}
 
 \newcommand{\T}[1]{{\footnotesize\color{inkC}\textsc{#1}}}
 
@@ -29,19 +29,19 @@
   >={Stealth[length=4.2pt,width=3.6pt]},
   box/.style 2 args={rectangle, rounded corners=2pt, draw=#2, fill=#1,
         line width=0.65pt, minimum width=\boxw, minimum height=\boxh,
-        align=center, inner sep=2.5pt, font=\scriptsize, text=subC},
+        align=center, inner sep=2pt, font=\footnotesize, text=subC},
   data/.style  ={box={dataC}{dataD}},
   slicer/.style={box={slcC}{slcD}},
   llm/.style   ={box={llmC}{llmD}},
   eval/.style  ={box={evC}{evD}, line width=1.2pt},
   db/.style={cylinder, shape border rotate=90, aspect=0.17, draw=dataD,
         fill=dataC, line width=0.65pt, minimum width=2.85cm, minimum height=1.25cm,
-        align=center, inner sep=1.5pt, font=\scriptsize, text=subC},
+        align=center, inner sep=1.5pt, font=\footnotesize, text=subC},
   flow/.style={->, line width=0.75pt, draw=inkC!75, rounded corners=2pt},
   ground/.style={->, line width=0.9pt, draw=llmD!80, rounded corners=2pt},
   fb/.style  ={->, line width=0.75pt, draw=llmD, dashed},
   truth/.style={->, line width=0.8pt, draw=evD, densely dotted},
-  elab/.style={font=\scriptsize\itshape, text=subC, inner sep=1.2pt},
+  elab/.style={font=\footnotesize\itshape, text=subC, inner sep=1.2pt},
   rq/.style={rectangle, rounded corners=2.5pt, fill=rqC, text=white,
         font=\scriptsize\bfseries\sffamily, inner sep=1.6pt, minimum height=0.36cm},
   frame/.style={rounded corners=5pt, draw=laneD, fill=laneC, line width=0.6pt},
@@ -65,13 +65,13 @@
 \node[llm] (det) at (\xGr,2.45)
       {\T{LLM Detector}\\vulnerable or safe?};
 \node[slicer, minimum height=0.86cm] (slicer) at (\xGr,0.75)
-      {\T{Program Slicer}\\vulnerability slice (srcSlice)};
+      {\T{Program Slicer}\\sink-based slice (A3, A4)};
 \node[data, minimum height=0.86cm] (cvetext) at (\xGr,-0.4)
-      {\T{CVE Text}\\description, CWE};
-\node[slicer, minimum height=0.86cm] (retr) at (\xGr,-1.55)
-      {\T{Known-Fix Retrieval}\\srcVul slicing vectors};
-\node[elab, anchor=north, align=center] (gsrc) at (\xGr,-2.08)
-      {grounding sources};
+      {\T{CVE Text}\\description, CWE (A2--A4)};
+\node[slicer, minimum height=1.05cm] (retr) at (\xGr,-1.75)
+      {\T{Known Fix}\\source fix given (P2--P4);\\srcVul map (P3), slices (P4)};
+\node[elab, anchor=north, align=center] (gsrc) at (\xGr,-2.32)
+      {retrieval by srcVul vectors:\\[-1pt]evaluated separately (Fig.~5)};
 
 % =====================================================================
 % REPAIR AGENT
@@ -80,8 +80,8 @@
       {\T{LLM Repair Agent}\\[3pt]
        \color{inkC}invents a fix, or\\\color{inkC}ports a known fix\\[3pt]
        returns the complete\\patched function};
-\node[slicer, minimum width=3.2cm, minimum height=0.8cm] (checks) at (\xAg,-2.3)
-      {\T{Self-Checks}\\static checks; slice severance};
+\node[slicer, minimum width=3.2cm, minimum height=0.95cm] (checks) at (\xAg,-2.45)
+      {\T{Self-Checks}\\static (A1, A2, A4);\\severance (A4)};
 
 \node[data] (patched) at (\xOut,-0.15) {\T{Patched Function}};
 
@@ -89,8 +89,8 @@
 % EVALUATION HARNESS (separate; the only place the ground truth enters)
 % =====================================================================
 \node[eval] (pairc) at (\xEv,2.45) {\T{Pair-Correctness}\\verdicts on vulnerable\\and fixed versions};
-\node[eval] (oracle) at (\xEv,-0.15) {\T{Independent Oracle}\\agrees with the\\official fix? $\to$ VPR};
-\node[db, minimum height=1.05cm] (fixes) at (\xEv,-2.15) {\T{Official Fixes}\\and labels};
+\node[eval, minimum height=1.35cm] (oracle) at (\xEv,-0.15) {\T{Independent Oracle}\\makes every change of\\the official fix? $\to$ VPR;\\edits a fix line? $\to$ touch};
+\node[db, minimum height=1.05cm] (fixes) at (\xEv,-2.35) {\T{Target's Official}\\\T{Fix} and labels};
 
 % =====================================================================
 % FLOWS
@@ -103,13 +103,15 @@
 % knowledge base feeds CVE text and known fixes
 \coordinate (kt) at ($(kb.east)+(0.32,0)$);
 \draw[flow, draw=dataD] (kb.east) -- (kt) |- (cvetext.west);
-\draw[flow, draw=dataD] (kb.east) -- (retr.west);
+\draw[flow, draw=dataD] (kb.east) -- (kt) |- (retr.west);
 % grounding into the agent
 \draw[ground] (slicer.east)  -- (slicer.east -| agent.west);
 \draw[ground] (cvetext.east) -- (cvetext.east -| agent.west);
-\draw[ground] (retr.east) -- ++(0.55,0) |- ([yshift=-11mm]agent.west);
+\draw[ground] (retr.east) -- ++(0.55,0) |- ([yshift=-8mm]agent.west);
+% P0: the source fix applied as a line patch, bypassing the LLM
+\draw[flow, draw=dataD] ([yshift=-3mm]retr.east) -- ++(0.3,0) |- node[elab, pos=0.75, below=0pt]{P0: naive line patch (no LLM)} ($(patched.south)+(0,-2.85)$) -- (patched.south);
 % self-check loop
-\draw[flow] ([xshift=-6mm]agent.south) -- node[elab, left=1pt]{candidate} ([xshift=-6mm]checks.north);
+\draw[flow] ([xshift=-6mm]agent.south) -- node[elab, left=1pt, pos=0.75]{candidate} ([xshift=-6mm]checks.north);
 \draw[fb]   ([xshift=6mm]checks.north) -- node[elab, right=1pt, text=llmD]{feedback} ([xshift=6mm]agent.south);
 % outputs to the harness
 \draw[flow] (agent) -- (patched);
@@ -145,7 +147,7 @@
 % =====================================================================
 % LEGEND
 % =====================================================================
-\begin{scope}[shift={(-1.55,-4.05)}, every node/.style={font=\scriptsize, text=inkC}]
+\begin{scope}[shift={(0.2,-4.6)}, every node/.style={font=\footnotesize, text=inkC}]
   \tikzset{key/.style={minimum width=0.5cm, minimum height=0.3cm, inner sep=0}}
   \node[data, key] (k1) at (0.25,0) {};
   \node[anchor=west] (t1) at (k1.east) {Data \& inputs};
@@ -155,11 +157,12 @@
   \node[anchor=west] (t3) at (k3.east) {LLM component};
   \node[eval, key, right=0.4cm of t3] (k4) {};
   \node[anchor=west] (t4) at (k4.east) {Evaluation};
-  \draw[ground] ($(t4.east)+(0.35,0)$) -- ++(0.55,0) node[anchor=west] (t5) {grounding};
+  \draw[ground] (0,-0.55) -- ++(0.55,0) node[anchor=west] (t5) {grounding};
   \draw[fb]     ($(t5.east)+(0.35,0)$) -- ++(0.55,0) node[anchor=west] (t6) {feedback};
   \draw[truth]  ($(t6.east)+(0.35,0)$) -- ++(0.55,0) node[anchor=west] (t7) {ground truth};
   \node[rq, right=0.4cm of t7] (k8) {RQ};
-  \node[anchor=west] at (k8.east) {probed by research question};
+  \node[anchor=west] (t8) at (k8.east) {probed by research question};
+  \node[anchor=west, right=0.4cm of t8] {A$\ast$, P$\ast$: arms using a component};
 \end{scope}
 
 \end{tikzpicture}

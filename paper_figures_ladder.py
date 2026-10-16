@@ -28,6 +28,7 @@ OUT = ROOT / "figures" / "paper"
 
 INK, INK2, GRID, SURFACE = "#0b0b0b", "#52514e", "#e6e5e1", "#ffffff"
 BLUE, ORANGE, AQUA, GREY = "#2a78d6", "#eb6834", "#1baf7a", "#8a8984"
+PURPLE, BROWN = "#7b4fa8", "#8c5a2b"  # panels (c)-(d) only, so they never reuse a shared-legend encoding
 ARMS = ["no_grounding_no_feedback", "compiler_test_feedback", "cve_text_rag",
         "slice_grounded_no_feedback", "slice_grounded_full"]
 LABELS = ["A0", "A1", "A2", "A3", "A4"]
@@ -74,13 +75,14 @@ def fig3_ladder() -> None:
     son = json.loads((RES / "e3_compare.json").read_text())["per_model"]["claude-sonnet-4-6"]["rq1"]
     ev = json.loads((RES / "line_evidence.json").read_text())["rq1"]
     with open(RES / "tables" / "paper" / "T6_rq3_localization_test.csv") as fh:
-        chance = [float(r["Chance touch rate"]) for r in csv.DictReader(fh)]
+        t6 = list(csv.DictReader(fh))
+    chance = [float(r["Chance touch rate"]) for r in t6]
+    touch = [float(r["Touch rate (3 reps)"]) for r in t6]  # same values as Table IV and the text
     n = sum(out[ARMS[0]].values())  # CVEs x repeats = 450
     x = list(range(5))
 
     ci = json.loads((RES / "rq1_vpr_ci.json").read_text())["arms"]  # CVE-level bootstrap (rq1_vpr_ci.py)
     vpr = [(ci[a]["vpr"], *ci[a]["ci95"]) for a in ARMS]
-    touch = [(n - out[a]["wrong_place"] - out[a]["unchanged"]) / n for a in ARMS]
     rpwf = [out[a]["right_place_wrong_fix"] / n for a in ARMS]
     wrong = [out[a]["wrong_place"] / n for a in ARMS]
     sx = [SONNET_IDX[k] for k in ("A0", "A2", "A4")]
@@ -94,12 +96,12 @@ def fig3_ladder() -> None:
     ax.fill_between(x, [v[1] for v in vpr], [v[2] for v in vpr], color=BLUE, alpha=0.12, lw=0)
     ax.plot(x, pre_v, "-o", color=BLUE, label="Haiku 4.5, pre-cutoff")
     ax.plot(x, post_v, "--s", color=ORANGE, label="Haiku 4.5, post-cutoff")
-    ax.plot(sx, son_v, ":^", color=AQUA, label="Sonnet 4.6, pre-cutoff (1 rep.)")
+    ax.plot(sx, son_v, "^", color=AQUA, linestyle="none", label="Sonnet 4.6, pre-cutoff (1 rep.; A0, A2, A4)")
     label_points(ax, x, pre_v, BLUE, dy=-5)
     label_points(ax, x, post_v, ORANGE)
-    for xx, yy in zip(sx[1:], son_v[1:]):
+    for xx, yy in zip(sx, son_v):
         ax.annotate(f"{yy * 100:.0f}", (xx, yy), textcoords="offset points", xytext=(-7, 1), ha="right",
-                    va="center", fontsize=6.3, color=AQUA)
+                    va="center", fontsize=6.3, color=INK)
     ax.set_title("(a) Validated patches (%)")
     ax.set_ylim(0, 0.17)
     ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(0.05))
@@ -108,7 +110,7 @@ def fig3_ladder() -> None:
     ax.plot(x, chance, "-", color=GREY, lw=1.0, label="Chance (random edit)")
     ax.plot(x, touch, "-o", color=BLUE)
     ax.plot(x, post_t, "--s", color=ORANGE)
-    ax.plot(sx, son_t, ":^", color=AQUA)
+    ax.plot(sx, son_t, "^", color=AQUA, linestyle="none")
     label_points(ax, x, touch, BLUE, dy=-5)
     label_points(ax, x, post_t, ORANGE)
     label_points(ax, x, chance, GREY, dy=-4)
@@ -118,18 +120,18 @@ def fig3_ladder() -> None:
     ax = axs[2]
     rec, f1 = [ev[a]["recall"] for a in ARMS], [ev[a]["f1"] for a in ARMS]
     ax.plot(x, f1, "-D", color=INK2, lw=1.2, label="F1")
-    ax.plot(x, rec, "-o", color=BLUE, label="Recall")
+    ax.plot(x, rec, "--v", color=PURPLE, label="Recall")
     label_points(ax, x, f1, INK2)
-    label_points(ax, x, rec, BLUE, dy=-5)
+    label_points(ax, x, rec, PURPLE, dy=-5)
     ax.set_title("(c) Fix lines found (%)")
     ax.set_ylim(0.08, 0.33)
     ax.legend(loc="upper left", frameon=False, handlelength=1.4, borderaxespad=0.1)
     # (d) outcome shares, pre-cutoff Haiku
     ax = axs[3]
-    ax.plot(x, wrong, "-o", color=GREY, label="Wrong place")
-    ax.plot(x, rpwf, "-s", color=ORANGE, label="Right place,\nwrong fix")
+    ax.plot(x, wrong, "-p", color=GREY, label="Wrong place")
+    ax.plot(x, rpwf, "-.X", color=BROWN, label="Right place,\nwrong fix")
     label_points(ax, x, wrong, GREY)
-    label_points(ax, x, rpwf, ORANGE, dy=-5)
+    label_points(ax, x, rpwf, BROWN, dy=-5)
     ax.set_title("(d) Rejected patches (%)")
     ax.set_ylim(0.0, 0.72)
     ax.legend(loc="lower right", frameon=False, handlelength=1.4, borderaxespad=0.1)
@@ -164,9 +166,9 @@ def fig4_retrieval() -> None:
     ax = axs[1]
     ax.hist(above, bins=range(164, r["db_entries"] + 2, 2), color=ORANGE, edgecolor=SURFACE, lw=0.6)
     ax.axvline(r["db_entries"], color=GREY, lw=1.0, ls="--")
-    ax.set_title("(b) Cosine $\\geq$ 0.8")
-    ax.set_xlabel("of %d, per target" % r["db_entries"])
-    ax.set_ylabel("targets")
+    ax.set_title("(b) Fixes with cosine $\\geq$ 0.8")
+    ax.set_xlabel("fixes over threshold (of %d)" % r["db_entries"])
+    ax.set_ylabel("hard targets")
     save(fig, "fig4_rq4_retrieval")
 
 

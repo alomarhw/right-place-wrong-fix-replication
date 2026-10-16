@@ -27,6 +27,7 @@ Script names follow the pipeline's internal numbering, which differs from the pa
 | RQ1 | Power of the VPR null (paired-bootstrap interval of the VPR difference) | `rq1_power.py` | `results/rq1_power.json` |
 | RQ1 Table III, Fig. 2 | CVE-level bootstrap CIs of the validated-patch rate and patch outcomes; ladder and retrieval figures | `rq1_vpr_ci.py`, `paper_figures_ladder.py` | `results/rq1_vpr_ci.json`, `figures/paper/fig3_rq1_ladder.*`, `figures/paper/fig4_rq4_retrieval.*` |
 | RQ1 | Blind author audit (30 patches) vs. the two LLM raters | `e4_human_agreement.py results/e4_human_audit_labels_corrected.csv` | `results/e4_human_audit_agreement.json` |
+| RQ1 | Bootstrap CI of the A4-minus-A0 gap after counting equivalent fixes | `e4_gap_ci.py` | `results/e4_gap_ci.json` |
 | RQ1 | Oracle-strictness check (two LLM raters) | `e4_sample.py [arm]`, `e4_judge.py` | `results/e4_*.json`, `results/e4_sample*.md` |
 | RQ1 | Second closed model (Claude Sonnet 4.6, exploratory) | `RP_LLM_MODEL=claude-sonnet-4-6 python3 e3_cross_model.py`, `e3_compare.py` | `results/e3_*.json` |
 | **RQ2** Table IV, Fig. 3 | Detection, pairwise analysis (paper RQ2 = internal "RQ1") | `main.py`, `paper_tables.py` | `results/results.json` |
