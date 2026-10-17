@@ -274,10 +274,17 @@ class LLMClient:
         # Without a key the client still serves every cached response (offline replay of the
         # frozen cache); only a cache miss then fails, loudly, instead of falling back to a proxy.
         self.client = None
-        if os.environ.get("ANTHROPIC_API_KEY"):
-            import anthropic
-            self.client = anthropic.Anthropic(max_retries=8)
-        self.path = _cache_path()
+        # Open-model path (sensitivity runs on a self-hosted vLLM server): an OpenAI-compatible endpoint
+        # with its own cache file, so the frozen Claude cache is never read or written and no paid API
+        # can be reached from these runs.
+        self.local = os.environ.get("RP_LOCAL_LLM_BASE_URL", "").rstrip("/")
+        if self.local:
+            self.path = Path(os.environ.get("RP_LLM_CACHE_OPEN", Path(__file__).resolve().parent / "data" / "_llm_cache_open.sqlite"))
+        else:
+            if os.environ.get("ANTHROPIC_API_KEY"):
+                import anthropic
+                self.client = anthropic.Anthropic(max_retries=8)
+            self.path = _cache_path()
         self.db = sqlite3.connect(str(self.path), check_same_thread=False)
         self.db.execute("CREATE TABLE IF NOT EXISTS c (k TEXT PRIMARY KEY, v TEXT)")
         self.db.commit()
@@ -321,6 +328,8 @@ class LLMClient:
             if row is not None:
                 self.hits += 1
                 return row[0]
+        if self.local:
+            return self._complete_local(key, model, system, user, max_tokens, temperature)
         if self.client is None:
             raise RuntimeError("Cache miss and ANTHROPIC_API_KEY is not set: this response is not in "
                                f"the frozen cache ({self.path}); set the key to query {model}.")
@@ -344,6 +353,36 @@ class LLMClient:
             self.in_tokens += resp.usage.input_tokens
             self.out_tokens += resp.usage.output_tokens
             self.db.execute("INSERT OR IGNORE INTO c VALUES (?, ?)", (key, text))  # first write wins
+            self.db.commit()
+            return self.db.execute("SELECT v FROM c WHERE k=?", (key,)).fetchone()[0]
+
+    def _complete_local(self, key, model, system, user, max_tokens, temperature) -> str:
+        import urllib.request
+        body = {"model": model, "max_tokens": max_tokens,
+                "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
+        if temperature is not None:
+            body["temperature"] = temperature
+        # vLLM honours a per-request seed: the cache key's sample index makes repeats reproducible draws.
+        body["seed"] = int(hashlib.sha256(key.encode()).hexdigest()[:8], 16)
+        for attempt in range(6):
+            try:
+                req = urllib.request.Request(f"{self.local}/chat/completions", data=json.dumps(body).encode(),
+                                             headers={"Content-Type": "application/json"})
+                with urllib.request.urlopen(req, timeout=600) as r:
+                    resp = json.loads(r.read())
+                break
+            except Exception as exc:  # noqa: BLE001
+                if attempt == 5:
+                    raise
+                print(f"[llm] local retry after {type(exc).__name__}: {str(exc)[:120]}")
+                time.sleep(5 * (attempt + 1))
+        text = resp["choices"][0]["message"].get("content") or ""
+        usage = resp.get("usage") or {}
+        with self._lock:
+            self.calls += 1
+            self.in_tokens += int(usage.get("prompt_tokens", 0))
+            self.out_tokens += int(usage.get("completion_tokens", 0))
+            self.db.execute("INSERT OR IGNORE INTO c VALUES (?, ?)", (key, text))
             self.db.commit()
             return self.db.execute("SELECT v FROM c WHERE k=?", (key,)).fetchone()[0]
 

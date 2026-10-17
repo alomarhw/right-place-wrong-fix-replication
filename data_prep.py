@@ -67,7 +67,8 @@ def canonicalize(code: str) -> str:
 
 
 def extract_slice(code: str) -> list[str]:
-    """Backward data/control slice: keep lines touching sink vars + their defs."""
+    """Sink-based identifier slice (not a dependence slice): keep the lines that touch a sink, plus every
+    line sharing an identifier with them; no data- or control-dependence analysis."""
     lines = [ln.strip() for ln in code.splitlines() if ln.strip()]
     sink_idx = []
     for i, ln in enumerate(lines):

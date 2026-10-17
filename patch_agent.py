@@ -55,9 +55,26 @@ LADDER = [
     "slice_grounded_no_feedback",
     "slice_grounded_full",
 ]
-_USES_CVE_TEXT = {"cve_text_rag", "slice_grounded_no_feedback", "slice_grounded_full"}
+# Sensitivity arms (open-model runs only; LADDER and its prompts are unchanged): the slice comes from
+# interprocedural srcSlice over a source archive (srcslice_inter.py), precomputed per function in
+# data/srcslice_inter.json. A3c is the attribution control: the identifier slice plus the same callee
+# functions, unsliced. Functions without a srcSlice slice fall back to the identifier slice (flagged).
+SRCSLICE_ARMS = ["srcslice_grounded_no_feedback", "srcslice_grounded_full", "slice_plus_callees_no_feedback"]
+_SRCSLICE: dict | None = None
+
+
+def _srcslice(code: str) -> dict:
+    global _SRCSLICE
+    if _SRCSLICE is None:
+        f = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "srcslice_inter.json")
+        _SRCSLICE = json.load(open(f)) if os.path.exists(f) else {}
+    import hashlib
+    return _SRCSLICE.get(hashlib.sha256(code.strip().encode()).hexdigest(), {})
+
+
+_USES_CVE_TEXT = {"cve_text_rag", "slice_grounded_no_feedback", "slice_grounded_full", *SRCSLICE_ARMS}
 _USES_SLICE = {"slice_grounded_no_feedback", "slice_grounded_full"}
-_USES_FEEDBACK = {"compiler_test_feedback", "cve_text_rag", "slice_grounded_full"}
+_USES_FEEDBACK = {"compiler_test_feedback", "cve_text_rag", "slice_grounded_full", "srcslice_grounded_full"}
 
 _SYSTEM = (
     "You are a security engineer patching a vulnerable C function from an open-source "
@@ -138,14 +155,14 @@ def _static_feedback(cand: str, vulnerable: str) -> list[str]:
     return issues
 
 
-def _severance_feedback(cand: str, vulnerable: str) -> tuple[bool, list[str]]:
+def _severance_feedback(cand: str, vulnerable: str, slice_lines: list | None = None) -> tuple[bool, list[str]]:
     """Is the vulnerable slice still intact in the candidate? (vulnerable code only)"""
     sim = vsvector_similarity(cand, vulnerable)
     severed = sim < LSH_THRESHOLD
     if severed:
         return True, []
     cand_lines = {re.sub(r"\s+", " ", l.strip()) for l in cand.splitlines()}
-    intact = [l for l in extract_slice(vulnerable) if re.sub(r"\s+", " ", l) in cand_lines][:12]
+    intact = [l for l in (slice_lines or extract_slice(vulnerable)) if re.sub(r"\s+", " ", l) in cand_lines][:12]
     msg = (f"The vulnerability slice is still intact (slice similarity {sim:.2f} >= "
            f"{LSH_THRESHOLD:.2f}): the data flow into the vulnerable operation is unchanged. "
            "These slice statements are unchanged:\n" + "\n".join(f"  {l}" for l in intact))
@@ -162,6 +179,15 @@ def _prompt(item: CVEPatchItem, condition: str, previous: str, feedback: list[st
     parts.append(f"Vulnerable function:\n```c\n{item.vulnerable_code}\n```")
     if condition in _USES_SLICE:
         sl = "\n".join(item.vulnerable_slice or extract_slice(item.vulnerable_code))
+        parts.append("Vulnerability slice (the statements that reach the vulnerable "
+                     f"operation; your patch must cut or guard this flow):\n```c\n{sl}\n```")
+    if condition in SRCSLICE_ARMS:
+        ss = _srcslice(item.vulnerable_code)
+        ident = "\n".join(item.vulnerable_slice or extract_slice(item.vulnerable_code))
+        if condition == "slice_plus_callees_no_feedback":
+            sl = ident + ("\n" + ss["callees_unsliced"] if ss.get("callees_unsliced") else "")
+        else:
+            sl = ss.get("slice") or ident
         parts.append("Vulnerability slice (the statements that reach the vulnerable "
                      f"operation; your patch must cut or guard this flow):\n```c\n{sl}\n```")
     if feedback:
@@ -185,10 +211,11 @@ def run_agent_on_item(item: CVEPatchItem, condition: str, seed: int) -> AgentRun
                                max_tokens=4096, temperature=PATCH_TEMPERATURE,
                                sample=seed * 10 + it_i)
         cand = _extract_code(text)
-        severed, sev_fb = _severance_feedback(cand, item.vulnerable_code) if cand else (False, [])
+        own = _srcslice(item.vulnerable_code).get("local_text") if condition == "srcslice_grounded_full" else None
+        severed, sev_fb = _severance_feedback(cand, item.vulnerable_code, own) if cand else (False, [])
         severed_history.append(bool(severed))
         feedback = _static_feedback(cand, item.vulnerable_code)
-        if condition == "slice_grounded_full" and not feedback:
+        if condition in ("slice_grounded_full", "srcslice_grounded_full") and not feedback:
             feedback = sev_fb
         if not feedback or condition not in _USES_FEEDBACK:
             break
@@ -200,11 +227,12 @@ def run_agent_on_item(item: CVEPatchItem, condition: str, seed: int) -> AgentRun
                     severed_history=severed_history)
 
 
-def run_ladder(items: list[CVEPatchItem], seed: int = RANDOM_SEED) -> dict:
+def run_ladder(items: list[CVEPatchItem], seed: int = RANDOM_SEED, conditions: list | None = None) -> dict:
     """Run every ladder condition over all CVEs. Returns per-condition AgentRun lists."""
-    jobs = [(i, item, cond) for i, item in enumerate(items) for cond in LADDER]
+    conditions = conditions or LADDER
+    jobs = [(i, item, cond) for i, item in enumerate(items) for cond in conditions]
     runs = llm_map(lambda j: run_agent_on_item(j[1], j[2], seed=seed + j[0] * 101), jobs)
-    results: dict[str, list[AgentRun]] = {c: [] for c in LADDER}
+    results: dict[str, list[AgentRun]] = {c: [] for c in conditions}
     for (_, _, cond), run in zip(jobs, runs):
         results[cond].append(run)
     print(f"[patch_agent] LLM usage so far: {LLMClient.get().stats()}")
