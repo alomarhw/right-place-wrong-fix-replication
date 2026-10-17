@@ -40,11 +40,11 @@
 \node[ttl,anchor=north] at (8.8,\top-0.08) {Agent under study (Claude Haiku 4.5)};
 \node[ttl,anchor=north,text=evD] (evt) at (16.025,\top-0.08) {Evaluation harness};
 \node[sub,anchor=north,text width=3.7cm,align=flush center,text=evD,inner sep=0pt]
-  at (evt.south) {the only part that sees the\\official fix and labels};
+  at (evt.south) {the only part that sees the\\target's official fix and label};
 
 % ---------------- (a) inputs ----------------
 \node[box=inD,fill=inF,text width=3.0cm,minimum height=1.25cm] (tf) at (1.775,3.85)
-  {\hd{Target function}\\[1pt]{\scriptsize a vulnerable C function, or its clone on another release branch}};
+  {\hd{Target function}\\[1pt]{\scriptsize a vulnerable or fixed C function, or a clone on another release branch}};
 
 % evidence cylinder
 \def\cx{1.775}\def\crx{1.62}\def\cry{0.13}\def\cyt{2.95}\def\cyb{0.3}
@@ -80,7 +80,7 @@
 \draw[arr] (d3) -- (d4);
 \draw[arr] (d4) -- (sp);
 % feedback 4 -> 3
-\draw[arr,dashed] ([xshift=-3mm]d4.south) -- ++(0,-0.32) -| node[lbl,pos=0.25,below]{feedback, up to 5 attempts} ([xshift=3mm]d3.south);
+\draw[arr,dashed] ([xshift=-3mm]d4.south) -- ++(0,-0.32) -| node[lbl,pos=0.25,below]{feedback (arms with checks), up to 5 attempts in total} ([xshift=3mm]d3.south);
 
 % inputs -> agent
 \coordinate (j) at (3.95,3.85);
@@ -118,9 +118,9 @@
   \node[anchor=north west,text width=\cw cm-0.3cm,align=flush left,font=\scriptsize,text=txt,inner sep=0pt]
     at (\xl+0.15,\ctop-0.6) {\textbf{Varies:} #4\\[1.5pt]\textbf{Measures:} #5\\[1.5pt]\textbf{Data:} #6};
 }
-\card{0}{RQ1}{Grounding}{evidence in \st{toolD}{2} and checks in \st{toolD}{4} (ladder A0--A4)}{VPR, touch}{150 CVEs before the cutoff + 56 after}
-\card{1}{RQ2}{Detection}{prompts, reasoning, models in \st{llmD}{1} (Haiku 4.5; Qwen2.5-Coder 7B/14B)}{pair-correct}{the same 206 CVEs}
-\card{2}{RQ3}{Contamination}{the inputs: pre/post-cutoff CVEs, certified slice-preserving variants, likelihood probe}{accuracy change vs.\ lookup controls}{217 matched functions}
-\card{3}{RQ4}{Porting}{\st{toolD}{2} gets the known source fix (P0--P4)}{VPR}{88 hard clones, 23 CVEs}
+\card{0}{RQ1}{Grounding}{evidence in \st{toolD}{2} and checks in \st{toolD}{4} (ladder A0--A4)}{VPR, touch}{150 Big-Vul CVEs}
+\card{1}{RQ2}{Detection}{prompts, reasoning, models in \st{llmD}{1} (Haiku 4.5; Qwen2.5-Coder 7B/14B)}{pair-correct}{150 CVE pairs (94 pre-, 56 post-cutoff)}
+\card{2}{RQ3}{Contamination}{the inputs: pre/post-cutoff CVEs, certified slice-preserving variants, likelihood probe}{accuracy change vs.\ lookup controls}{217 matched functions; 150 + 56 CVEs for repair}
+\card{3}{RQ4}{Porting}{whether \st{toolD}{2} gets the known source fix (P0--P4)}{VPR}{88 hard clones, 23 CVEs}
 \end{tikzpicture}
 \end{document}
