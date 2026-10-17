@@ -72,9 +72,46 @@ def _srcslice(code: str) -> dict:
     return _SRCSLICE.get(hashlib.sha256(code.strip().encode()).hexdigest(), {})
 
 
-_USES_CVE_TEXT = {"cve_text_rag", "slice_grounded_no_feedback", "slice_grounded_full", *SRCSLICE_ARMS}
+# Information arms (e6_info_ladder.py): A2 (CVE text + static feedback) plus one kind of information that a
+# fix needs, never the fix's code. L: the lines of the function the official fix changes (an oracle fault
+# localizer; the fixed text is never shown). M: the fix commit's message, cleaned of code
+# (data/commit_messages.json, fetch_commit_messages.py). LM: both.
+INFO_ARMS = ["location_oracle", "remedy_message", "location_and_remedy"]
+_COMMIT_MSG: dict | None = None
+
+
+def _commit_message(cve_id: str) -> str:
+    """The cleaned fix commit message for a CVE ('' when unavailable: the arm then equals A2, flagged)."""
+    global _COMMIT_MSG
+    if _COMMIT_MSG is None:
+        f = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "commit_messages.json")
+        table = json.load(open(f)) if os.path.exists(f) else {}
+        _COMMIT_MSG = {r["cve_id"]: r["cleaned"] for r in table.values() if r.get("ok")}
+    return _COMMIT_MSG.get(cve_id, "")
+
+
+def _fix_locations(vulnerable: str, fixed: str) -> list[tuple[str, int]]:
+    """Where the official fix edits the vulnerable function: ('change', i) for a line it deletes or replaces and
+    ('insert_after', i) for the line right before an insertion (exactly the oracle's lambda(v, f) anchors, as in
+    paper_tables._changed_lines; a blank anchor line is shown with the code line above it for orientation)."""
+    import difflib
+    al, bl = [l.strip() for l in vulnerable.splitlines()], [l.strip() for l in fixed.splitlines()]
+    out: list[tuple[str, int]] = []
+    for tag, i1, i2, _, _ in difflib.SequenceMatcher(None, al, bl, autojunk=False).get_opcodes():
+        if tag in ("replace", "delete"):
+            out += [("change", i) for i in range(i1, i2)]
+        elif tag == "insert":
+            out.append(("insert_after", max(0, i1 - 1)))
+    seen, uniq = set(), []
+    for kind, i in out:
+        if i not in seen:
+            seen.add(i); uniq.append((kind, i))
+    return sorted(uniq, key=lambda x: x[1])
+
+
+_USES_CVE_TEXT = {"cve_text_rag", "slice_grounded_no_feedback", "slice_grounded_full", *SRCSLICE_ARMS, *INFO_ARMS}
 _USES_SLICE = {"slice_grounded_no_feedback", "slice_grounded_full"}
-_USES_FEEDBACK = {"compiler_test_feedback", "cve_text_rag", "slice_grounded_full", "srcslice_grounded_full"}
+_USES_FEEDBACK = {"compiler_test_feedback", "cve_text_rag", "slice_grounded_full", "srcslice_grounded_full", *INFO_ARMS}
 
 _SYSTEM = (
     "You are a security engineer patching a vulnerable C function from an open-source "
@@ -190,6 +227,26 @@ def _prompt(item: CVEPatchItem, condition: str, previous: str, feedback: list[st
             sl = ss.get("slice") or ident
         parts.append("Vulnerability slice (the statements that reach the vulnerable "
                      f"operation; your patch must cut or guard this flow):\n```c\n{sl}\n```")
+    if condition in ("location_oracle", "location_and_remedy"):
+        lines = item.vulnerable_code.splitlines()
+        locs = [(k, i) for k, i in _fix_locations(item.vulnerable_code, item.official_fixed_code) if i < len(lines)]
+        def show(i: int) -> str:
+            if lines[i].strip():
+                return lines[i].strip()
+            j = i
+            while j > 0 and not lines[j].strip():
+                j -= 1
+            return f"<blank line, below: {lines[j].strip()}>"
+        listed = "\n".join((f"line {i + 1} (change it): " if k == "change" else f"after line {i + 1} (insert here): ")
+                           + show(i) for k, i in locs)
+        parts.append("A fault localizer has marked where the fix goes (line numbers count from the first line "
+                     "of the function; the marked lines must be changed, or new code inserted right after "
+                     f"them). Make the fix there; leave the rest of the function unless the fix requires it:\n{listed}")
+    if condition in ("remedy_message", "location_and_remedy"):
+        msg = _commit_message(item.cve_id)
+        if msg:
+            parts.append("Developer's description of the fix (the fix commit's message, with code lines "
+                         f"removed):\n\"\"\"\n{msg}\n\"\"\"")
     if feedback:
         parts.append(f"Your previous attempt:\n```c\n{previous}\n```\n"
                      "It was rejected by the checks below. Fix these problems and return the "

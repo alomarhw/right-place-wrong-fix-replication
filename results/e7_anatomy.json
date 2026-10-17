@@ -1,0 +1,2778 @@
+{
+ "part_a": {
+  "A0": {
+   "n": 132,
+   "partial_hunk_share": 36.4,
+   "multi_hunk_fix_share": 44.7,
+   "relation": {
+    "incomplete": 2.3,
+    "overlapping": 69.7,
+    "different": 28.0
+   },
+   "fix_kind": {
+    "call": 89,
+    "other": 35,
+    "guard": 6,
+    "bound": 2
+   },
+   "patch_kind": {
+    "call": 54,
+    "guard": 21,
+    "other": 56,
+    "bound": 1
+   },
+   "kind_match_share": 62.9,
+   "mean_var_jaccard": 0.354,
+   "median_fix_stmts": 5.0,
+   "median_patch_stmts": 4.0
+  },
+  "A2": {
+   "n": 188,
+   "partial_hunk_share": 31.9,
+   "multi_hunk_fix_share": 42.6,
+   "relation": {
+    "incomplete": 1.1,
+    "overlapping": 75.0,
+    "different": 23.9
+   },
+   "fix_kind": {
+    "call": 135,
+    "other": 44,
+    "guard": 6,
+    "bound": 3
+   },
+   "patch_kind": {
+    "call": 98,
+    "other": 72,
+    "guard": 15,
+    "bound": 3
+   },
+   "kind_match_share": 63.3,
+   "mean_var_jaccard": 0.344,
+   "median_fix_stmts": 5.0,
+   "median_patch_stmts": 4.0
+  },
+  "A4": {
+   "n": 207,
+   "partial_hunk_share": 31.4,
+   "multi_hunk_fix_share": 48.8,
+   "relation": {
+    "incomplete": 1.9,
+    "overlapping": 68.1,
+    "different": 30.0
+   },
+   "fix_kind": {
+    "call": 136,
+    "other": 59,
+    "guard": 10,
+    "bound": 2
+   },
+   "patch_kind": {
+    "other": 76,
+    "guard": 16,
+    "call": 115
+   },
+   "kind_match_share": 61.4,
+   "mean_var_jaccard": 0.309,
+   "median_fix_stmts": 5.0,
+   "median_patch_stmts": 5.0
+  },
+  "L": {
+   "n": 305,
+   "partial_hunk_share": 24.9,
+   "multi_hunk_fix_share": 43.3,
+   "relation": {
+    "incomplete": 3.3,
+    "overlapping": 70.5,
+    "different": 26.2
+   },
+   "fix_kind": {
+    "other": 85,
+    "guard": 18,
+    "call": 202
+   },
+   "patch_kind": {
+    "guard": 35,
+    "call": 123,
+    "bound": 8,
+    "other": 139
+   },
+   "kind_match_share": 56.4,
+   "mean_var_jaccard": 0.348,
+   "median_fix_stmts": 4.0,
+   "median_patch_stmts": 3.0
+  },
+  "M": {
+   "n": 214,
+   "partial_hunk_share": 29.0,
+   "multi_hunk_fix_share": 44.4,
+   "relation": {
+    "incomplete": 5.6,
+    "overlapping": 72.9,
+    "different": 21.5
+   },
+   "fix_kind": {
+    "guard": 13,
+    "call": 139,
+    "other": 59,
+    "bound": 3
+   },
+   "patch_kind": {
+    "guard": 18,
+    "call": 120,
+    "other": 69,
+    "bound": 7
+   },
+   "kind_match_share": 67.8,
+   "mean_var_jaccard": 0.365,
+   "median_fix_stmts": 5.0,
+   "median_patch_stmts": 4.0
+  },
+  "LM": {
+   "n": 291,
+   "partial_hunk_share": 26.8,
+   "multi_hunk_fix_share": 44.3,
+   "relation": {
+    "incomplete": 7.2,
+    "overlapping": 73.2,
+    "different": 19.6
+   },
+   "fix_kind": {
+    "other": 77,
+    "guard": 20,
+    "call": 189,
+    "bound": 5
+   },
+   "patch_kind": {
+    "guard": 28,
+    "call": 141,
+    "other": 120,
+    "bound": 2
+   },
+   "kind_match_share": 67.7,
+   "mean_var_jaccard": 0.396,
+   "median_fix_stmts": 5.0,
+   "median_patch_stmts": 4.0
+  },
+  "A0_vs_A4_relation_chi2": {
+   "chi2": 0.18,
+   "p": 0.9155665158270708
+  }
+ },
+ "pools": {
+  "A0": 132,
+  "A2": 188,
+  "A4": 207,
+  "L": 305,
+  "M": 214,
+  "LM": 291
+ },
+ "part_b": {
+  "raters": [
+   "claude-opus-5-5",
+   "claude-opus-4-8"
+  ],
+  "n": 180,
+  "arms": {
+   "A0": {
+    "n": 60,
+    "counts": {
+     "claude-opus-5-5": {
+      "wrong_bound_or_operator": 15,
+      "different_bug": 12,
+      "wrong_remedy_type": 20,
+      "cannot_tell": 7,
+      "missing_companion_change": 5,
+      "incomplete_condition": 1
+     },
+     "claude-opus-4-8": {
+      "wrong_bound_or_operator": 15,
+      "wrong_remedy_type": 29,
+      "different_bug": 7,
+      "cannot_tell": 3,
+      "missing_companion_change": 3,
+      "incomplete_condition": 3
+     }
+    },
+    "agreement": 0.717,
+    "kappa": 0.618
+   },
+   "A4": {
+    "n": 60,
+    "counts": {
+     "claude-opus-5-5": {
+      "wrong_remedy_type": 23,
+      "wrong_bound_or_operator": 10,
+      "incomplete_condition": 7,
+      "missing_companion_change": 4,
+      "cannot_tell": 7,
+      "different_bug": 9
+     },
+     "claude-opus-4-8": {
+      "wrong_remedy_type": 29,
+      "wrong_bound_or_operator": 14,
+      "incomplete_condition": 4,
+      "missing_companion_change": 2,
+      "cannot_tell": 5,
+      "different_bug": 6
+     }
+    },
+    "agreement": 0.633,
+    "kappa": 0.505
+   },
+   "M": {
+    "n": 60,
+    "counts": {
+     "claude-opus-5-5": {
+      "wrong_remedy_type": 17,
+      "missing_companion_change": 9,
+      "incomplete_condition": 6,
+      "cannot_tell": 9,
+      "wrong_bound_or_operator": 17,
+      "different_bug": 2
+     },
+     "claude-opus-4-8": {
+      "wrong_remedy_type": 24,
+      "missing_companion_change": 5,
+      "different_bug": 6,
+      "wrong_bound_or_operator": 16,
+      "incomplete_condition": 4,
+      "cannot_tell": 5
+     }
+    },
+    "agreement": 0.617,
+    "kappa": 0.506
+   }
+  },
+  "pooled_kappa": 0.545,
+  "items": [
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 8,
+    "cve_id": "CVE-2014-4611",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "Instead of the official wraparound test `length > length + len` before the final addition, the candidate checks `length` against `osize` inside the loop, so it applies a different bound at a different point and never guards the final `length += len`.",
+     "claude-opus-4-8": "The candidate checks length against osize inside the loop instead of detecting the integer overflow of length+len (length > (size_t)(length+len)), so it uses the wrong overflow-detection condition."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 16,
+    "cve_id": "CVE-2018-18349",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only rejects malformed URLs; it never calls the origin's CanDisplay(url) check, so valid file:// URLs are still navigated to and local resources stay reachable.",
+     "claude-opus-4-8": "It adds a URL validity check instead of the required CanDisplay security-origin check that blocks access to local resources, so it does not address the CVE's permission flaw."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 18,
+    "cve_id": "CVE-2016-7166",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only rewrites how the bidder array is iterated (stopping at the first NULL bid) and leaves the `for (;;)` loop unbounded, so it never limits how many filters can be stacked on top of each other.",
+     "claude-opus-4-8": "The candidate refactors the bidder loop iteration logic but keeps the unbounded for(;;) loop, failing to add the recursion limit that prevents the DoS."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 19,
+    "cve_id": "CVE-2013-4149",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix removes the allocate-and-read approach and instead discards the oversized MAC table byte by byte using 64-bit math. The candidate keeps the attacker-sized heap allocation and only adjusts its size with 32-bit arithmetic (in_use * ETH_ALEN), which can still wrap or demand huge allocations.",
+     "claude-opus-4-8": "The candidate keeps the g_malloc0-based buffer allocation (merely fixing its size) instead of replacing it with the byte-by-byte discard loop using 64-bit math that the official fix introduces to avoid the integer-overflow-driven buffer overflow."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 29,
+    "cve_id": "CVE-2016-9777",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix clears the bitmap up to the constant KVM_MAX_VCPU_ID, but the candidate passes `ioapic->rtc_status.dest_map.len`, a different bound that is not shown to exist or to cover the full VCPU-ID-indexed bitmap.",
+     "claude-opus-4-8": "The candidate changes the same bitmap_zero size argument but uses dest_map.len instead of the correct KVM_MAX_VCPU_ID bound required by the fix."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 48,
+    "cve_id": "CVE-2017-13010",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The fix passes `ndo` into `l_strnstart` so it can check the bytes against the captured buffer end (snapend), whereas the candidate only adds checks against the on-wire `length`, which `l_strnstart` already compares, so reads past the truncated capture buffer remain possible.",
+     "claude-opus-4-8": "The fix makes l_strnstart bounds-safe by passing ndo so it can use ND_TTEST, but the candidate instead adds length guards in beep_print while leaving l_strnstart itself unbounded, which does not match the actual over-read remedy."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 50,
+    "cve_id": "CVE-2018-12232",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix switches to __sock_release(sock, inode) so the socket is released under inode_lock, which serializes it with sockfs_setattr; the candidate only adds a NULL check on SOCKET_I(inode), which is never NULL, and adds no locking, so the race with fchownat remains.",
+     "claude-opus-4-8": "The fix routes release through __sock_release with the inode so locking/synchronization prevents the race, while the candidate merely adds a NULL check that does not address the concurrent setattr race."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 61,
+    "cve_id": "CVE-2015-8953",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate redirects the cleanup jump to `out1` instead of `out2`, so it still skips the `dput(upper)` that sits between those labels and leaks the upper dentry reference; the other edits (the `notify_change` signature change and the comment typo) are unrelated.",
+     "claude-opus-4-8": "The candidate edits the right goto target at out_cleanup but jumps to the wrong label (out1 instead of out2), failing to perform the correct cleanup that releases the leaked dentry reference."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 67,
+    "cve_id": "CVE-2016-7126",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate checks the right expression but caps ncolors at 256 instead of INT_MAX, which differs from the fix's range check. It also drops the explicit (int) cast at the gdImageTrueColorToPalette call.",
+     "claude-opus-4-8": "The candidate uses an upper bound of 256 instead of the fix's INT_MAX, changing the right expression but with an incorrect constant."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 72,
+    "cve_id": "CVE-2012-6538",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate changes the right call but uses the bound `sizeof(algo->alg_name) - 1` instead of the full buffer size, and adds a separate terminator; since strncpy zero-pads up to that bound and the last byte is then set explicitly, the whole buffer is still cleared, so this is a different-bound variant rather than a clear security failure.",
+     "claude-opus-4-8": "The official fix uses sizeof(algo->alg_name) to fully zero-fill the buffer and avoid leaking heap memory, but the candidate uses sizeof-1 plus manual null termination, which leaves prior uninitialized bytes beyond the string unzeroed and still potentially leaks kernel memory."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 76,
+    "cve_id": "CVE-2017-5552",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "Instead of checking the attach_iov return value and calling virtio_gpu_cleanup_mapping_iov only on failure, the candidate always calls g_free(res_iovs), which leaves the guest mappings un-unmapped and frees an iov array virglrenderer still owns on success (use-after-free).",
+     "claude-opus-4-8": "The fix checks the return value of virgl_renderer_resource_attach_iov and cleans up the iov mapping on failure, whereas the candidate unconditionally g_free's res_iovs without checking the attach result or using the proper cleanup function."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 82,
+    "cve_id": "CVE-2017-13198",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate reuses the existing `cmap == NULL || ColorCount mismatch` condition to skip frames, so it also drops frames that have a valid but mismatched color map, whereas the fix skips only when cmap is missing and still decodes those frames.",
+     "claude-opus-4-8": "The candidate skips the frame whenever the color map is corrupt (cmap->ColorCount mismatch) via continue, but the fix only skips when cmap is NULL and still decodes frames with a potentially-corrupt-but-present color map, so the condition under which copying is suppressed differs."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 102,
+    "cve_id": "CVE-2016-2482",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix makes each per-buffer free conditional on that buffer's allocation bitmask being set, clears the bit, and stops once release is done. The candidate leaves the unconditional per-buffer free loops as they are and only adds bulk frees of the header arrays, so buffers that were never allocated or were already freed are still freed.",
+     "claude-opus-4-8": "The fix guards each free with BITMASK_PRESENT checks and release_done early-breaks to handle the buffer count correctly, but the candidate instead adds bulk free()/NULL-ing of the memory pointers, which does not address the mishandled buffer count."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 107,
+    "cve_id": "CVE-2013-6624",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate keeps storing raw StringImpl* keys and only adds a null check. The real fix changes the map to hold AtomicString, so each key keeps a reference to its string and the string cannot be freed while still in the map.",
+     "claude-opus-4-8": "The fix changes the map to hold AtomicString values (keeping the string alive by reference), but the candidate merely adds a null check while still storing the raw StringImpl* pointer, failing to prevent the use-after-free."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 108,
+    "cve_id": "CVE-2016-5357",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only enlarges the cap_dst buffer, while the fix replaces the vulnerable header/hex-dump parsing path with a rewritten parse_netscreen_packet that handles the sscanf unsigned-integer parsing correctly; a bigger buffer does nothing about the bad length handling.",
+     "claude-opus-4-8": "The fix refactors parsing into parse_netscreen_packet to handle the sscanf integer bounds, while the candidate merely enlarges the cap_dst buffer without correcting the unsigned-integer processing logic."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 117,
+    "cve_id": "CVE-2018-14879",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate declares `size_t len` inline instead of at the top of the function, but it computes `strlen(ptr)` once and guards `len > 0` before indexing `ptr[len - 1]`, which is the official fix in substance, so the shown code gives no basis for calling it wrong.",
+     "claude-opus-4-8": "The candidate makes exactly the same substantive change (compute len, guard len > 0 before indexing) as the official fix, differing only in cosmetic placement of the declaration, so it appears correct and the oracle rejection seems spurious."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 126,
+    "cve_id": "CVE-2017-13007",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate matches the official fix except for the local variable name (h_adjusted instead of nhdr): it copies *h, sets caplen and len to the adjusted values, and passes the copy to the sub-printer, so from the code shown there is no visible flaw to explain the rejection.",
+     "claude-opus-4-8": "The candidate is functionally identical to the official fix, merely renaming the local variable from nhdr to h_adjusted, so there is no substantive difference to reject."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 128,
+    "cve_id": "CVE-2016-3921",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only logs a warning about leftover data. The fix instead rejects non-terminated input: it sends an error, returns false, and sets mSkipToNextNullByte so the truncated remainder is never dispatched as a command, and the candidate does none of this.",
+     "claude-opus-4-8": "Instead of tracking non-null-terminated buffers via mSkipToNextNullByte and returning early with an error, it merely logs a warning about incomplete commands, failing to prevent dispatching the oversized/unterminated command."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 129,
+    "cve_id": "CVE-2017-5940",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only swaps stat for lstat to skip pre-existing dotfile symlinks, but it still runs copy_file, fopen and chown with root privileges; the official fix replaces those calls with copy_file_as_user and touch_file_as_user so the dotfiles are written with the user's privileges, which closes the symlink race and the root write.",
+     "claude-opus-4-8": "The fix adds an explicit is_link() check that rejects dangling symlinks and switches to privilege-dropping copy/touch helpers, whereas the candidate merely swaps stat for lstat and returns early, which does not reject the symlink or drop privileges as the fix requires."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 1,
+    "item": 149,
+    "cve_id": "CVE-2013-2929",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only swaps the credential source for the user namespace and keeps the `!dumpable` test. A task with dumpable value 2 (SUID_DUMP_ROOT) therefore still passes, and the CVE's improper get_dumpable use is not fixed, whereas the official fix requires `dumpable == SUID_DUMP_USER`.",
+     "claude-opus-4-8": "The candidate only refactors the user_ns access and keeps the flawed !dumpable test instead of checking dumpable != SUID_DUMP_USER, so it fails to fix the actual dumpable-value handling."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 0,
+    "cve_id": "CVE-2016-1583",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only moves option parsing ahead of sget() and never sets sb->s_stack_depth to FILESYSTEM_MAX_STACK_DEPTH, so ecryptfs can still be stacked on procfs and the recursive pagefault remains reachable.",
+     "claude-opus-4-8": "The candidate merely reorders the proc_parse_options check and omits setting s_stack_depth to FILESYSTEM_MAX_STACK_DEPTH, so it never prevents stacking on procfs."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 8,
+    "cve_id": "CVE-2014-4611",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only adds braces around the loop body, which changes nothing; unlike the official fix, it has no overflow check before 'length += len', so the integer overflow in the literal run length remains.",
+     "claude-opus-4-8": "The candidate only adds braces for formatting and does not add any overflow check before accumulating length, leaving the integer overflow unaddressed."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 12,
+    "cve_id": "CVE-2010-1152",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds an integer-overflow check on rsize doubling but does not limit the number of reallocations per read, so a long line can still trigger unbounded memory growth.",
+     "claude-opus-4-8": "The fix limits the number of buffer-doubling allocations per read cycle (num_allocs cap of 4) to prevent excessive memory growth, whereas the candidate only adds an integer-overflow guard on the size multiplication, which does not stop the unbounded allocation driven by a long line."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 19,
+    "cve_id": "CVE-2013-4149",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix removes the allocate-and-read approach and instead discards the oversized MAC table byte by byte using 64-bit math. The candidate keeps the attacker-sized heap allocation and only adjusts its size with 32-bit arithmetic (in_use * ETH_ALEN), which can still wrap or demand huge allocations.",
+     "claude-opus-4-8": "The candidate keeps the g_malloc0-based buffer allocation (merely fixing its size) instead of replacing it with the byte-by-byte discard loop using 64-bit math that the official fix introduces to avoid the integer-overflow-driven buffer overflow."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 50,
+    "cve_id": "CVE-2018-12232",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix switches to __sock_release(sock, inode) so the socket is released under inode_lock, which serializes it with sockfs_setattr; the candidate only adds a NULL check on SOCKET_I(inode), which is never NULL, and adds no locking, so the race with fchownat remains.",
+     "claude-opus-4-8": "The fix routes release through __sock_release with the inode so locking/synchronization prevents the race, while the candidate merely adds a NULL check that does not address the concurrent setattr race."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 54,
+    "cve_id": "CVE-2017-6892",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate caps the memcpy at a minimum based on `map_info->channel_count` (a field not shown in the code), whereas the official fix caps the copy at `layout_tag & 0xffff`, the channel count actually encoded in the layout tag, so the bounding value is the wrong one.",
+     "claude-opus-4-8": "The candidate bounds the copy by map_info->channel_count instead of clamping chanmap_size with SF_MIN against layout_tag & 0xffff, using a different limiting value than the official fix."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 60,
+    "cve_id": "CVE-2011-1180",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate bounds both name_len and attr_len exactly as the fix does (`> IAS_MAX_X` is equivalent to `!(< IAS_MAX_X + 1)`) and returns early in both cases, so from the code shown it looks functionally equivalent and no defect is visible.",
+     "claude-opus-4-8": "The candidate allows name_len == IAS_MAX_CLASSNAME (and attr equivalent), but then name[name_len]='\\0' writes at index IAS_MAX_CLASSNAME which overflows the buffer, whereas the fix requires strictly less than IAS_MAX_CLASSNAME+1 with proper boundary handling."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 63,
+    "cve_id": "CVE-2018-7648",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "missing_companion_change"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate's switch to a bounded snprintf does stop the overflow, but it leaves out the official fix's check on snprintf's return value, so an over-long prefix is silently truncated and processing continues instead of reporting an error and exiting.",
+     "claude-opus-4-8": "The candidate correctly switches to snprintf to prevent the overflow but omits the length-check and error return the fix adds afterward."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 67,
+    "cve_id": "CVE-2016-7126",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate checks the right expression but caps ncolors at 256 instead of INT_MAX, which differs from the fix's range check. It also drops the explicit (int) cast at the gdImageTrueColorToPalette call.",
+     "claude-opus-4-8": "The candidate uses an upper bound of 256 instead of the fix's INT_MAX, changing the right expression but with an incorrect constant."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 80,
+    "cve_id": "CVE-2017-16526",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate correctly switches the check to IS_ERR and resets the field to NULL on failure, but it still writes kthread_run's result straight into rc->uwbd.task, so an ERR_PTR is briefly visible in the shared field; the official fix avoids this by using a local variable and only publishing a valid task pointer.",
+     "claude-opus-4-8": "The candidate correctly replaces the NULL check with IS_ERR and sets rc->uwbd.task = NULL on error, which is functionally equivalent to the official fix despite using a temporary variable instead of assigning directly."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 82,
+    "cve_id": "CVE-2017-13198",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "Instead of guarding only the pixel-copy block with `if (cmap)` as the fix does, the candidate turns the corrupt-cmap warning into a `continue` that skips the rest of the loop iteration, and it does this even for frames with a valid but mismatched color count; it also adds an unrelated RasterBits NULL check.",
+     "claude-opus-4-8": "The fix guards the copy with `if (cmap)` to skip only frames lacking a color map, but the candidate uses `continue` on the broader corrupt-colormap condition (and adds an unrelated NULL raster check), applying a different remedy that also skips valid-but-noncanonical colormaps."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 90,
+    "cve_id": "CVE-2019-12111",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "incomplete_condition"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate's nested check skips the memcpy when src is NULL, as the official fix does, and also when dest is NULL, so from the code shown it appears to fix the NULL dereference and differs only in form.",
+     "claude-opus-4-8": "The candidate adds a dest != NULL check that the fix does not require while still guarding src != NULL, but it diverges from the fix's exact condition\u2014though it does cover the null src case; the mismatch is handling an extra/different case rather than the precise src != NULL guard."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 94,
+    "cve_id": "CVE-2015-3331",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "missing_companion_change"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate correctly fixes the assoc pointer offset. It omits the official fix's second change, which makes the final copy to req->dst use tempCipherLen instead of req->cryptlen, so that copy can still over-read and over-write.",
+     "claude-opus-4-8": "The candidate fixes the assoc offset but omits the second required change replacing req->cryptlen with tempCipherLen in the final scatterwalk_map_and_copy."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 102,
+    "cve_id": "CVE-2016-2482",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds bulk frees and NULLing of the buffer arrays after the loops. The actual fix changes the per-index loops so each buffer is freed only if its bitmask bit is set, clears that bit, and stops once release is done, which prevents double-free and out-of-range frees.",
+     "claude-opus-4-8": "The fix adds BITMASK presence checks and release_*_done() early-exits to correctly bound the buffer count loops, but the candidate instead adds pointer free/nullify cleanup, a different kind of remedy that does not address the buffer-count mishandling."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 127,
+    "cve_id": "CVE-2010-5331",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate keeps the off-by-one upper bound `index > MAX` and only adds a negative check, so `index == MAX` still reads one past the end; the fix needs `index >= MAX` in both branches.",
+     "claude-opus-4-8": "The fix changes > to >= to correct the off-by-one bound, but the candidate keeps the strict > and merely adds a redundant lower-bound check, so the off-by-one overflow at index == MAX_SUPPORTED_TV_TIMING remains."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 128,
+    "cve_id": "CVE-2016-3921",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only logs a warning about trailing incomplete data after dispatching. It does not reject the non-zero-terminated buffer, and it does not skip to the next null byte so the leftover fragment is never dispatched as a command, so the injection-through-truncation remains.",
+     "claude-opus-4-8": "Instead of rejecting non-null-terminated buffers and skipping the oversized command via mSkipToNextNullByte, the candidate only logs a warning and still dispatches the malformed command, failing to prevent the privilege escalation."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 129,
+    "cve_id": "CVE-2017-5940",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "incomplete_condition"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate hardens only the touch branch, using O_EXCL so it will not follow a dangling symlink, but it leaves the copy_file branch for .zshrc, .cshrc and .bashrc unchanged. That branch still runs as root and follows a dangling user symlink at fname, because the candidate adds no is_link(fname) rejection and no copy_file_as_user.",
+     "claude-opus-4-8": "The fix adds an is_link(fname) dangling-symlink check on the destination file after the stat fails (the core of the incomplete CVE-2017-5180 fix), but the candidate only hardens file creation with O_EXCL and never adds the lstat/is_link check on fname, leaving the symlink-escape case unaddressed."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 137,
+    "cve_id": "CVE-2013-0911",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate's early return only fires on empty origin_identifier or database_name, so a non-empty traversal string like \"../\" still passes, whereas the fix validates the origin identifier's format with IsValidOriginIdentifier.",
+     "claude-opus-4-8": "The candidate adds a weak emptiness check instead of validating the origin identifier against directory traversal via IsValidOriginIdentifier and terminating the bad message."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 138,
+    "cve_id": "CVE-2011-3045",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "incomplete_condition"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate makes the same fix as the official patch: it changes `copy` to `png_size_t` and casts `avail` in the comparison, and the assignment `copy = avail` converts `int` to `png_size_t` implicitly exactly as the explicit cast would, so nothing in the code shown is semantically missing.",
+     "claude-opus-4-8": "The candidate fixes the type and cast in the comparison but leaves the unsigned assignment copy = avail without the (png_size_t) cast, so not every signedness correction of the fix is applied."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 2,
+    "item": 149,
+    "cve_id": "CVE-2013-2929",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only moves the credential lookup into a variable and keeps the `!dumpable` test, so SUID_DUMP_ROOT (value 2) still counts as dumpable and the ptrace restriction can still be bypassed; the fix's `dumpable != SUID_DUMP_USER` comparison is missing.",
+     "claude-opus-4-8": "The candidate only refactors the cred access into a local variable but keeps the flawed boolean !dumpable test instead of comparing dumpable against SUID_DUMP_USER, so the ptrace bypass remains."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 7,
+    "cve_id": "CVE-2014-4502",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix bounds the write with snprintf(address, 254, ...) and lets the address be truncated, while the candidate adds a truncation check that aborts with an early return false, a different remedy at the same line.",
+     "claude-opus-4-8": "The candidate uses sizeof(address), which for a pointer or decayed array yields the wrong size instead of the fix's explicit 254-byte bound, so the snprintf is not correctly limited."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 8,
+    "cve_id": "CVE-2014-4611",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only adds braces around the loop body, which changes nothing; unlike the official fix, it has no overflow check before 'length += len', so the integer overflow in the literal run length remains.",
+     "claude-opus-4-8": "The candidate only adds braces for formatting and does not add any overflow check before accumulating length, leaving the integer overflow unaddressed."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 25,
+    "cve_id": "CVE-2018-6651",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate swaps the substring test for an exact strcmp of the whole Origin header, whereas the fix only requires the configured origin to appear at the end of the header; full equality is the wrong comparison and would reject legitimate origins such as \"https://host\" when the configured entry is \"host\".",
+     "claude-opus-4-8": "The candidate replaces the substring match with a full strcmp of the entire origin instead of a suffix match (strstr + strcmp at the match position), which rejects valid origins containing legitimate prefixes and thus uses the wrong matching semantics."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 28,
+    "cve_id": "CVE-2018-16066",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate stops requesting the deferred DidNotifySubtreeInsertions callback by returning the base class's request, but it omits the fix's companion change of processing the stylesheet synchronously when connected (ProcessStyleSheet plus the error notification), so stylesheet processing is dropped instead of moved.",
+     "claude-opus-4-8": "The candidate merely captures and returns the parent return value instead of processing the stylesheet inline and returning kInsertionDone, failing to eliminate the deferred callback that causes the use-after-free."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 35,
+    "cve_id": "CVE-2017-5080",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds a null check on legal_message and reorders the legal-message parse, but never adds the `if (save_card_bubble_view_) return;` guard, so the bubble can still be re-shown while already visible and the use-after-free remains.",
+     "claude-opus-4-8": "The fix adds a guard returning early when the bubble is already visible (save_card_bubble_view_) to prevent the use-after-free, whereas the candidate reorders legal message parsing/validation and addresses a different concern rather than the already-visible bubble check."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 39,
+    "cve_id": "CVE-2016-2105",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix rewrites the comparison as `ctx->length - ctx->num > inl` so the sum cannot overflow, but the candidate keeps `(ctx->num + inl) < ctx->length` and only adds guard checks, which use the same overflowing `ctx->num + inl` sum; a huge `inl` still wraps negative, passes both checks, and reaches the oversized memcpy.",
+     "claude-opus-4-8": "The fix rewrites the overflow-prone condition `(ctx->num + inl) < ctx->length` into the overflow-safe form `ctx->length - ctx->num > inl`, but the candidate leaves that condition unchanged and instead adds a scatter of extra bounds checks and limits elsewhere, applying a different kind of remedy at the marked place."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 52,
+    "cve_id": "CVE-2016-5220",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only adds a null check on model(), whereas the official fix adds a feature-flag override (show_with_caret) to the caret-visibility condition, so the candidate does not make the change the fix makes.",
+     "claude-opus-4-8": "The candidate adds a null check on model() rather than introducing the show_with_caret feature-flag branch the fix adds, addressing a different concern at the same expression."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 60,
+    "cve_id": "CVE-2011-1180",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate bounds both name_len and attr_len exactly as the fix does (`> IAS_MAX_X` is equivalent to `!(< IAS_MAX_X + 1)`) and returns early in both cases, so from the code shown it looks functionally equivalent and no defect is visible.",
+     "claude-opus-4-8": "The candidate allows name_len == IAS_MAX_CLASSNAME (and attr equivalent), but then name[name_len]='\\0' writes at index IAS_MAX_CLASSNAME which overflows the buffer, whereas the fix requires strictly less than IAS_MAX_CLASSNAME+1 with proper boundary handling."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 61,
+    "cve_id": "CVE-2015-8953",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "Instead of retargeting the goto to out2, the candidate moves the out_cleanup block above out2, so the successful path now falls through into ovl_cleanup() and removes the freshly copied-up upper dentry; it trades the reference leak for broken copy-up rather than applying the fix's simple jump change.",
+     "claude-opus-4-8": "Instead of simply changing the cleanup path to jump to out2 (so dput(upper) runs), the candidate restructures the label placement which drops the goto entirely and lets the success path fall through into ovl_cleanup, corrupting control flow rather than fixing the dentry leak correctly."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 67,
+    "cve_id": "CVE-2016-7126",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate rejects large values at the right check but caps ncolors at 256 instead of INT_MAX, and it leaves the gdImageTrueColorToPalette call without the (int) cast the official fix adds.",
+     "claude-opus-4-8": "The candidate adds the upper-bound check with the wrong limit (256 instead of INT_MAX), which changes behavior from the fix's intent."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 76,
+    "cve_id": "CVE-2017-5552",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "Instead of checking the attach_iov return value and calling virtio_gpu_cleanup_mapping_iov only on failure, the candidate always calls g_free(res_iovs), which leaves the guest mappings un-unmapped and frees an iov array virglrenderer still owns on success (use-after-free).",
+     "claude-opus-4-8": "The fix checks the return value of virgl_renderer_resource_attach_iov and cleans up the iov mapping on failure, whereas the candidate unconditionally g_free's res_iovs without checking the attach result or using the proper cleanup function."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 81,
+    "cve_id": "CVE-2018-10887",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds bounds checks on reading from the delta stream but leaves `*delta++ << 24UL` without an unsigned cast, so the sign extension into `off` and the resulting overflow/out-of-bounds read before the base object remain.",
+     "claude-opus-4-8": "The fix addresses the sign extension by casting the byte to unsigned before the 24-bit shift, but the candidate instead adds bounds checks and leaves the signed-shift expression unchanged, so the integer overflow still occurs."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 92,
+    "cve_id": "CVE-2013-0925",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only adds a null-pointer guard on contents/tab_strip and leaves the permission-based URL exposure logic unchanged, whereas the fix creates the full tab value and then scrubs privacy-sensitive fields via ScrubTabValueForExtension.",
+     "claude-opus-4-8": "The candidate adds a null-pointer guard rather than restructuring the value creation to scrub privacy-sensitive fields based on the tabs permission, so it does not address the permission-leak CVE."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 94,
+    "cve_id": "CVE-2015-3331",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "missing_companion_change"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate correctly fixes the assoc pointer offset. It omits the official fix's second change, which makes the final copy to req->dst use tempCipherLen instead of req->cryptlen, so that copy can still over-read and over-write.",
+     "claude-opus-4-8": "The candidate fixes the assoc offset but omits the second required change replacing req->cryptlen with tempCipherLen in the final scatterwalk_map_and_copy."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 108,
+    "cve_id": "CVE-2016-5357",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix replaces the two-step flow (parse_netscreen_rec_hdr followed by parse_netscreen_hex_dump) with a single call to a restructured parse_netscreen_packet, which fixes the unsigned sscanf length parsing itself; the candidate instead only adds a pkt_len < 0 check on the result and leaves the flawed parsing in place.",
+     "claude-opus-4-8": "The fix refactors parsing into parse_netscreen_packet to correct the sscanf unsigned-integer handling, whereas the candidate merely adds a redundant pkt_len<0 check that does not address the underlying parsing bug."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 127,
+    "cve_id": "CVE-2010-5331",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate keeps the off-by-one upper bound `index > MAX` and only adds a negative check, so `index == MAX` still reads one past the end; the fix needs `index >= MAX` in both branches.",
+     "claude-opus-4-8": "The fix changes > to >= to correct the off-by-one bound, but the candidate keeps the strict > and merely adds a redundant lower-bound check, so the off-by-one overflow at index == MAX_SUPPORTED_TV_TIMING remains."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 128,
+    "cve_id": "CVE-2016-3921",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only logs a warning about trailing incomplete data after dispatching. It does not reject the non-zero-terminated buffer, and it does not skip to the next null byte so the leftover fragment is never dispatched as a command, so the injection-through-truncation remains.",
+     "claude-opus-4-8": "Instead of rejecting non-null-terminated buffers and skipping the oversized command via mSkipToNextNullByte, the candidate only logs a warning and still dispatches the malformed command, failing to prevent the privilege escalation."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 137,
+    "cve_id": "CVE-2013-0911",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate's early return only fires on empty origin_identifier or database_name, so a non-empty traversal string like \"../\" still passes, whereas the fix validates the origin identifier's format with IsValidOriginIdentifier.",
+     "claude-opus-4-8": "The candidate adds a weak emptiness check instead of validating the origin identifier against directory traversal via IsValidOriginIdentifier and terminating the bad message."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 138,
+    "cve_id": "CVE-2011-3045",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "With both `avail` and `copy` made `png_size_t`, the comparison and the `memcpy` length become unsigned just as in the official fix, so the CVE path looks addressed; whether retyping `avail` changes its other uses elsewhere in `png_inflate` cannot be judged from the excerpt shown.",
+     "claude-opus-4-8": "Changing avail's declared type to png_size_t alters the semantics elsewhere rather than performing the fix's unsigned comparison/cast at the copy computation, and avail is likely assigned from zlib's avail_out, so the actual signedness-safe comparison the CVE requires is not correctly applied."
+    }
+   },
+   {
+    "arm": "A0",
+    "repeat": 3,
+    "item": 148,
+    "cve_id": "CVE-2011-2895",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate stops pushing only when stackp reaches de_stack + STACK_SIZE, whereas the fix stops at STACK_SIZE - 1. Because it merely breaks out of the loop, the push of finchar that follows the loop can still write one element past the end of de_stack.",
+     "claude-opus-4-8": "The fix returns BUFFILEEOF to abort on overflow, but the candidate merely breaks out of the loop (and conditionally skips a write), silently continuing with corrupt data instead of signaling end-of-file."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 5,
+    "cve_id": "CVE-2016-10270",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The fix removes the cached td_nstrips early return so the strip count is always recomputed, but the candidate keeps that stale-value shortcut and only adds a NULL-array check, so the over-read caused by the cached count remains.",
+     "claude-opus-4-8": "The official fix removes the early-return caching of td_nstrips, but the candidate keeps that block and instead adds a new null-pointer check, applying a different kind of remedy than the fix's deletion."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 12,
+    "cve_id": "CVE-2010-1152",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix limits each call to four reallocations with a local counter and then returns `gotdata` so the received data gets processed; the candidate instead imposes an absolute 1 MB buffer cap and fails the request with an error that closes the connection, a different remedy from the fix's per-call allocation limit.",
+     "claude-opus-4-8": "The candidate caps growth at an absolute 1MB rsize threshold instead of limiting to 4 reallocation attempts per call as the fix does, using a different bound and condition for the same guard."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 20,
+    "cve_id": "CVE-2017-8934",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate changes the right expression, the socket directory argument, but swaps g_get_tmp_dir() for g_get_home_dir() instead of the per-user runtime directory g_get_user_runtime_dir() that the fix uses, so the socket path is built from the wrong directory value.",
+     "claude-opus-4-8": "The fix moves the socket to the per-user runtime dir (g_get_user_runtime_dir with GLib version guard), while the candidate instead uses g_get_home_dir and adds unrelated null/free changes, not the intended remedy."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 21,
+    "cve_id": "CVE-2018-18586",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "incomplete_condition"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate strips only leading \"../\" sequences, so embedded traversal like \"a/../../etc\" is still let through, whereas the fix neutralizes every \"../\" or \"..\\\\\" anywhere in the name and also strips both kinds of leading slash.",
+     "claude-opus-4-8": "The candidate only strips leading '..' sequences at the start of the path but fails to neutralize '../' components appearing anywhere later in the filename, which the official fix handles by replacing all embedded '..' with 'xx'."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 26,
+    "cve_id": "CVE-2011-1833",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "missing_companion_change"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds the uid ownership check in the right place, but it leaves out the companion changes: the `check_ruid` variable and passing `&check_ruid` to `ecryptfs_parse_options`. Without them the check runs unconditionally for every mount instead of only for mounts that request it.",
+     "claude-opus-4-8": "The candidate adds the uid check but omits the check_ruid plumbing (new variable and the updated ecryptfs_parse_options call), so it unconditionally enforces the check instead of only when the ruid option is set."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 36,
+    "cve_id": "CVE-2017-8924",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "Because urb->actual_length is unsigned, the candidate's check `edge_port->lsr_event && urb->actual_length` is logically the same as the official `urb->actual_length > 0 && edge_port->lsr_event`, so the code shown reveals no semantic gap that would make it a wrong fix.",
+     "claude-opus-4-8": "The candidate checks urb->actual_length (nonzero) instead of urb->actual_length > 0, but since actual_length is unsigned these are equivalent guards, yet the oracle flags the operator difference as not matching the explicit signed comparison in the fix."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 45,
+    "cve_id": "CVE-2016-8693",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "incomplete_condition"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only restructures the realloc call and keeps the same `!buf` check, so a bufsize of 0 still makes realloc free m->buf_ and return NULL. The function then returns -1 and leaves m->buf_ dangling, which mem_close later frees again; the fix's `&& bufsize` exception is absent.",
+     "claude-opus-4-8": "The candidate still returns -1 when realloc returns NULL for a zero-size buffer, failing to add the `&& bufsize` guard that prevents the error path (and subsequent double free) when bufsize is 0."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 50,
+    "cve_id": "CVE-2018-12232",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds a NULL check on the socket, but the race needs sock_release to be swapped for __sock_release(sock, inode) so the release is serialized with sockfs_setattr under the inode lock; the check does nothing to stop the concurrent NULLing of sock->sk.",
+     "claude-opus-4-8": "The fix passes the inode into __sock_release so sockfs_setattr can synchronize via inode lock, but the candidate merely adds a NULL check which neither prevents the race nor coordinates with fchownat."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 56,
+    "cve_id": "CVE-2012-2870",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds the same `if (ctxt->error) return;` check right after `xsltCompileIdKeyPattern`, differing only in braces and whitespace, so the code shown gives no basis for calling it a wrong fix.",
+     "claude-opus-4-8": "The candidate adds the identical error check and early return as the official fix, differing only in brace style, so it appears functionally equivalent and the oracle's rejection isn't justified by the code shown."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 60,
+    "cve_id": "CVE-2011-1180",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate bounds both name_len (> IAS_MAX_CLASSNAME) and attr_len (> IAS_MAX_ATTRIBNAME) before the memcpys and returns early, which matches the official IRDA_ASSERT checks (< MAX + 1), so from the code shown it looks equivalent and no defect can be identified.",
+     "claude-opus-4-8": "The candidate uses `> IAS_MAX_CLASSNAME`/`> IAS_MAX_ATTRIBNAME`, allowing name_len==IAS_MAX_CLASSNAME which still overflows on `name[name_len]='\\0'`, whereas the fix requires `< IAS_MAX_CLASSNAME + 1` consistently but the boundary interplay with the null terminator differs."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 67,
+    "cve_id": "CVE-2016-7126",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate rejects large values at the right check but caps ncolors at 256 instead of INT_MAX, and it leaves the gdImageTrueColorToPalette call without the (int) cast the official fix adds.",
+     "claude-opus-4-8": "The candidate adds the upper-bound check with the wrong limit (256 instead of INT_MAX), which changes behavior from the fix's intent."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 77,
+    "cve_id": "CVE-2015-5232",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate drops the unlink on the bind error path, but it keeps an unlink on the chmod error path and leaves the connect error path's unlink(hdl->c_path) untouched, so the racy unlink-by-path remains in some error branches the official fix cleans up.",
+     "claude-opus-4-8": "The candidate rearranges unlink calls and paths rather than consolidating all error paths into a single cleanup label with close(fd), failing to address the race-condition fix the official patch implements."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 80,
+    "cve_id": "CVE-2017-16526",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate correctly switches the check to IS_ERR and resets the field to NULL on failure, but it still writes kthread_run's result straight into rc->uwbd.task, so an ERR_PTR is briefly visible in the shared field; the official fix avoids this by using a local variable and only publishing a valid task pointer.",
+     "claude-opus-4-8": "The candidate correctly replaces the NULL check with IS_ERR and sets rc->uwbd.task = NULL on error, which is functionally equivalent to the official fix despite using a temporary variable instead of assigning directly."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 100,
+    "cve_id": "CVE-2017-5850",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only adjusts loop advancement and the bounds checks on the static ranges array, but it keeps the static array and the old interface; the official fix moves range state into the per-client struct (clt->clt_ranges), which is what addresses the memory-consumption DoS from repeated range requests.",
+     "claude-opus-4-8": "The candidate only tweaks loop bounds checks for parse_range but does not reduce MAX_RANGES or limit the number of ranges served, so it fails to address the memory-consumption DoS from many Range requests that the fix targets with SERVER_MAX_RANGES and range accounting."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 102,
+    "cve_id": "CVE-2016-2482",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix frees only buffers whose bitmask bit is set (clearing it first) and stops once release is done; the candidate instead clamps the loop count to mincount, which neither prevents freeing unallocated or already-freed buffers nor matches the per-buffer allocation tracking.",
+     "claude-opus-4-8": "The fix guards each free with BITMASK_PRESENT/CLEAR bitmask checks and release-done breaks to only free actually allocated buffers, whereas the candidate instead clamps the loop bound to mincount, a different remedy that doesn't track which buffers were allocated."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 108,
+    "cve_id": "CVE-2016-5357",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix replaces the separate header and hex-dump parsing with a rewritten parse_netscreen_packet routine that fixes the unsigned sscanf handling, whereas the candidate keeps the vulnerable parsing calls and only adds post-hoc length and string checks in the caller.",
+     "claude-opus-4-8": "The fix refactors into parse_netscreen_packet (where the sscanf unsigned-integer handling is corrected), whereas the candidate instead adds length/interface validation checks at the call site without addressing the underlying sscanf parsing bug."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 116,
+    "cve_id": "CVE-2018-11380",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate looks semantically identical to the official fix: it computes the same index into a local variable, applies the same negative and upper-bound check with a break, and uses that index for the array access, differing only in the variable name (indirect_idx vs indidx), so the code shown reveals no substantive deficiency.",
+     "claude-opus-4-8": "The candidate is functionally identical to the official fix, adding the same bounds check on indirect_idx before the array access, so the oracle rejection appears spurious rather than due to a semantic deficiency."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 117,
+    "cve_id": "CVE-2018-14879",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate computes len once and adds the same `len > 0` guard before indexing `ptr[len - 1]`, which matches the official fix; the only differences are the position of the `size_t len` declaration and whitespace/return-type reformatting, so no fix-defect category applies.",
+     "claude-opus-4-8": "The candidate correctly adds the len>0 guard and uses a cached length identical in effect to the official fix, so it appears to be a valid equivalent patch rather than a flawed one."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 145,
+    "cve_id": "CVE-2016-10061",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate tests the right `fputc` call but compares it against `EOF` instead of checking that it returned the written byte (`!= c`), so the error-detection expression differs from the fix (here `c` is always 0..255, so the two tests likely behave the same).",
+     "claude-opus-4-8": "The candidate checks fputc with `== EOF` instead of the fix's `!= c`, which fails to detect partial-write mismatches where fputc returns a different non-EOF value than the byte written."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 1,
+    "item": 147,
+    "cve_id": "CVE-2016-3920",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "incomplete_condition"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds length guards (n <= 0 in the otherdata path, len > 0 before reading the UTF-16 byte-order mark), but it never makes the three allocations `new (std::nothrow)` with NULL checks, so an oversized frame can still abort mediaserver on allocation failure. It also leaves the encoding 0x02 path without the `len > 0` guard.",
+     "claude-opus-4-8": "The candidate adds guards for len>0 before dereferencing framedata but fails to add the critical n<=0 early return and other len bounds; notably for encoding 0x02 (and the 0xfffe marker path) it still does `new char16_t[len]` and iterates without the fix's len>0 allocation guards and marker-skip handling, leaving some overflow cases unaddressed."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 2,
+    "cve_id": "CVE-2017-5039",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix wraps the DataReductionProxyConfigServiceClient creation in an `if (!params::IsIncludedInHoldbackFieldTrial())` guard, whereas the candidate still creates the client unconditionally and only replaces the mutable-config argument with nullptr, so the holdback case is never handled.",
+     "claude-opus-4-8": "The fix guards the config_client_ creation behind the IsIncludedInHoldbackFieldTrial condition, but the candidate instead merely restructures the code and passes nullptr for raw_mutable_config, failing to conditionally skip the client creation."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 5,
+    "cve_id": "CVE-2016-10270",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix removes the early return of the cached td_nstrips, which can disagree with the actual size of the strip arrays and cause the over-read; the candidate keeps that early return and only adds a rowsperstrip==0 divide-by-zero guard, which is a different issue.",
+     "claude-opus-4-8": "The official fix removes the early-return caching block, but the candidate keeps that block and instead adds an unrelated rowsperstrip==0 guard, applying a different kind of remedy than the fix."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 8,
+    "cve_id": "CVE-2014-4611",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix adds an explicit wrap-around check on the final `length += len`, whereas the candidate instead bounds the running `length` against the remaining output space (`oend - op`) inside the 255-loop, a different kind of check at a different point.",
+     "claude-opus-4-8": "The fix detects the integer overflow by checking length against length+len, whereas the candidate instead adds an output-bounds check inside the loop and never guards against the additive overflow the CVE describes."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 9,
+    "cve_id": "CVE-2014-4014",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate swaps inode_capable() for the global capable() check instead of capable_wrt_inode_uidgid(), so it closes the user-namespace bypass by requiring init-namespace capability, but it also wrongly denies chown and setgid preservation to namespace-capable users whose namespace legitimately maps the inode's uid/gid.",
+     "claude-opus-4-8": "The candidate replaces inode_capable with a plain capable() check at all three sites instead of the fix's capable_wrt_inode_uidgid(), which does not properly tie capability checks to the inode's uid/gid and thus fails to close the namespace bypass."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 18,
+    "cve_id": "CVE-2016-7166",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate does cap the filter chain, but at 64 filters rather than the fix's 25 iterations, and it returns ARCHIVE_FATAL without calling archive_set_error, so the limit it enforces is not the one the fix establishes.",
+     "claude-opus-4-8": "The candidate limits filters to 64 rather than the fix's 25, using a different bound for the recursion cap."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 25,
+    "cve_id": "CVE-2018-6651",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate replaces the substring test with an exact whole-string strcmp, whereas the fix requires the allowed origin to be a suffix of the Origin header (strstr followed by strcmp on the match), so the comparison semantics differ and legitimate origins such as a scheme-prefixed host would be rejected.",
+     "claude-opus-4-8": "The fix requires the allowed origin to be a suffix of the header (strstr match ending at the string end), but the candidate requires full equality of the entire origin header, changing the matching semantics incorrectly."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 48,
+    "cve_id": "CVE-2017-13010",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix changes every l_strnstart call to pass ndo so the helper can check the bytes against the captured-buffer end (ND_TTEST2); the candidate instead adds guards on the on-wire `length`, which l_strnstart already checks, so reads past the captured snapshot are still possible.",
+     "claude-opus-4-8": "The fix passes ndo into l_strnstart so the comparison uses bounds-checked ND_TTEST access, whereas the candidate instead adds length guards in beep_print without fixing the actual over-read inside l_strnstart."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 49,
+    "cve_id": "CVE-2016-1631",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix brackets the nested Run() with blink::WebView::willEnterModalLoop()/didExitModalLoop() so Blink suspends page loading and script during the modal loop, whereas the candidate adds an early-return check (one that always triggers, since a current MessageLoop always exists) and removes the nestable-task allower instead of applying that suspension.",
+     "claude-opus-4-8": "The fix wraps the nested Run() with willEnterModalLoop/didExitModalLoop notifications, but the candidate instead adds an early-return guard (and even removes the ScopedNestableTaskAllower), applying a different kind of remedy at the same place."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 50,
+    "cve_id": "CVE-2018-12232",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix calls __sock_release with the inode so the release runs under inode lock and serializes with sockfs_setattr; the candidate only adds a private_data guard and still calls sock_release, which does nothing about the fchownat/close race.",
+     "claude-opus-4-8": "The fix routes release through __sock_release with the inode so sockfs_setattr can be synchronized (holding inode lock and NULLing sk), whereas the candidate merely gates sock_release on private_data without the inode-aware locking that actually closes the race."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 51,
+    "cve_id": "CVE-2017-12192",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "key_validate() only rejects revoked, invalidated, dead or expired keys and does not test KEY_FLAG_NEGATIVE, so a possessed but negatively instantiated key still reaches the read path and causes the oops.",
+     "claude-opus-4-8": "The fix specifically checks the KEY_FLAG_NEGATIVE bit and returns -ENOKEY, whereas the candidate calls key_validate() which checks expiry/revocation but not negative instantiation, so it applies a different remedy that doesn't address the CVE's negatively-instantiated key case."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 55,
+    "cve_id": "CVE-2011-2200",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The real bug is that the byte-order byte stored in header->data is never updated after the swap. The fix writes new_order into the data with _dbus_string_set_byte. The candidate instead adds a validity check on new_order and changes the return type, so the serialized header still claims the old byte order.",
+     "claude-opus-4-8": "The fix updates the stored BYTE_ORDER_OFFSET byte in the header data (and asserts consistency) so the serialized byte order matches the swapped data, whereas the candidate merely adds a validity check on new_order and never writes the new byte order into the header data."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 70,
+    "cve_id": "CVE-2013-4270",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The fix only switches to effective credentials (current_euid() and in_egroup_p()); the candidate instead adds init_user_ns CAP_SETUID/CAP_SETGID gates and uses current_egid() rather than in_egroup_p(), which changes the access policy rather than correcting how the uid and gid are determined.",
+     "claude-opus-4-8": "At the group-check line the fix replaces gid_eq(root_gid, current_gid()) with in_egroup_p(root_gid) to account for supplementary groups, whereas the candidate uses current_egid() plus a CAP_SETGID check, which still misses supplementary group membership that in_egroup_p covers."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 72,
+    "cve_id": "CVE-2012-6538",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate changes the right call but uses the bound `sizeof(algo->alg_name) - 1` instead of the full buffer size, and adds a separate terminator; since strncpy zero-pads up to that bound and the last byte is then set explicitly, the whole buffer is still cleared, so this is a different-bound variant rather than a clear security failure.",
+     "claude-opus-4-8": "The official fix uses sizeof(algo->alg_name) to fully zero-fill the buffer and avoid leaking heap memory, but the candidate uses sizeof-1 plus manual null termination, which leaves prior uninitialized bytes beyond the string unzeroed and still potentially leaks kernel memory."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 77,
+    "cve_id": "CVE-2015-5232",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate drops the racy unlink(hdl->c_path) only on the bind error path, while the official fix also removes it from the chmod and connect error paths, which can still unlink a path an attacker has swapped in.",
+     "claude-opus-4-8": "The candidate removes an unlink() call rather than restructuring the error paths to consistently close the fd and avoid the race/leak that the official fix addresses via centralized cleanup."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 89,
+    "cve_id": "CVE-2017-15924",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only escapes quotes and backslashes in the JSON config values, which does nothing about shell metacharacters reaching the command line; the official fix instead passes in the manager and writes the method, with a fallback to manager->method, into the config file so the method no longer has to go through the shell.",
+     "claude-opus-4-8": "The candidate adds JSON string escaping of metacharacters instead of making the method fall back to manager->method and restructuring the config as the official fix does, applying a different kind of remedy at the same place."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 94,
+    "cve_id": "CVE-2015-3331",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "missing_companion_change"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate correctly fixes the assoc pointer offset. It omits the official fix's second change, which makes the final copy to req->dst use tempCipherLen instead of req->cryptlen, so that copy can still over-read and over-write.",
+     "claude-opus-4-8": "The candidate fixes the assoc offset but omits the second required change replacing req->cryptlen with tempCipherLen in the final scatterwalk_map_and_copy."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 97,
+    "cve_id": "CVE-2014-3615",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds a dimension check with an early return (allowing up to 16384x16384x4, far beyond the fixed 16MB buffer), whereas the fix resizes the buffer so it is always at least width*height*4 bytes.",
+     "claude-opus-4-8": "Instead of resizing the buffer allocation to match the actual surface size, the candidate adds a dimension-bounds check and early return, leaving the fixed 16MB buffer logic unchanged and not matching buffer size to surface size."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 108,
+    "cve_id": "CVE-2016-5357",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix replaces the header-parse/hex-dump sequence with a rewritten parse_netscreen_packet that parses the sscanf integers safely, whereas the candidate keeps the vulnerable parsing and only adds a post-hoc check on pkt_len and strlen(cap_dst), which runs after any sscanf overflow or misparse has already happened.",
+     "claude-opus-4-8": "The candidate adds an ad-hoc length/validity check instead of refactoring to the shared parse_netscreen_packet routine that fixes the sscanf unsigned-integer mishandling, and its checks (e.g. strlen(cap_dst) >= sizeof(cap_dst)) don't address the actual CVE."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 116,
+    "cve_id": "CVE-2018-11380",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "incomplete_condition"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds only a one-time pre-loop `reserved1 >= nindirectsyms` test, which the loop condition already enforces; it lacks the official fix's per-iteration check on the signed computed index (`indidx < 0 || indidx >= nindirectsyms`), so the negative/overflowed index that causes the out-of-bounds read is not handled.",
+     "claude-opus-4-8": "The candidate only guards against reserved1 being out of range initially but does not check for negative indidx (overflow/signedness) inside the loop, missing the case where reserved1+j wraps negative that the official fix handles with the indidx < 0 check."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 2,
+    "item": 148,
+    "cve_id": "CVE-2011-2895",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix bounds the decode stack pointer and returns BUFFILEEOF before any overflowing write, whereas the candidate only checks code values against free_ent and uses `break` instead of returning an error, so it never limits stack growth.",
+     "claude-opus-4-8": "The official fix guards against stack overflow by checking stackp bounds against STACK_SIZE and returning BUFFILEEOF, whereas the candidate instead adds code-word validity checks that break out of the loop, applying a different kind of remedy at the same place."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 5,
+    "cve_id": "CVE-2016-10270",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate returns the cached td_nstrips only when it equals the freshly computed strip count, otherwise it returns the computed value, so it always yields the same result as the official fix's removal of the cache shortcut, and the code shown gives no evidence of a remaining flaw.",
+     "claude-opus-4-8": "The fix removes the early-return of the cached td_nstrips entirely so the value is always recomputed, whereas the candidate keeps a conditional cached return gated by a validation check, which is a different kind of remedy at that location."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 8,
+    "cve_id": "CVE-2014-4611",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix adds a direct integer-overflow check on `length + len`, but the candidate instead bounds `length` against the remaining output space (`oend - op`) inside and after the loop, which is a different kind of check than the wraparound test the fix requires.",
+     "claude-opus-4-8": "The fix checks for integer overflow in the length accumulation (length > length+len), but the candidate instead adds output-bounds checks against oend-op rather than detecting the arithmetic wraparound the CVE concerns."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 18,
+    "cve_id": "CVE-2016-7166",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate does cap filter recursion, but it walks the filter chain and stops at 10 filters instead of capping the loop at 25 iterations, so it uses a different, stricter bound than the fix and may reject inputs the fix accepts.",
+     "claude-opus-4-8": "Instead of simply bounding the loop with a fixed counter and setting the proper error, the candidate counts the existing filter chain and on exceeding the limit closes/frees filters\u2014a different remedy mechanism that alters program state rather than mirroring the fix's counted-loop termination with archive_set_error."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 19,
+    "cve_id": "CVE-2013-4149",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix discards the oversized MAC data byte by byte with qemu_get_byte, using no buffer at all, whereas the candidate keeps the attacker-sized heap allocation (resized and given an overflow check plus an early return) and also mangles the surrounding function structure.",
+     "claude-opus-4-8": "The candidate fixes an integer-overflow in the g_malloc0 size computation but keeps the buffer-based read approach that the fix replaces, failing to address the MAC-table buffer overflow by discarding bytes with 64-bit math."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 23,
+    "cve_id": "CVE-2018-12460",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds NULL-pointer guards and early returns, but never propagates s->studio_profile into s->idsp.mpeg4_studio_profile for MPEG4. As a result, ff_idctdsp_init still selects IDCT routines from a mis-detected studio profile state, and the root cause is left in place.",
+     "claude-opus-4-8": "The fix sets s->idsp.mpeg4_studio_profile from s->studio_profile for MPEG4 before idct init, while the candidate instead adds unrelated NULL guards and does not set the studio profile flag."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 25,
+    "cve_id": "CVE-2018-6651",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate requires the whole Origin header to equal the allowed origin, whereas the fix requires the allowed origin to appear as a suffix (strstr followed by strcmp on the match), so it uses the wrong comparison and rejects legitimate origins such as \"https://host\" when \"host\" is configured.",
+     "claude-opus-4-8": "The candidate requires an exact full-string match instead of the fix's suffix match (strstr plus end-of-string strcmp), changing the matching semantics to be too strict rather than validating the allowed origin at the end of the header."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 43,
+    "cve_id": "CVE-2012-2737",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only adds a NULL check on the uid pointer and reorders the unrefs, but it still gets the UID through the racy polkit process lookup; the fix replaces that lookup with D-Bus GetConnectionUnixUser, so the race condition is not addressed.",
+     "claude-opus-4-8": "The fix replaces the racy polkit process-based UID lookup with a direct D-Bus GetConnectionUnixUser call, whereas the candidate merely adds a NULL check and reorders unrefs while keeping the vulnerable polkit lookup."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 45,
+    "cve_id": "CVE-2016-8693",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate still returns -1 whenever realloc returns NULL, including the bufsize == 0 case where realloc has already freed m->buf_, so m->buf_ is left dangling and mem_close frees it again; it lacks the official fix's `&& bufsize` exception that treats zero-size as success.",
+     "claude-opus-4-8": "The candidate restructures the realloc check but still treats a NULL return as failure unconditionally, omitting the crucial `&& bufsize` condition that allows a zero-size realloc to succeed, so it fails to address the double free."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 52,
+    "cve_id": "CVE-2016-5220",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only reshuffles the logic and adds a null check on model(), but it never adds the kUIExperimentShowPlaceholderWhenCaretShowing feature-flag override that the official fix introduces to allow placeholder text while the caret is visible.",
+     "claude-opus-4-8": "The candidate adds a null check and refactors but keeps the original condition unchanged, failing to add the show_with_caret feature flag logic the fix introduces."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 55,
+    "cve_id": "CVE-2011-2200",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only adds NULL and order-validity guards and never writes new_order into the BYTE_ORDER_OFFSET byte of header->data, so the serialized header still advertises the old byte order after swapping, which is the actual CVE flaw.",
+     "claude-opus-4-8": "The fix writes the new byte order into the serialized header data via _dbus_string_set_byte at BYTE_ORDER_OFFSET, but the candidate instead adds unrelated input-validation guards and never updates the stored byte-order byte."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 60,
+    "cve_id": "CVE-2011-1180",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate bounds both name_len and attr_len exactly as the fix does (`> IAS_MAX_X` is equivalent to `!(< IAS_MAX_X + 1)`) and returns early in both cases, so from the code shown it looks functionally equivalent and no defect is visible.",
+     "claude-opus-4-8": "The candidate allows name_len == IAS_MAX_CLASSNAME (and attr equivalent), but then name[name_len]='\\0' writes at index IAS_MAX_CLASSNAME which overflows the buffer, whereas the fix requires strictly less than IAS_MAX_CLASSNAME+1 with proper boundary handling."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 72,
+    "cve_id": "CVE-2012-6538",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate changes the right call but uses the bound `sizeof(algo->alg_name) - 1` instead of the full buffer size, and adds a separate terminator; since strncpy zero-pads up to that bound and the last byte is then set explicitly, the whole buffer is still cleared, so this is a different-bound variant rather than a clear security failure.",
+     "claude-opus-4-8": "The official fix uses sizeof(algo->alg_name) to fully zero-fill the buffer and avoid leaking heap memory, but the candidate uses sizeof-1 plus manual null termination, which leaves prior uninitialized bytes beyond the string unzeroed and still potentially leaks kernel memory."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 80,
+    "cve_id": "CVE-2017-16526",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate correctly switches the check to IS_ERR and resets the field to NULL on failure, but it still writes kthread_run's result straight into rc->uwbd.task, so an ERR_PTR is briefly visible in the shared field; the official fix avoids this by using a local variable and only publishing a valid task pointer.",
+     "claude-opus-4-8": "The candidate correctly replaces the NULL check with IS_ERR and sets rc->uwbd.task = NULL on error, which is functionally equivalent to the official fix despite using a temporary variable instead of assigning directly."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 89,
+    "cve_id": "CVE-2017-15924",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix moves `method` into the config file, falling back to `manager->method`, and adds a manager parameter so that values no longer have to go on the shell command line; the candidate instead adds JSON escaping and port-digit validation without that signature change or fallback.",
+     "claude-opus-4-8": "The candidate adds JSON string escaping and port validation rather than the official remedy of adding the manager parameter and the manager->method fallback, so it applies a different kind of fix at the same lines."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 97,
+    "cve_id": "CVE-2014-3615",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix resizes the buffer to fit the surface (freeing and reallocating ssd->buf when it is too small), while the candidate only adds dimension and size checks that return early, leaving the fixed 16MB allocation in place.",
+     "claude-opus-4-8": "The fix dynamically grows the buffer to fit the required surface size, whereas the candidate instead adds hardcoded dimension limits and early returns without reallocating the buffer."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 112,
+    "cve_id": "CVE-2011-3906",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix changes the window-size computation by scaling it by 1/deviceScaleFactor when the compositor does not apply page scale; the candidate leaves that computation unchanged and only adds null-pointer early returns.",
+     "claude-opus-4-8": "The fix scales windowSize by the device scale factor when applyPageScaleFactorInCompositor is false, but the candidate instead adds unrelated null-pointer early-return checks and omits the scaling computation entirely."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 114,
+    "cve_id": "CVE-2011-3353",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate checks `size < sizeof(outarg)+namelen+1`, while the official fix requires `size != ...`. Oversized messages with trailing data are still accepted, so the request size is not validated as an exact match the way the fix requires.",
+     "claude-opus-4-8": "The candidate uses `size <` instead of the fix's `size !=`, so it fails to reject oversized size values that the official exact-equality check catches."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 125,
+    "cve_id": "CVE-2017-15385",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate rewrites the parsing to use bounds-checked buffer reads, but it still rejects only `vd_next == 0`. It never adds the official fix's signed `vd_next < 1` check or the `i >= 0` loop guard, so negative `vd_next` values that move or wrap the offset `i` are still accepted.",
+     "claude-opus-4-8": "The candidate checks `!verdef.vd_next` (only zero) instead of the fix's `(st32)vd_next < 1`, so a negative vd_next still passes and corrupts the loop index, and it uses unsigned bounds rather than guarding against the negative/wraparound case the fix addresses."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 145,
+    "cve_id": "CVE-2016-10061",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "Instead of the fix's status flag that lets processing continue and destroys the image at the end, the candidate checks fputc and aborts immediately with cleanup and a thrown exception, which is a different kind of remedy at the same place.",
+     "claude-opus-4-8": "The candidate aborts immediately with an exception/throw at the fputc site instead of merely recording status=MagickFalse and performing the deferred DestroyImage cleanup the fix uses after the file is finished."
+    }
+   },
+   {
+    "arm": "A4",
+    "repeat": 3,
+    "item": 149,
+    "cve_id": "CVE-2013-2929",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only reworks RCU locking and credential usage, and it keeps the `!dumpable` test. A process with `SUID_DUMP_ROOT` (value 2) therefore still counts as dumpable, so the get_dumpable misuse the fix corrects with `dumpable != SUID_DUMP_USER` is not addressed.",
+     "claude-opus-4-8": "The fix changes the dumpable comparison to check for SUID_DUMP_USER, but the candidate only tweaks rcu locking/cred access and leaves the flawed `!dumpable` check unchanged, so it does not address the CVE's dumpable-value bug."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 109,
+    "cve_id": "CVE-2015-1344",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The fix passes fc->uid into do_write_pids so it can check per-pid permissions. The candidate instead adds a blanket early return rejecting any non-root writer, which blocks legitimate unprivileged use rather than performing the proper permission check.",
+     "claude-opus-4-8": "The fix passes the caller's uid into do_write_pids so it can perform proper per-pid permission checks, whereas the candidate instead adds a crude check rejecting all non-root writes at the call site rather than passing the uid for correct permission validation."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 145,
+    "cve_id": "CVE-2016-10061",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "missing_companion_change"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate sets status=MagickFalse when fputc fails, but it lacks the official fix's later `if (status == MagickFalse) image=DestroyImage(image);` before the return, so the failure is never acted on and the image built from the truncated file is still returned.",
+     "claude-opus-4-8": "The candidate sets status=MagickFalse on fputc failure but omits the second change that destroys the image when status is MagickFalse before returning."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 113,
+    "cve_id": "CVE-2015-5296",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate sets SIGNING_REQUIRED only when `session->encrypt` is set, whereas the fix keys on `session->smb2->should_sign`, so cases where signing is desired without the encrypt flag (or before it is set) are not covered.",
+     "claude-opus-4-8": "The candidate requires signing based on session->encrypt instead of the session's should_sign flag, which does not enforce signing for the intended downgrade-protection condition the fix targets."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 149,
+    "cve_id": "CVE-2013-2929",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate replaces `!dumpable` with `dumpable != 1`, which matches the official `dumpable != SUID_DUMP_USER` if SUID_DUMP_USER is 1 (as in the kernel), but the code shown does not define the constant, so it cannot be confirmed whether the candidate is wrong or merely textually different.",
+     "claude-opus-4-8": "The candidate uses the magic number 1 instead of the SUID_DUMP_USER constant but applies the same corrected comparison, so it is functionally equivalent though it hard-codes the value rather than using the symbolic bound."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 128,
+    "cve_id": "CVE-2016-3921",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "missing_companion_change"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate rejects a non-zero-terminated read but never sets or uses a skip-to-next-null state (mSkipToNextNullByte), so the leftover tail of the oversized command is read next time and dispatched as if it were a fresh command.",
+     "claude-opus-4-8": "The candidate correctly bails out on the non-null-terminated buffer but omits the mSkipToNextNullByte state machine that the fix uses to skip the leftover partial command on the next read, so it drops rather than resynchronizes split commands."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 47,
+    "cve_id": "CVE-2019-15163",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate stores crypt()'s result, checks it for NULL, and short-circuits before strcmp, then takes the existing failure path, which almost certainly returns -1 just as the official fix does; the only visible difference is the error message text, so the shown code gives no basis for calling it a wrong fix.",
+     "claude-opus-4-8": "The candidate correctly guards against NULL but folds it into the existing strcmp branch rather than adding the separate NULL check with its own distinct return/error handling, though functionally it still prevents the dereference\u2014the strict difference is the remedy structure matches the oracle's required separate statements."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 46,
+    "cve_id": "CVE-2015-7510",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds the same length check before strndupa, but it uses a hardcoded bound of 64 rather than HOST_NAME_MAX - 1, so its limit does not match the official fix's bound.",
+     "claude-opus-4-8": "The candidate adds the length check at the right place but uses an arbitrary bound of 64 instead of HOST_NAME_MAX - 1."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 139,
+    "cve_id": "CVE-2011-3088",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix replaces per-profile tracking with tracking of SessionRestoreImpl instances and demotes the CHECK to a DCHECK. The candidate keeps the profile set and just skips registration and AddRefModule when the profile is already present, which is a different remedy that leaves refcount and lifetime tracking inconsistent.",
+     "claude-opus-4-8": "The candidate just softens the duplicate-profile CHECK into a conditional insert rather than switching to tracking active SessionRestoreImpl instances per the fix, and does not address the hairline out-of-bounds read."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 115,
+    "cve_id": "CVE-2011-4347",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "incomplete_condition"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate rejects bridges and adds a BAR-presence test, but it never calls probe_sysfs_permissions(), so the caller's permission to access the device's PCI config space and BAR resources is still not verified.",
+     "claude-opus-4-8": "The candidate blocks bridges but omits the probe_sysfs_permissions check that verifies access to PCI config space and BAR resources, which is central to the CVE."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 137,
+    "cve_id": "CVE-2013-0911",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate rejects only origin identifiers containing \"..\", while the fix runs the full IsValidOriginIdentifier check, so other malformed identifiers (e.g. ones with path separators) still reach the tracker and filesystem paths.",
+     "claude-opus-4-8": "The fix validates the origin identifier via IsValidOriginIdentifier and terminates the bad message process, whereas the candidate substitutes an ad-hoc substring check for '..' that neither uses the proper validation nor records the bad-message action."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 26,
+    "cve_id": "CVE-2011-1833",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "missing_companion_change"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds the uid-ownership check after path lookup, but omits the companion change to the ecryptfs_parse_options call that the official fix makes to capture the check_ruid request, so the ECRYPTFS_MOUNT_CHECK_UID flag it tests is never set by option parsing as shown.",
+     "claude-opus-4-8": "The candidate adds the uid check at the right place but omits passing &check_ruid to ecryptfs_parse_options, so the flag it relies on is never properly set during option parsing."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 56,
+    "cve_id": "CVE-2012-2870",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds the same `if (ctxt->error) return;` check right after `xsltCompileIdKeyPattern`, differing only in braces and whitespace, so the code shown gives no basis for calling it a wrong fix.",
+     "claude-opus-4-8": "The candidate adds the identical error check and early return as the official fix, differing only in brace style, so it appears functionally equivalent and the oracle's rejection isn't justified by the code shown."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 39,
+    "cve_id": "CVE-2016-2105",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate's `inl < ctx->length - ctx->num` is algebraically identical to the official `ctx->length - ctx->num > inl`, so it removes the `num + inl` overflow the same way, and the code shown reveals no semantic gap that would explain the rejection.",
+     "claude-opus-4-8": "The candidate uses a strict less-than (inl < length-num) instead of the fix's length-num > inl, which differs at the boundary where inl equals length-num, so it is off-by-one relative to the official fix."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 21,
+    "cve_id": "CVE-2018-18586",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate's '..' removal has broken pointer arithmetic: `p -= 2` rewinds past the separator, or before the start of the name when the path begins with '..'. The `continue` in the non-UTF8 loop still writes the dot, and `strlen(dir)` is called even when `dir` is NULL. So traversal sequences are not reliably neutralized the way the fix's '../' and '..\\' to 'xx/' rewrite does.",
+     "claude-opus-4-8": "The official fix neutralizes traversal by rewriting \"../\" sequences to \"xx/\" (keeping them in-place), whereas the candidate attempts to skip/delete the dots entirely with a complex and buggy pointer-rewinding approach that doesn't match the fix's remedy."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 14,
+    "cve_id": "CVE-2017-10971",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds the same loop that validates the type of every event, and declares `i` separately, which is equivalent. The mangled diff context (a stray `return ret;` removal and whitespace churn) means the code shown does not reveal a substantive semantic shortfall.",
+     "claude-opus-4-8": "The candidate implements the same loop over all events as the official fix, so this appears to be a correct equivalent patch rather than a wrong one."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 68,
+    "cve_id": "CVE-2018-6114",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "incomplete_condition"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate assigns kRequestContextObject to <embed> elements, where the fix uses kRequestContextEmbed, and it adds an else branch that forces kRequestContextImage on every other element, so the CSP request context is set with wrong constants.",
+     "claude-opus-4-8": "The candidate lumps embed elements into the object request context instead of setting kRequestContextEmbed for HTMLEmbedElement as the fix does, so it fails to correctly distinguish the embed case."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 99,
+    "cve_id": "CVE-2011-3110",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate checks the blend() result but quietly returns an identity matrix on failure, while the official fix changes the function to return bool with an out-parameter so the failure reaches the caller and the caller can stop.",
+     "claude-opus-4-8": "The candidate detects blend failure but returns a WebTransformationMatrix instead of changing the signature to return bool with the result passed by reference, so callers cannot detect the failure and skip the invalid transform as the official fix intends."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 108,
+    "cve_id": "CVE-2016-5357",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix replaces the whole record-header/hex-dump parsing path with a rewritten parse_netscreen_packet that handles the sscanf unsigned values properly, whereas the candidate keeps the old flawed parsing and only adds a caller-side size check after the bad sscanf conversion has already happened.",
+     "claude-opus-4-8": "The official fix refactors to a consolidated parse_netscreen_packet helper (which handles the sscanf unsigned-integer issue), whereas the candidate instead adds an inline bound check and type change at the call site, applying a different kind of remedy than the fix."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 89,
+    "cve_id": "CVE-2017-15924",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate JSON-escapes the string fields written to the config file, but the shell command injection happens in the command line, so it does not address the CVE; it also omits the official fix's change to build_config, which adds the manager parameter and writes manager->method as a fallback so method can be moved out of the shell command into the config file.",
+     "claude-opus-4-8": "The candidate adds JSON string escaping instead of adopting the official fix's method/manager fallback signature change and reordering, applying a different kind of remedy at the same place."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 1,
+    "item": 80,
+    "cve_id": "CVE-2017-16526",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "missing_companion_change"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate correctly switches the failure check to IS_ERR, but it leaves the ERR_PTR value stored in rc->uwbd.task instead of resetting it to NULL as the fix does, so later users such as uwbd_stop/kthread_stop still dereference the error pointer.",
+     "claude-opus-4-8": "The candidate correctly replaces the NULL check with IS_ERR but fails to set rc->uwbd.task = NULL in the error branch, leaving an error pointer in the struct that can cause the general protection fault."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 15,
+    "cve_id": "CVE-2013-5634",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate tests `!vcpu->arch.target`, but an uninitialized vCPU has `target == -1`. That is nonzero, so the check never fires for uninitialized vCPUs, while a valid target of 0 (Cortex-A15) is wrongly rejected; the official fix instead uses `kvm_vcpu_initialized()`, i.e. `target >= 0`.",
+     "claude-opus-4-8": "The candidate adds the init check at both correct locations but returns -ENOENT instead of -ENOEXEC, using the wrong error code/constant for the remedy."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 105,
+    "cve_id": "CVE-2011-2783",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix reroutes the call to frontend_->OnLoadSingleExtension, which runs the confirmation flow before installation. The candidate keeps the vulnerable OnExtensionInstalled call, so the extension is installed first, and then bolts on a separate dialog afterwards.",
+     "claude-opus-4-8": "The fix reroutes the call to OnLoadSingleExtension (changing the flow so the installation goes through proper confirmation), whereas the candidate instead tacks on an extra dialog check while leaving the original OnExtensionInstalled call intact."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 124,
+    "cve_id": "CVE-2012-5156",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate compares the client-supplied peer_pid against the constant kNullProcessId instead of the actual launched process ID from launcher_delegate_->GetProcessId(), so a spoofed non-null PID still passes.",
+     "claude-opus-4-8": "The candidate adds a peer_pid validation but only checks against a null sentinel rather than verifying peer_pid equals the actual launched process ID, so a spoofed non-null PID still passes."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 44,
+    "cve_id": "CVE-2017-15906",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "incomplete_condition"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate rejects O_CREAT but not O_TRUNC. An O_RDONLY|O_TRUNC open in readonly mode is still allowed and can truncate existing files to zero length. It also keeps the WRONLY/RDWR equality checks rather than the fix's `!= O_RDONLY` test.",
+     "claude-opus-4-8": "The candidate adds a check for O_CREAT but omits the O_TRUNC case that the official fix also refuses, so a read-only truncate open would still be allowed."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 4,
+    "cve_id": "CVE-2016-5147",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix widens the guard to `IsRootLayer() || BlinkGenPropertyTreesEnabled()`, but the candidate deletes the root-layer condition outright, so non-root layers take the composited scroll-offset path even when the feature flag is off.",
+     "claude-opus-4-8": "The candidate drops the IsRootLayer check entirely instead of OR-ing it with the BlinkGenPropertyTreesEnabled condition, altering the condition incorrectly rather than extending it as the fix does."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 21,
+    "cve_id": "CVE-2018-18586",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix sanitizes the output name by rewriting any \"../\" or \"..\\\" sequence to \"xx/\" and substituting \"x\" for an empty name, whereas the candidate keeps the old conversion logic and adds an early-return rejection of '..' components that only recognizes a preceding '/' (not '\\').",
+     "claude-opus-4-8": "The fix neutralizes traversal by rewriting \"../\" sequences to \"xx/\" and keeps extracting, while the candidate instead aborts with free/return NULL on detected traversal, applying a different remedy (plus its detection logic is also flawed)."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 12,
+    "cve_id": "CVE-2010-1152",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix caps the number of buffer doublings per call with a local counter and returns the data read so far so the command parser can handle it, whereas the candidate imposes a hard 1MB size limit that sends an error and closes the connection.",
+     "claude-opus-4-8": "The candidate caps growth by an absolute 1MB buffer-size bound instead of the fix's limit of 4 reallocation attempts per call, so it uses a different and incorrect limiting condition at the same place."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 8,
+    "cve_id": "CVE-2014-4611",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate bounds the accumulated literal length against the remaining output space (oend - op), whereas the fix checks for integer wraparound of length + len, so the guard compares against a different bound than the overflow the CVE describes.",
+     "claude-opus-4-8": "The fix detects the integer overflow by checking length wraparound (length > length+len), while the candidate instead adds output-bounds checks against oend-op, which does not catch the integer overflow that is the CVE."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 28,
+    "cve_id": "CVE-2018-16066",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate moves style-sheet processing into InsertedInto and returns kInsertionDone, but it never handles the kProcessingFatalError result, so the NotifyLoadedSheetAndAllCriticalSubresources(kErrorOccurredLoadingSubresource) path the official fix adds is missing.",
+     "claude-opus-4-8": "The candidate changes the return value correctly but replaces the fix's ProcessStyleSheet call with error handling by a different UpdateStyleSheetInternal call, applying the wrong kind of remedy at the right place."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 121,
+    "cve_id": "CVE-2015-1214",
+    "labels": {
+     "claude-opus-5-5": "different_bug",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix attaches DataUseUserData (SIGNIN) to the fetcher, but the candidate never adds that call and instead adds unrelated URL-validity and null-fetcher checks, so it addresses something else.",
+     "claude-opus-4-8": "The fix attaches DataUseUserData to the fetcher, but the candidate instead adds unrelated null/validity checks and never attaches the data use measurement."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 35,
+    "cve_id": "CVE-2017-5080",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds the right early-return guard at the right place, but it tests `bubble_view_` instead of `save_card_bubble_view_`, so it does not check whether the save-card bubble is already visible.",
+     "claude-opus-4-8": "The candidate guards on the wrong member (bubble_view_ instead of save_card_bubble_view_), so it doesn't prevent re-showing the save-card bubble and fails to address the use-after-free."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 81,
+    "cve_id": "CVE-2018-10887",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate casts `*delta++` to `(unsigned char)`, which it already is, so it still promotes to signed int. `<< 24` can therefore still set the sign bit and sign-extend into `off`, whereas the fix casts to `(unsigned)` before shifting.",
+     "claude-opus-4-8": "The sign-extension bug arises at the << 24UL shift where the char promotes to signed int; casting to (unsigned char) before shifting by 24 still leaves the int result's high bit set as the fix's (unsigned) cast on the 24-bit shift is what prevents the overflow, so the candidate uses the wrong cast type/placement for the critical shift."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 139,
+    "cve_id": "CVE-2011-3088",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only deletes the CHECK, and that part roughly matches the fix's downgrade to a DCHECK. It omits the fix's companion change, which replaces the per-profile `profiles_getting_restored` set with a per-instance `active_session_restorers` set (inserting `this`), so duplicate-profile restorers still share and corrupt the same tracking entry.",
+     "claude-opus-4-8": "The candidate merely removes the CHECK assertion rather than switching to the per-restorer tracking set that the fix introduces, so it does nothing to address the hairline out-of-bounds read."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 103,
+    "cve_id": "CVE-2016-10145",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "Instead of reducing the strncpy length to MaxTextExtent-1 as the official fix does, the candidate swaps the call for CopyMagickString, a different remedy at the same line.",
+     "claude-opus-4-8": "The fix corrects the off-by-one by reducing the copy length to MaxTextExtent-1, whereas the candidate swaps to a safe-string function at the same place rather than making the required length/bound change."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 66,
+    "cve_id": "CVE-2016-4579",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds the same `ti.length > *len` bounds check before the call to `_ksba_asntime_to_iso`, but it returns the wrong error constant (`GPG_ERR_INV_OBJ` instead of `GPG_ERR_INV_BER`), so the statement differs from the official fix.",
+     "claude-opus-4-8": "The candidate adds the correct bounds check but returns the wrong error code (GPG_ERR_INV_OBJ instead of GPG_ERR_INV_BER)."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 141,
+    "cve_id": "CVE-2013-0839",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix turns the factory into an in-place `InitFromDocumentEntry` on an object the caller already owns, so this function no longer allocates or returns a raw `GDataDirectory`. The candidate only drops the `parent` argument and still allocates a new object with `new` and returns it, which leaves the ownership and lifetime pattern behind the use-after-free unchanged.",
+     "claude-opus-4-8": "The fix refactors the static factory into an instance InitFromDocumentEntry method (delegating to the base initializer) to avoid the use-after-free, whereas the candidate merely tweaks the constructor signature and whitespace while keeping the allocating factory pattern."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 65,
+    "cve_id": "CVE-2019-5759",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "Moving `external_popup_menu_` into a local unique_ptr nulls the member before `DidSelectItems()` runs, which matches the official swap-based fix, so the code shown reveals no flaw and the rejection looks like a syntactic mismatch rather than a missing fix.",
+     "claude-opus-4-8": "The candidate moves ownership out of external_popup_menu_ before calling DidSelectItems just like the fix, which addresses the lifetime bug, so it appears functionally equivalent and the oracle rejection seems due to only cosmetic/statement-count differences."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 80,
+    "cve_id": "CVE-2017-16526",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate correctly switches the check to IS_ERR and resets the field to NULL on failure, but it still writes kthread_run's result straight into rc->uwbd.task, so an ERR_PTR is briefly visible in the shared field; the official fix avoids this by using a local variable and only publishing a valid task pointer.",
+     "claude-opus-4-8": "The candidate correctly replaces the NULL check with IS_ERR and sets rc->uwbd.task = NULL on error, which is functionally equivalent to the official fix despite using a temporary variable instead of assigning directly."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 131,
+    "cve_id": "CVE-2017-17081",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only adds an `(unsigned)` cast to `width - w` and `height - h`, which does nothing since the comparison was already unsigned. When width < w the subtraction still wraps to a huge value, so need_emu stays false and the out-of-array read remains. The fix instead adds explicit `width < w` and `height < h` checks to force emulation.",
+     "claude-opus-4-8": "The candidate casts width/height to unsigned instead of adding the explicit width < w and height < h checks, so it fails to catch the signedness error when width-w or height-h underflows the same way the fix does."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 2,
+    "item": 74,
+    "cve_id": "CVE-2013-7019",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only changes `<` to `<=` so that `nreslevels2decode` becomes 1 in the equality case, but it leaves `s->reduction_factor` invalid and keeps decoding. The official fix instead rejects the frame and clamps `s->reduction_factor` to `nreslevels - 1`, because that value is also used elsewhere to index resolution levels.",
+     "claude-opus-4-8": "The fix rejects the frame with an error return when nreslevels <= reduction_factor, but the candidate merely tweaks the comparison operator while keeping the clamp-to-1 computation, failing to add the required validation/early return."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 67,
+    "cve_id": "CVE-2016-7126",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate rejects large values at the right check but caps ncolors at 256 instead of INT_MAX, and it leaves the gdImageTrueColorToPalette call without the (int) cast the official fix adds.",
+     "claude-opus-4-8": "The candidate adds the upper-bound check with the wrong limit (256 instead of INT_MAX), which changes behavior from the fix's intent."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 82,
+    "cve_id": "CVE-2017-13198",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate's guard adds an extra `ColorCount == (1 << BitsPerPixel)` requirement, so it does avoid the NULL-cmap crash. But that condition is wrong: it also skips decoding every frame whose color map merely has a nonstandard size, where the fix skips only when `cmap` is NULL.",
+     "claude-opus-4-8": "The fix guards the copy solely on cmap being non-NULL, but the candidate adds an extra ColorCount condition that would also skip valid frames whose color map count differs, altering the intended guard condition."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 131,
+    "cve_id": "CVE-2017-17081",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "Casting `width`/`height` to unsigned does nothing, because `width - w` was already converted to unsigned for the comparison, so a negative difference still wraps to a huge value and `need_emu` stays false; the fix instead adds explicit `width < w` and `height < h` checks to force emulation, and the candidate has no equivalent.",
+     "claude-opus-4-8": "The fix adds explicit width<w and height<h checks to catch the signedness underflow, but the candidate merely casts width/height to unsigned, which does not add the required additional conditions and does not correctly guard the underflow case."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 2,
+    "cve_id": "CVE-2017-5039",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate keeps the official fix's shape (wrapping creation of DataReductionProxyConfigServiceClient in a conditional) but guards on whether raw_mutable_config is non-null instead of the required !params::IsIncludedInHoldbackFieldTrial(), so the client is still created in the holdback case.",
+     "claude-opus-4-8": "The candidate guards construction on a null-pointer check of raw_mutable_config instead of the holdback field trial condition, addressing an unrelated concern rather than the use-after-free fix."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 22,
+    "cve_id": "CVE-2016-4072",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate keeps the \"s\" parse spec and adds a separate memchr check with a custom exception afterwards, whereas the official fix switches zend_parse_parameters to the \"p\" path specifier, which rejects embedded NUL bytes at argument parsing.",
+     "claude-opus-4-8": "The fix changes the zend_parse_parameters format specifier from \"s\" to \"p\" to properly validate the path, whereas the candidate instead adds a manual null-byte check after parsing, a different kind of remedy at a different place."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 119,
+    "cve_id": "CVE-2012-4565",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "incomplete_condition"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate guards the do_div against a zero rttcnt, but it leaves `info.tcpv_rtt = t` outside the guard, whereas the fix also moves that assignment inside the check so the undivided sum_rtt is never reported when cnt_rtt is zero.",
+     "claude-opus-4-8": "The candidate guards only the do_div but still assigns info.tcpv_rtt = t unconditionally, so when rttcnt is 0 it writes an uninitialized/unvalid value rather than skipping the assignment as the fix does."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 80,
+    "cve_id": "CVE-2017-16526",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "missing_companion_change"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate correctly switches the failure check to IS_ERR, but it leaves the ERR_PTR value stored in rc->uwbd.task instead of resetting it to NULL as the fix does, so later users such as uwbd_stop/kthread_stop still dereference the error pointer.",
+     "claude-opus-4-8": "The candidate correctly replaces the NULL check with IS_ERR but fails to set rc->uwbd.task = NULL in the error branch, leaving an error pointer in the struct that can cause the general protection fault."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 109,
+    "cve_id": "CVE-2015-1344",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "Instead of passing the caller's uid into do_write_pids so each pid is checked as it is parsed and translated, the candidate adds a single external precheck (may_move_pid) on the raw buffer, which can contain several pids from the caller's namespace and so cannot enforce the per-pid permission check the fix enables.",
+     "claude-opus-4-8": "The fix passes fc->uid into do_write_pids so the permission check happens inside with full context, whereas the candidate adds an inline may_move_pid gate instead of changing the call signature."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 137,
+    "cve_id": "CVE-2013-0911",
+    "labels": {
+     "claude-opus-5-5": "incomplete_condition",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate rejects only identifiers containing \"..\", while the fix runs the full DatabaseUtil::IsValidOriginIdentifier validation, which would also catch other malicious identifiers such as ones containing path separators.",
+     "claude-opus-4-8": "The fix validates the origin identifier via IsValidOriginIdentifier and terminates the renderer as a bad message, whereas the candidate substitutes an ad-hoc substring check for '..' and silently returns, failing to apply the proper whitelist validation and bad-message handling."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 120,
+    "cve_id": "CVE-2019-14975",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate guards on `str->utf8[str->pos] == '\\0'` instead of the sentinel `str->pos == -1`. So the missing-string case is not caught, and with pos == -1 the new check itself reads `utf8[-1]` out of bounds.",
+     "claude-opus-4-8": "The candidate adds a different condition (checking for null terminator) instead of the fix's str->pos == -1 check, so it edits the right expression with the wrong guard."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 111,
+    "cve_id": "CVE-2015-3212",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds the right kind of lock around sctp_close's teardown, but it takes a per-socket `sctp_sk(sk)->addr_wq_lock` instead of the per-netns `net->sctp.addr_wq_lock`, so it does not serialize with the shared address work queue that causes the list corruption.",
+     "claude-opus-4-8": "The candidate grabs the wrong lock object (sctp_sk(sk)->addr_wq_lock instead of net->sctp.addr_wq_lock) and keeps the local_bh_disable/enable rather than replacing them with spin_lock_bh/spin_unlock_bh, so it locks the wrong structure than the fix requires."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 14,
+    "cve_id": "CVE-2017-10971",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "cannot_tell"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate's loop validates every event type exactly as the official fix does, but its diff is malformed (indentation changes and a stray removed 'return ret;' line), so the visible code does not show a substantive shortfall.",
+     "claude-opus-4-8": "The candidate's loop over all num_events exactly matches the official fix's core change, so the oracle's rejection appears spurious and no genuine defect is visible in the shown code."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 97,
+    "cve_id": "CVE-2014-3615",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate computes the buffer size as a 32-bit `width * height * 4` and drops the fix's 64-bit computation and its `> 0` / `< INT_MAX` asserts, so a large guest resolution can wrap the size and the buffer is never grown.",
+     "claude-opus-4-8": "The candidate computes surface_size as a 32-bit uint32_t (width * height * 4), which overflows for high resolutions, instead of the fix's 64-bit uint64_t computation guarded by assert(surface_size < INT_MAX), so the overflow enabling the host-memory read is not prevented."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 38,
+    "cve_id": "CVE-2017-7487",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate adds `ipxitf_put(ipxif)` on the `copy_to_user` failure path before breaking with `-EFAULT`, which in the shown code behaves the same as the official fix, so no flaw is evident.",
+     "claude-opus-4-8": "The candidate adds an ipxitf_put before the break to balance the refcount rather than restructuring the error handling so ipxitf_put is always reached, which is a different kind of fix than the official computation/flow change."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 47,
+    "cve_id": "CVE-2019-15163",
+    "labels": {
+     "claude-opus-5-5": "cannot_tell",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate stores crypt()'s result, checks it for NULL, and short-circuits before strcmp, then takes the existing failure path, which almost certainly returns -1 just as the official fix does; the only visible difference is the error message text, so the shown code gives no basis for calling it a wrong fix.",
+     "claude-opus-4-8": "The candidate correctly guards against NULL but folds it into the existing strcmp branch rather than adding the separate NULL check with its own distinct return/error handling, though functionally it still prevents the dereference\u2014the strict difference is the remedy structure matches the oracle's required separate statements."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 100,
+    "cve_id": "CVE-2017-5850",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix moves range state from a static array into per-client storage (clt->clt_ranges, which records range_total/range_count) so ranges can be streamed incrementally. The candidate keeps the static array and adds a cumulative-size check, which leaves the memory-consumption mechanism of serving large ranges unchanged.",
+     "claude-opus-4-8": "The official fix limits the number of ranges (via SERVER_MAX_RANGES and per-client range_data) to bound memory/CPU consumption, whereas the candidate instead adds a cumulative byte-size check against file size, a different remedy that doesn't cap the request/range count the way the fix does."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 32,
+    "cve_id": "CVE-2014-9322",
+    "labels": {
+     "claude-opus-5-5": "wrong_bound_or_operator",
+     "claude-opus-4-8": "wrong_bound_or_operator"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate correctly drops the IST stack, but it passes `&stack_segment` instead of the bare `stack_segment` symbol, so the extra `&` operator breaks the `set_intr_gate` macro (which pastes `trace_##addr`) and the change does not match the fix's call form.",
+     "claude-opus-4-8": "The candidate correctly switches to set_intr_gate but passes &stack_segment instead of stack_segment, using the wrong operand form the fix requires."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 74,
+    "cve_id": "CVE-2013-7019",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate only changes `<` to `<=` so that `nreslevels2decode` becomes 1 in the equality case, but it leaves `s->reduction_factor` invalid and keeps decoding. The official fix instead rejects the frame and clamps `s->reduction_factor` to `nreslevels - 1`, because that value is also used elsewhere to index resolution levels.",
+     "claude-opus-4-8": "The fix rejects the frame with an error return when nreslevels <= reduction_factor, but the candidate merely tweaks the comparison operator while keeping the clamp-to-1 computation, failing to add the required validation/early return."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 43,
+    "cve_id": "CVE-2012-2737",
+    "labels": {
+     "claude-opus-5-5": "missing_companion_change",
+     "claude-opus-4-8": "different_bug"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The candidate makes the core change correctly: it gets the caller's uid from the bus daemon via GetConnectionUnixUser instead of resolving it through polkit's PID lookup, which can race. The only statement it lacks is the official fix's g_warning in the error path, which is logging rather than a security-relevant difference.",
+     "claude-opus-4-8": "The candidate correctly replaces the polkit process lookup with the trusted dbus GetConnectionUnixUser call, functionally matching the fix (minus a non-essential warning log), so the oracle's rejection is over the missing g_warning rather than a security-relevant difference."
+    }
+   },
+   {
+    "arm": "M",
+    "repeat": 3,
+    "item": 3,
+    "cve_id": "CVE-2018-6080",
+    "labels": {
+     "claude-opus-5-5": "wrong_remedy_type",
+     "claude-opus-4-8": "wrong_remedy_type"
+    },
+    "reasons": {
+     "claude-opus-5-5": "The official fix registers a separate HeapProfilerHelper interface so privileged heap-profiler access can be split out and access-controlled, whereas the candidate deletes the coordinator creation and its Coordinator interface binding outright, removing functionality instead of adding the restricted interface.",
+     "claude-opus-4-8": "The fix adds registration of the access-controlled BindHeapProfilerHelperRequest interface, but the candidate instead removes the coordinator registration entirely rather than adding the proper access-controlled interface."
+    }
+   }
+  ]
+ },
+ "llm_usage": {
+  "model": "claude-haiku-4-5",
+  "api_calls": 389,
+  "cache_hits": 2766,
+  "input_tokens": 541327,
+  "output_tokens": 81394
+ }
+}

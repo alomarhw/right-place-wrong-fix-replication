@@ -80,3 +80,20 @@ lock; those calls were regenerated with the description and no result changed. R
 ## Licence
 
 Code: MIT. Data derived from Big-Vul and from public project repositories keeps the licences of its sources.
+
+## Information ladder, failure anatomy, and CVE-text cues (RQ1, "where versus what")
+
+Three arms add to A2 one kind of information a fix needs, never the fix's code: **L** the lines of the
+function the official fix changes (an oracle localizer), **M** the fix commit's message with code lines,
+trailers and any fix-equal line removed (`fetch_commit_messages.py` -> `data/commit_messages.json`; 204 of
+206 CVEs have a message), **LM** both. The pre-registered predictions are in the paper's claims ledger.
+
+```bash
+python3 fetch_commit_messages.py   # needs `gh` and network; the shipped data/commit_messages.json is what the paper used
+python3 e6_info_ladder.py          # A2, L, M, LM on 150 Big-Vul + 56 post-cutoff CVEs, 3 repeats (cache replay, 0 API calls)
+python3 e7_failure_anatomy.py      # structure of every right-place-wrong-fix patch + two-rater codebook (cache replay)
+python3 e8_cve_text_cues.py        # what the CVE description carries (no model calls)
+python3 paper_figures_ladder.py    # Fig. 2 with the information arms right of the separator
+```
+
+`results/e7_human_sheet.md` and `results/e7_human_labels.csv` are the blind 30-patch sheet for the human check.

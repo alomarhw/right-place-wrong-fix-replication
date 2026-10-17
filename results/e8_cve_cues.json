@@ -1,0 +1,2295 @@
+{
+ "cue_definitions": "e8_cve_text_cues.py -- what does the CVE description carry: the place, or the remedy?\n\nFor every RQ1 CVE (150 Big-Vul, 56 post-cutoff) the description is scored for two cues, computed from text\nand code only (no model calls):\n  location cue  the description names an identifier that occurs on a line the official fix changes\n                (function, variable, field, macro or API name; tokens of >= 4 characters that are not\n                English words common in advisories), or the vulnerable function's own name;\n  remedy cue    the description states what the code fails to do or what the fix must do (a phrase such as\n                \"missing/lack of ... check\", \"does not validate\", \"fails to\", \"improper(ly)\", \"insufficient\",\n                \"unchecked\", \"should/must\", \"off-by-one\"), as opposed to describing only the consequence\n                (\"allows remote attackers to cause a denial of service via ...\").",
+ "bigvul": {
+  "prevalence": {
+   "n": 150,
+   "location": 76,
+   "remedy": 46,
+   "both": 27,
+   "neither": 55,
+   "median_words": 35
+  },
+  "association": {
+   "A2": {
+    "touch_by_location_cue": {
+     "with_cue": {
+      "n": 76,
+      "rate": 52.2
+     },
+     "without_cue": {
+      "n": 74,
+      "rate": 41.9
+     },
+     "p_mannwhitney": 0.18653677833252147
+    },
+    "vpr_by_location_cue": {
+     "with_cue": {
+      "n": 76,
+      "rate": 6.1
+     },
+     "without_cue": {
+      "n": 74,
+      "rate": 4.5
+     },
+     "p_mannwhitney": 0.5513917985658807
+    },
+    "touch_by_remedy_cue": {
+     "with_cue": {
+      "n": 46,
+      "rate": 58.7
+     },
+     "without_cue": {
+      "n": 104,
+      "rate": 42.0
+     },
+     "p_mannwhitney": 0.0459019571092157
+    },
+    "vpr_by_remedy_cue": {
+     "with_cue": {
+      "n": 46,
+      "rate": 4.3
+     },
+     "without_cue": {
+      "n": 104,
+      "rate": 5.8
+     },
+     "p_mannwhitney": 0.4707331394605869
+    }
+   },
+   "A4": {
+    "touch_by_location_cue": {
+     "with_cue": {
+      "n": 76,
+      "rate": 58.8
+     },
+     "without_cue": {
+      "n": 74,
+      "rate": 42.3
+     },
+     "p_mannwhitney": 0.01982420026075696
+    },
+    "vpr_by_location_cue": {
+     "with_cue": {
+      "n": 76,
+      "rate": 5.3
+     },
+     "without_cue": {
+      "n": 74,
+      "rate": 5.0
+     },
+     "p_mannwhitney": 0.8029139500937276
+    },
+    "touch_by_remedy_cue": {
+     "with_cue": {
+      "n": 46,
+      "rate": 55.1
+     },
+     "without_cue": {
+      "n": 104,
+      "rate": 48.7
+     },
+     "p_mannwhitney": 0.3693583484987838
+    },
+    "vpr_by_remedy_cue": {
+     "with_cue": {
+      "n": 46,
+      "rate": 2.9
+     },
+     "without_cue": {
+      "n": 104,
+      "rate": 6.1
+     },
+     "p_mannwhitney": 0.3528523980383317
+    }
+   }
+  },
+  "per_cve": [
+   {
+    "cve_id": "CVE-2016-1583",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 40
+   },
+   {
+    "cve_id": "CVE-2018-20845",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 26
+   },
+   {
+    "cve_id": "CVE-2017-5039",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 35
+   },
+   {
+    "cve_id": "CVE-2018-6080",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "Lack of",
+    "words": 31
+   },
+   {
+    "cve_id": "CVE-2016-5147",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "mishandl",
+    "words": 42
+   },
+   {
+    "cve_id": "CVE-2016-10270",
+    "location": true,
+    "location_hits": [
+     "have"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 33
+   },
+   {
+    "cve_id": "CVE-2018-18338",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 27
+   },
+   {
+    "cve_id": "CVE-2014-4502",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 48
+   },
+   {
+    "cve_id": "CVE-2014-4611",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "improperly",
+    "words": 72
+   },
+   {
+    "cve_id": "CVE-2014-4014",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not properly consider",
+    "words": 49
+   },
+   {
+    "cve_id": "CVE-2016-1683",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "mishandl",
+    "words": 39
+   },
+   {
+    "cve_id": "CVE-2016-7798",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 36
+   },
+   {
+    "cve_id": "CVE-2010-1152",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 38
+   },
+   {
+    "cve_id": "CVE-2019-11884",
+    "location": true,
+    "location_hits": [
+     "name"
+    ],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 39
+   },
+   {
+    "cve_id": "CVE-2017-10971",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 38
+   },
+   {
+    "cve_id": "CVE-2013-5634",
+    "location": true,
+    "location_hits": [
+     "vcpu"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 48
+   },
+   {
+    "cve_id": "CVE-2018-18349",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 42
+   },
+   {
+    "cve_id": "CVE-2012-3525",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not verif",
+    "words": 37
+   },
+   {
+    "cve_id": "CVE-2016-7166",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not limit",
+    "words": 31
+   },
+   {
+    "cve_id": "CVE-2013-4149",
+    "location": true,
+    "location_hits": [
+     "table"
+    ],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 27
+   },
+   {
+    "cve_id": "CVE-2017-8934",
+    "location": true,
+    "location_hits": [
+     "socket"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 21
+   },
+   {
+    "cve_id": "CVE-2018-18586",
+    "location": true,
+    "location_hits": [
+     "directory",
+     "leading"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 48
+   },
+   {
+    "cve_id": "CVE-2016-4072",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "mishandl",
+    "words": 38
+   },
+   {
+    "cve_id": "CVE-2018-12460",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 36
+   },
+   {
+    "cve_id": "CVE-2018-16073",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "Insufficient",
+    "words": 25
+   },
+   {
+    "cve_id": "CVE-2018-6651",
+    "location": true,
+    "location_hits": [
+     "match",
+     "origin",
+     "substring"
+    ],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "insufficient",
+    "words": 47
+   },
+   {
+    "cve_id": "CVE-2011-1833",
+    "location": true,
+    "location_hits": [
+     "mount"
+    ],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 34
+   },
+   {
+    "cve_id": "CVE-2015-9004",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "mishandl",
+    "words": 28
+   },
+   {
+    "cve_id": "CVE-2018-16066",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 26
+   },
+   {
+    "cve_id": "CVE-2016-9777",
+    "location": true,
+    "location_hits": [
+     "ioapic"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not properly restrict",
+    "words": 52
+   },
+   {
+    "cve_id": "CVE-2016-10266",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 24
+   },
+   {
+    "cve_id": "CVE-2016-2315",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 35
+   },
+   {
+    "cve_id": "CVE-2014-9322",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not properly handle",
+    "words": 45
+   },
+   {
+    "cve_id": "CVE-2019-15165",
+    "location": true,
+    "location_hits": [
+     "pcapng"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not properly validat",
+    "words": 16
+   },
+   {
+    "cve_id": "CVE-2018-7485",
+    "location": true,
+    "location_hits": [
+     "strncpy"
+    ],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "wrong order",
+    "words": 30
+   },
+   {
+    "cve_id": "CVE-2017-5080",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 35
+   },
+   {
+    "cve_id": "CVE-2017-8924",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "uninitialized",
+    "words": 46
+   },
+   {
+    "cve_id": "CVE-2016-8670",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 51
+   },
+   {
+    "cve_id": "CVE-2017-7487",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "mishandl",
+    "words": 41
+   },
+   {
+    "cve_id": "CVE-2016-2105",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 35
+   },
+   {
+    "cve_id": "CVE-2016-6833",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 37
+   },
+   {
+    "cve_id": "CVE-2017-13203",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 21
+   },
+   {
+    "cve_id": "CVE-2016-9755",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "mishandl",
+    "words": 51
+   },
+   {
+    "cve_id": "CVE-2012-2737",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not properly check",
+    "words": 37
+   },
+   {
+    "cve_id": "CVE-2017-15906",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "does not properly prevent",
+    "words": 25
+   },
+   {
+    "cve_id": "CVE-2016-8693",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 37
+   },
+   {
+    "cve_id": "CVE-2015-7510",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 16
+   },
+   {
+    "cve_id": "CVE-2019-15163",
+    "location": true,
+    "location_hits": [
+     "crypt"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 24
+   },
+   {
+    "cve_id": "CVE-2017-13010",
+    "location": true,
+    "location_hits": [
+     "l_strnstart"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 13
+   },
+   {
+    "cve_id": "CVE-2016-1631",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "mishandl",
+    "words": 33
+   },
+   {
+    "cve_id": "CVE-2018-12232",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 64
+   },
+   {
+    "cve_id": "CVE-2017-12192",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "does not properly consider",
+    "words": 48
+   },
+   {
+    "cve_id": "CVE-2016-5220",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "incorrectly handl",
+    "words": 35
+   },
+   {
+    "cve_id": "CVE-2014-3145",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 57
+   },
+   {
+    "cve_id": "CVE-2017-6892",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 27
+   },
+   {
+    "cve_id": "CVE-2011-2200",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "does not properly handle",
+    "words": 51
+   },
+   {
+    "cve_id": "CVE-2012-2870",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 57
+   },
+   {
+    "cve_id": "CVE-2013-1416",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 48
+   },
+   {
+    "cve_id": "CVE-2016-3821",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 51
+   },
+   {
+    "cve_id": "CVE-2015-8896",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 25
+   },
+   {
+    "cve_id": "CVE-2011-1180",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 56
+   },
+   {
+    "cve_id": "CVE-2015-8953",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 38
+   },
+   {
+    "cve_id": "CVE-2011-4718",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 23
+   },
+   {
+    "cve_id": "CVE-2018-7648",
+    "location": true,
+    "location_hits": [
+     "prefix"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "not checked",
+    "words": 35
+   },
+   {
+    "cve_id": "CVE-2014-8323",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 26
+   },
+   {
+    "cve_id": "CVE-2019-5759",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 32
+   },
+   {
+    "cve_id": "CVE-2016-4579",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 29
+   },
+   {
+    "cve_id": "CVE-2016-7126",
+    "location": true,
+    "location_hits": [
+     "colors"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not properly validat",
+    "words": 51
+   },
+   {
+    "cve_id": "CVE-2018-6114",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 29
+   },
+   {
+    "cve_id": "CVE-2016-5766",
+    "location": true,
+    "location_hits": [
+     "chunk"
+    ],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 58
+   },
+   {
+    "cve_id": "CVE-2013-4270",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 32
+   },
+   {
+    "cve_id": "CVE-2017-13720",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 55
+   },
+   {
+    "cve_id": "CVE-2012-6538",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 38
+   },
+   {
+    "cve_id": "CVE-2011-3106",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not properly handle",
+    "words": 34
+   },
+   {
+    "cve_id": "CVE-2013-7019",
+    "location": true,
+    "location_hits": [
+     "have"
+    ],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "does not properly validat",
+    "words": 39
+   },
+   {
+    "cve_id": "CVE-2019-13307",
+    "location": true,
+    "location_hits": [
+     "rows"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "mishandl",
+    "words": 16
+   },
+   {
+    "cve_id": "CVE-2017-5552",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 34
+   },
+   {
+    "cve_id": "CVE-2015-5232",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 10
+   },
+   {
+    "cve_id": "CVE-2018-14463",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 22
+   },
+   {
+    "cve_id": "CVE-2017-0603",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 53
+   },
+   {
+    "cve_id": "CVE-2017-16526",
+    "location": true,
+    "location_hits": [
+     "uwbd"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 33
+   },
+   {
+    "cve_id": "CVE-2018-10887",
+    "location": true,
+    "location_hits": [
+     "base",
+     "delta"
+    ],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 63
+   },
+   {
+    "cve_id": "CVE-2017-13198",
+    "location": true,
+    "location_hits": [
+     "color"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 28
+   },
+   {
+    "cve_id": "CVE-2017-5577",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 50
+   },
+   {
+    "cve_id": "CVE-2016-8688",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 47
+   },
+   {
+    "cve_id": "CVE-2017-13189",
+    "location": true,
+    "location_hits": [
+     "dec_hdl"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 26
+   },
+   {
+    "cve_id": "CVE-2017-7742",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 38
+   },
+   {
+    "cve_id": "CVE-2013-3076",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "does not initializ",
+    "words": 48
+   },
+   {
+    "cve_id": "CVE-2016-7423",
+    "location": true,
+    "location_hits": [
+     "mptsasrequest"
+    ],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 39
+   },
+   {
+    "cve_id": "CVE-2017-15924",
+    "location": true,
+    "location_hits": [
+     "build_config",
+     "manager"
+    ],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "improper",
+    "words": 33
+   },
+   {
+    "cve_id": "CVE-2019-12111",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 21
+   },
+   {
+    "cve_id": "CVE-2016-9537",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 19
+   },
+   {
+    "cve_id": "CVE-2013-0925",
+    "location": true,
+    "location_hits": [
+     "apipermission",
+     "extension",
+     "ktab"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not ensure",
+    "words": 31
+   },
+   {
+    "cve_id": "CVE-2016-4440",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "mishandl",
+    "words": 49
+   },
+   {
+    "cve_id": "CVE-2015-3331",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 61
+   },
+   {
+    "cve_id": "CVE-2016-6561",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 8
+   },
+   {
+    "cve_id": "CVE-2016-6722",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 60
+   },
+   {
+    "cve_id": "CVE-2014-3615",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 21
+   },
+   {
+    "cve_id": "CVE-2019-15903",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 35
+   },
+   {
+    "cve_id": "CVE-2011-3110",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 30
+   },
+   {
+    "cve_id": "CVE-2017-5850",
+    "location": true,
+    "location_hits": [
+     "range"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 28
+   },
+   {
+    "cve_id": "CVE-2012-2375",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 59
+   },
+   {
+    "cve_id": "CVE-2016-2482",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "mishandl",
+    "words": 47
+   },
+   {
+    "cve_id": "CVE-2016-10145",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "Off-by-one",
+    "words": 20
+   },
+   {
+    "cve_id": "CVE-2016-9888",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 33
+   },
+   {
+    "cve_id": "CVE-2011-2783",
+    "location": true,
+    "location_hits": [
+     "extension"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not ensure",
+    "words": 35
+   },
+   {
+    "cve_id": "CVE-2018-14466",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 15
+   },
+   {
+    "cve_id": "CVE-2013-6624",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 31
+   },
+   {
+    "cve_id": "CVE-2016-5357",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "mishandl",
+    "words": 35
+   },
+   {
+    "cve_id": "CVE-2015-1344",
+    "location": true,
+    "location_hits": [
+     "do_write_pids"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not properly check",
+    "words": 29
+   },
+   {
+    "cve_id": "CVE-2019-1010251",
+    "location": true,
+    "location_hits": [
+     "detection",
+     "ipv6",
+     "sending"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 67
+   },
+   {
+    "cve_id": "CVE-2015-3212",
+    "location": true,
+    "location_hits": [
+     "sctp",
+     "socket"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 38
+   },
+   {
+    "cve_id": "CVE-2011-3906",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 22
+   },
+   {
+    "cve_id": "CVE-2015-5296",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 41
+   },
+   {
+    "cve_id": "CVE-2011-3353",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 36
+   },
+   {
+    "cve_id": "CVE-2011-4347",
+    "location": true,
+    "location_hits": [
+     "assigned"
+    ],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "does not verif",
+    "words": 49
+   },
+   {
+    "cve_id": "CVE-2018-11380",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 26
+   },
+   {
+    "cve_id": "CVE-2018-14879",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 14
+   },
+   {
+    "cve_id": "CVE-2013-2927",
+    "location": true,
+    "location_hits": [
+     "htmlformelement"
+    ],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 40
+   },
+   {
+    "cve_id": "CVE-2012-4565",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 35
+   },
+   {
+    "cve_id": "CVE-2019-14975",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not check",
+    "words": 22
+   },
+   {
+    "cve_id": "CVE-2015-1214",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 54
+   },
+   {
+    "cve_id": "CVE-2015-9016",
+    "location": true,
+    "location_hits": [
+     "blk_mq_tag_to_rq"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 45
+   },
+   {
+    "cve_id": "CVE-2016-8887",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 21
+   },
+   {
+    "cve_id": "CVE-2012-5156",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 27
+   },
+   {
+    "cve_id": "CVE-2017-15385",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 34
+   },
+   {
+    "cve_id": "CVE-2017-13007",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 14
+   },
+   {
+    "cve_id": "CVE-2010-5331",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "off by one",
+    "words": 52
+   },
+   {
+    "cve_id": "CVE-2016-3921",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 35
+   },
+   {
+    "cve_id": "CVE-2017-5940",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 56
+   },
+   {
+    "cve_id": "CVE-2016-10009",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 28
+   },
+   {
+    "cve_id": "CVE-2017-17081",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "does not properly validat",
+    "words": 38
+   },
+   {
+    "cve_id": "CVE-2015-7804",
+    "location": true,
+    "location_hits": [
+     "filename",
+     "phar"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "Off-by-one",
+    "words": 41
+   },
+   {
+    "cve_id": "CVE-2019-15937",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 23
+   },
+   {
+    "cve_id": "CVE-2018-16228",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 13
+   },
+   {
+    "cve_id": "CVE-2016-10251",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "uninitialized",
+    "words": 30
+   },
+   {
+    "cve_id": "CVE-2016-0830",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 45
+   },
+   {
+    "cve_id": "CVE-2013-0911",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 21
+   },
+   {
+    "cve_id": "CVE-2011-3045",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 49
+   },
+   {
+    "cve_id": "CVE-2011-3088",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 24
+   },
+   {
+    "cve_id": "CVE-2017-2633",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 46
+   },
+   {
+    "cve_id": "CVE-2013-0839",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 33
+   },
+   {
+    "cve_id": "CVE-2018-8784",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 26
+   },
+   {
+    "cve_id": "CVE-2013-1860",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 38
+   },
+   {
+    "cve_id": "CVE-2013-7294",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 28
+   },
+   {
+    "cve_id": "CVE-2016-10061",
+    "location": true,
+    "location_hits": [
+     "fputc"
+    ],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "does not check",
+    "words": 35
+   },
+   {
+    "cve_id": "CVE-2016-10708",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 34
+   },
+   {
+    "cve_id": "CVE-2016-3920",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 41
+   },
+   {
+    "cve_id": "CVE-2011-2895",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "does not properly handle",
+    "words": 90
+   },
+   {
+    "cve_id": "CVE-2013-2929",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 38
+   }
+  ]
+ },
+ "postcutoff": {
+  "prevalence": {
+   "n": 56,
+   "location": 33,
+   "remedy": 30,
+   "both": 19,
+   "neither": 12,
+   "median_words": 193
+  },
+  "association": {
+   "A2": {
+    "touch_by_location_cue": {
+     "with_cue": {
+      "n": 33,
+      "rate": 59.6
+     },
+     "without_cue": {
+      "n": 23,
+      "rate": 59.4
+     },
+     "p_mannwhitney": 0.9493023182465882
+    },
+    "vpr_by_location_cue": {
+     "with_cue": {
+      "n": 33,
+      "rate": 12.1
+     },
+     "without_cue": {
+      "n": 23,
+      "rate": 14.5
+     },
+     "p_mannwhitney": 0.8347818883680581
+    },
+    "touch_by_remedy_cue": {
+     "with_cue": {
+      "n": 30,
+      "rate": 54.4
+     },
+     "without_cue": {
+      "n": 26,
+      "rate": 65.4
+     },
+     "p_mannwhitney": 0.5130523832506486
+    },
+    "vpr_by_remedy_cue": {
+     "with_cue": {
+      "n": 30,
+      "rate": 13.3
+     },
+     "without_cue": {
+      "n": 26,
+      "rate": 12.8
+     },
+     "p_mannwhitney": 0.7092123205545053
+    }
+   },
+   "A4": {
+    "touch_by_location_cue": {
+     "with_cue": {
+      "n": 33,
+      "rate": 59.6
+     },
+     "without_cue": {
+      "n": 23,
+      "rate": 69.6
+     },
+     "p_mannwhitney": 0.48876726233148615
+    },
+    "vpr_by_location_cue": {
+     "with_cue": {
+      "n": 33,
+      "rate": 7.1
+     },
+     "without_cue": {
+      "n": 23,
+      "rate": 13.0
+     },
+     "p_mannwhitney": 0.6192649018350307
+    },
+    "touch_by_remedy_cue": {
+     "with_cue": {
+      "n": 30,
+      "rate": 66.7
+     },
+     "without_cue": {
+      "n": 26,
+      "rate": 60.3
+     },
+     "p_mannwhitney": 0.5643015404866988
+    },
+    "vpr_by_remedy_cue": {
+     "with_cue": {
+      "n": 30,
+      "rate": 10.0
+     },
+     "without_cue": {
+      "n": 26,
+      "rate": 9.0
+     },
+     "p_mannwhitney": 0.9024717915887283
+    }
+   }
+  },
+  "per_cve": [
+   {
+    "cve_id": "CVE-2025-11187",
+    "location": true,
+    "location_hits": [
+     "keylength",
+     "missing",
+     "octet",
+     "salt",
+     "type"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "missing",
+    "words": 245
+   },
+   {
+    "cve_id": "CVE-2025-14179",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "improperly",
+    "words": 82
+   },
+   {
+    "cve_id": "CVE-2025-15467",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "without verif",
+    "words": 204
+   },
+   {
+    "cve_id": "CVE-2025-15468",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 184
+   },
+   {
+    "cve_id": "CVE-2025-15469",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 232
+   },
+   {
+    "cve_id": "CVE-2025-66199",
+    "location": true,
+    "location_hits": [
+     "decompression",
+     "max_cert_list"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "without check",
+    "words": 242
+   },
+   {
+    "cve_id": "CVE-2025-68160",
+    "location": true,
+    "location_hits": [
+     "free",
+     "next"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 183
+   },
+   {
+    "cve_id": "CVE-2025-69418",
+    "location": true,
+    "location_hits": [
+     "checksum"
+    ],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 230
+   },
+   {
+    "cve_id": "CVE-2025-69419",
+    "location": true,
+    "location_hits": [
+     "utf8_putc"
+    ],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "without valid",
+    "words": 278
+   },
+   {
+    "cve_id": "CVE-2025-69420",
+    "location": true,
+    "location_hits": [
+     "type",
+     "v_asn1_sequence"
+    ],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "without valid",
+    "words": 200
+   },
+   {
+    "cve_id": "CVE-2025-69421",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "does not check",
+    "words": 164
+   },
+   {
+    "cve_id": "CVE-2025-9230",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 144
+   },
+   {
+    "cve_id": "CVE-2025-9231",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 166
+   },
+   {
+    "cve_id": "CVE-2025-9232",
+    "location": true,
+    "location_hits": [
+     "host"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 202
+   },
+   {
+    "cve_id": "CVE-2026-14457",
+    "location": true,
+    "location_hits": [
+     "certificate",
+     "configured",
+     "enabled",
+     "even",
+     "private",
+     "supported"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "omitted ",
+    "words": 215
+   },
+   {
+    "cve_id": "CVE-2026-18798",
+    "location": true,
+    "location_hits": [
+     "free"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 234
+   },
+   {
+    "cve_id": "CVE-2026-2673",
+    "location": true,
+    "location_hits": [
+     "groups",
+     "tuple",
+     "tuples"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "fail to",
+    "words": 462
+   },
+   {
+    "cve_id": "CVE-2026-28388",
+    "location": true,
+    "location_hits": [
+     "delta"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "missing",
+    "words": 206
+   },
+   {
+    "cve_id": "CVE-2026-28389",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "without check",
+    "words": 118
+   },
+   {
+    "cve_id": "CVE-2026-30997",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 24
+   },
+   {
+    "cve_id": "CVE-2026-30998",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "improper",
+    "words": 29
+   },
+   {
+    "cve_id": "CVE-2026-30999",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 24
+   },
+   {
+    "cve_id": "CVE-2026-31789",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 200
+   },
+   {
+    "cve_id": "CVE-2026-31790",
+    "location": true,
+    "location_hits": [
+     "secret"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "uninitialized",
+    "words": 187
+   },
+   {
+    "cve_id": "CVE-2026-34181",
+    "location": true,
+    "location_hits": [
+     "specifies"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "fails to",
+    "words": 145
+   },
+   {
+    "cve_id": "CVE-2026-34183",
+    "location": true,
+    "location_hits": [
+     "allocation",
+     "frame",
+     "path_challenge",
+     "path_response",
+     "quic"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "unbounded",
+    "words": 137
+   },
+   {
+    "cve_id": "CVE-2026-35188",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 146
+   },
+   {
+    "cve_id": "CVE-2026-35189",
+    "location": true,
+    "location_hits": [
+     "namerelativetocrlissuer"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "Without Limit",
+    "words": 172
+   },
+   {
+    "cve_id": "CVE-2026-35191",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "unvalidated",
+    "words": 266
+   },
+   {
+    "cve_id": "CVE-2026-42765",
+    "location": true,
+    "location_hits": [
+     "anchor",
+     "certificate",
+     "chain",
+     "flags",
+     "issuer",
+     "ocsp",
+     "partial",
+     "x509_v_flag_partial_chain"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 183
+   },
+   {
+    "cve_id": "CVE-2026-42766",
+    "location": true,
+    "location_hits": [
+     "keyderivationalgorithm"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 135
+   },
+   {
+    "cve_id": "CVE-2026-42767",
+    "location": true,
+    "location_hits": [
+     "symmalg"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 132
+   },
+   {
+    "cve_id": "CVE-2026-42768",
+    "location": true,
+    "location_hits": [
+     "case",
+     "ciphertext",
+     "decryption",
+     "implicit",
+     "ktri",
+     "rejection"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 432
+   },
+   {
+    "cve_id": "CVE-2026-42769",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 288
+   },
+   {
+    "cve_id": "CVE-2026-42770",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "not properly checked",
+    "words": 252
+   },
+   {
+    "cve_id": "CVE-2026-42771",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "wrong length",
+    "words": 151
+   },
+   {
+    "cve_id": "CVE-2026-42772",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 167
+   },
+   {
+    "cve_id": "CVE-2026-45445",
+    "location": true,
+    "location_hits": [
+     "caller",
+     "context",
+     "nonce",
+     "regardless",
+     "reuse",
+     "runs",
+     "streaming"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "should have ",
+    "words": 304
+   },
+   {
+    "cve_id": "CVE-2026-45446",
+    "location": true,
+    "location_hits": [
+     "nonce"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "mishandl",
+    "words": 290
+   },
+   {
+    "cve_id": "CVE-2026-50219",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "lacks",
+    "words": 31
+   },
+   {
+    "cve_id": "CVE-2026-54873",
+    "location": true,
+    "location_hits": [
+     "allocation",
+     "malicious",
+     "more",
+     "necessary",
+     "once",
+     "peer",
+     "stream",
+     "time"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "Without Limit",
+    "words": 281
+   },
+   {
+    "cve_id": "CVE-2026-54874",
+    "location": true,
+    "location_hits": [
+     "already",
+     "just",
+     "rather",
+     "record"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "should ",
+    "words": 430
+   },
+   {
+    "cve_id": "CVE-2026-54875",
+    "location": true,
+    "location_hits": [
+     "point"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "should ",
+    "words": 250
+   },
+   {
+    "cve_id": "CVE-2026-6104",
+    "location": true,
+    "location_hits": [
+     "encoding",
+     "name",
+     "strncasecmp"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 79
+   },
+   {
+    "cve_id": "CVE-2026-63076",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "must ",
+    "words": 271
+   },
+   {
+    "cve_id": "CVE-2026-6722",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 112
+   },
+   {
+    "cve_id": "CVE-2026-7258",
+    "location": true,
+    "location_hits": [
+     "char"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 61
+   },
+   {
+    "cve_id": "CVE-2026-7259",
+    "location": true,
+    "location_hits": [
+     "encoding",
+     "mbfl",
+     "oniguruma"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 54
+   },
+   {
+    "cve_id": "CVE-2026-7262",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "missing",
+    "words": 70
+   },
+   {
+    "cve_id": "CVE-2026-72897",
+    "location": true,
+    "location_hits": [
+     "algorithm",
+     "algorithms",
+     "built",
+     "connection",
+     "context",
+     "created",
+     "different",
+     "effect"
+    ],
+    "names_function": true,
+    "remedy": true,
+    "remedy_phrase": "must ",
+    "words": 446
+   },
+   {
+    "cve_id": "CVE-2026-7383",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 219
+   },
+   {
+    "cve_id": "CVE-2026-7568",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 78
+   },
+   {
+    "cve_id": "CVE-2026-75804",
+    "location": false,
+    "location_hits": [],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not enforce",
+    "words": 308
+   },
+   {
+    "cve_id": "CVE-2026-84782",
+    "location": true,
+    "location_hits": [
+     "already",
+     "call",
+     "flight",
+     "instead",
+     "next",
+     "queue",
+     "resume",
+     "retransmit"
+    ],
+    "names_function": false,
+    "remedy": true,
+    "remedy_phrase": "does not correctly handle",
+    "words": 340
+   },
+   {
+    "cve_id": "CVE-2026-9076",
+    "location": true,
+    "location_hits": [],
+    "names_function": true,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 270
+   },
+   {
+    "cve_id": "CVE-2026-9080",
+    "location": true,
+    "location_hits": [
+     "callback",
+     "curl_easy_pause",
+     "free"
+    ],
+    "names_function": false,
+    "remedy": false,
+    "remedy_phrase": "",
+    "words": 31
+   }
+  ]
+ },
+ "pre_vs_post": {
+  "location": {
+   "pre": 50.7,
+   "post": 58.9,
+   "fisher_p": 0.3471274084686484
+  },
+  "remedy": {
+   "pre": 30.7,
+   "post": 53.6,
+   "fisher_p": 0.0033714884377120157
+  }
+ },
+ "llm_usage": {
+  "model": "claude-haiku-4-5",
+  "api_calls": 0,
+  "cache_hits": 3097,
+  "input_tokens": 0,
+  "output_tokens": 0
+ }
+}

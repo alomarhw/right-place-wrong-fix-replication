@@ -80,6 +80,13 @@ def fig3_ladder() -> None:
     touch = [float(r["Touch rate (3 reps)"]) for r in t6]  # same values as Table IV and the text
     n = sum(out[ARMS[0]].values())  # CVEs x repeats = 450
     x = list(range(5))
+    # Information arms (e6_info_ladder.py): A2 plus the fix's location (L), the fix commit's message (M), or both
+    # (LM); drawn to the right of a separator, in the same encodings. Absent until that experiment has run.
+    e6p = RES / "e6_info_ladder.json"
+    e6 = json.loads(e6p.read_text()) if e6p.exists() else None
+    INFO, xi = ["L", "M", "LM"], [5.4, 6.4, 7.4]
+    def info(set_name, key, scale=0.01):
+        return [e6[set_name]["summary"][k][key] * scale for k in INFO] if e6 else []
 
     ci = json.loads((RES / "rq1_vpr_ci.json").read_text())["arms"]  # CVE-level bootstrap (rq1_vpr_ci.py)
     vpr = [(ci[a]["vpr"], *ci[a]["ci95"]) for a in ARMS]
@@ -102,9 +109,19 @@ def fig3_ladder() -> None:
     for xx, yy in zip(sx, son_v):
         ax.annotate(f"{yy * 100:.0f}", (xx, yy), textcoords="offset points", xytext=(-7, 1), ha="right",
                     va="center", fontsize=6.3, color=INK)
+    ymax_a = 0.17
+    if e6:
+        lo = [e6["bigvul"]["summary"][k]["vpr_ci95"][0] / 100 for k in INFO]
+        hi = [e6["bigvul"]["summary"][k]["vpr_ci95"][1] / 100 for k in INFO]
+        ax.fill_between(xi, lo, hi, color=BLUE, alpha=0.12, lw=0)
+        ax.plot(xi, info("bigvul", "vpr"), "-o", color=BLUE)
+        ax.plot(xi, info("postcutoff", "vpr"), "--s", color=ORANGE)
+        label_points(ax, xi, info("bigvul", "vpr"), BLUE, dy=-5)
+        label_points(ax, xi, info("postcutoff", "vpr"), ORANGE)
+        ymax_a = max(ymax_a, 1.18 * max(hi + info("postcutoff", "vpr")))
     ax.set_title("(a) Validated patches (%)")
-    ax.set_ylim(0, 0.17)
-    ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(0.05))
+    ax.set_ylim(0, ymax_a)
+    ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(0.05 if ymax_a < 0.3 else 0.1))
     # (b) touch rate, with the chance line
     ax = axs[1]
     ax.plot(x, chance, "-", color=GREY, lw=1.0, label="Chance (random edit)")
@@ -114,8 +131,15 @@ def fig3_ladder() -> None:
     label_points(ax, x, touch, BLUE, dy=-5)
     label_points(ax, x, post_t, ORANGE)
     label_points(ax, x, chance, GREY, dy=-4)
+    ymax_b = 0.75
+    if e6:
+        ax.plot(xi, info("bigvul", "touch"), "-o", color=BLUE)
+        ax.plot(xi, info("postcutoff", "touch"), "--s", color=ORANGE)
+        label_points(ax, xi, info("bigvul", "touch"), BLUE, dy=-5)
+        label_points(ax, xi, info("postcutoff", "touch"), ORANGE)
+        ymax_b = min(1.08, max(ymax_b, 0.1 + max(info("bigvul", "touch") + info("postcutoff", "touch"))))
     ax.set_title("(b) Touch a fix line (%)")
-    ax.set_ylim(0, 0.75)
+    ax.set_ylim(0, ymax_b)
     # (c) line-level evidence, pre-cutoff Haiku
     ax = axs[2]
     rec, f1 = [ev[a]["recall"] for a in ARMS], [ev[a]["f1"] for a in ARMS]
@@ -123,8 +147,15 @@ def fig3_ladder() -> None:
     ax.plot(x, rec, "--v", color=PURPLE, label="Recall")
     label_points(ax, x, f1, INK2)
     label_points(ax, x, rec, PURPLE, dy=-5)
+    ymax_c = 0.33
+    if e6:
+        ax.plot(xi, info("bigvul", "line_f1", 1.0), "-D", color=INK2, lw=1.2)
+        ax.plot(xi, info("bigvul", "line_recall", 1.0), "--v", color=PURPLE)
+        label_points(ax, xi, info("bigvul", "line_f1", 1.0), INK2)
+        label_points(ax, xi, info("bigvul", "line_recall", 1.0), PURPLE, dy=-5)
+        ymax_c = min(1.05, max(ymax_c, 0.08 + max(info("bigvul", "line_f1", 1.0) + info("bigvul", "line_recall", 1.0))))
     ax.set_title("(c) Fix lines found (%)")
-    ax.set_ylim(0.08, 0.33)
+    ax.set_ylim(0.08, ymax_c)
     ax.legend(loc="upper left", frameon=False, handlelength=1.4, borderaxespad=0.1)
     # (d) outcome shares, pre-cutoff Haiku
     ax = axs[3]
@@ -132,13 +163,25 @@ def fig3_ladder() -> None:
     ax.plot(x, rpwf, "-.X", color=BROWN, label="Right place,\nwrong fix")
     label_points(ax, x, wrong, GREY)
     label_points(ax, x, rpwf, BROWN, dy=-5)
+    if e6:
+        w_i = [e6["bigvul"]["summary"][k]["outcomes"]["wrong_place"] / 100 for k in INFO]
+        r_i = [e6["bigvul"]["summary"][k]["outcomes"]["right_place_wrong_fix"] / 100 for k in INFO]
+        ax.plot(xi, w_i, "-p", color=GREY)
+        ax.plot(xi, r_i, "-.X", color=BROWN)
+        label_points(ax, xi, w_i, GREY)
+        label_points(ax, xi, r_i, BROWN, dy=-5)
     ax.set_title("(d) Rejected patches (%)")
     ax.set_ylim(0.0, 0.72)
     ax.legend(loc="lower right", frameon=False, handlelength=1.4, borderaxespad=0.1)
 
     for ax in axs:
-        ax.set_xticks(x, LABELS)
-        ax.set_xlim(-0.4, 4.4)
+        if e6:
+            ax.set_xticks(x + xi, LABELS + INFO)
+            ax.set_xlim(-0.4, 7.8)
+            ax.axvline(4.9, color=GRID, lw=0.8)
+        else:
+            ax.set_xticks(x, LABELS)
+            ax.set_xlim(-0.4, 4.4)
         ax.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v * 100:.0f}"))
     h, lab = axs[0].get_legend_handles_labels()
     h2, lab2 = axs[1].get_legend_handles_labels()
