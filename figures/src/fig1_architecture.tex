@@ -1,169 +1,126 @@
-% =====================================================================
-%  Figure 1 -- Architecture of the detect-ground-repair agent under study,
-%  with the evaluation harness kept separate and RQ badges marking what each
-%  research question probes.  ("Right Place, Wrong Fix")
-%  Compile:  pdflatex fig1_architecture.tex
-%  Edit:     PALETTE (colours), STYLES (box types), GRID (column x / row y).
-% =====================================================================
-\documentclass[tikz,border=4pt]{standalone}
+\documentclass[tikz,border=1pt]{standalone}
 \usepackage[T1]{fontenc}
-\usepackage{mathptmx}
-\usetikzlibrary{arrows.meta,shapes.geometric,positioning,backgrounds,calc,fit}
+\usepackage{newtxtext,newtxmath}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,backgrounds}
 
-% ----------------------------- PALETTE -------------------------------
-\definecolor{dataC}{HTML}{ECE8F4}  \definecolor{dataD}{HTML}{6B5B95} % data / inputs
-\definecolor{slcC} {HTML}{FCE7CF}  \definecolor{slcD} {HTML}{C4651A} % slicing / static analysis
-\definecolor{llmC} {HTML}{DCEAF8}  \definecolor{llmD} {HTML}{2E6DB4} % LLM components
-\definecolor{evC}  {HTML}{F9DADF}  \definecolor{evD}  {HTML}{B23A48} % evaluation / oracle
-\definecolor{laneC}{HTML}{F4F5F7}  \definecolor{laneD}{HTML}{CDD1D7} % frames
-\definecolor{inkC} {HTML}{262626}  \definecolor{subC} {HTML}{333333} % text
-\definecolor{rqC}  {HTML}{3A3F47}                                     % RQ badges
-
-% ----------------------------- GRID ---------------------------------
-\def\xIn{0}   \def\xGr{3.75}   \def\xAg{7.55}   \def\xOut{10.95}   \def\xEv{14.55}
-\def\boxw{3.05cm}   \def\boxh{1.0cm}
-
-\newcommand{\T}[1]{{\footnotesize\color{inkC}\textsc{#1}}}
+% Palette (light fill / dark border), colour-blind safe
+\definecolor{inF}{HTML}{EEECF3}\definecolor{inD}{HTML}{5B5675}
+\definecolor{llmF}{HTML}{E1EDF8}\definecolor{llmD}{HTML}{1F5F99}
+\definecolor{toolF}{HTML}{FCEAD6}\definecolor{toolD}{HTML}{B35C00}
+\definecolor{evF}{HTML}{FBE5E5}\definecolor{evD}{HTML}{A8262B}
+\definecolor{laneF}{HTML}{F7F7F7}\definecolor{laneD}{HTML}{6E6E6E}
+\definecolor{txt}{HTML}{1A1A1A}
 
 \tikzset{
-  >={Stealth[length=4.2pt,width=3.6pt]},
-  box/.style 2 args={rectangle, rounded corners=2pt, draw=#2, fill=#1,
-        line width=0.65pt, minimum width=\boxw, minimum height=\boxh,
-        align=center, inner sep=2pt, font=\footnotesize, text=subC},
-  data/.style  ={box={dataC}{dataD}},
-  slicer/.style={box={slcC}{slcD}},
-  llm/.style   ={box={llmC}{llmD}},
-  eval/.style  ={box={evC}{evD}, line width=1.2pt},
-  db/.style={cylinder, shape border rotate=90, aspect=0.17, draw=dataD,
-        fill=dataC, line width=0.65pt, minimum width=2.85cm, minimum height=1.25cm,
-        align=center, inner sep=1.5pt, font=\footnotesize, text=subC},
-  flow/.style={->, line width=0.75pt, draw=inkC!75, rounded corners=2pt},
-  ground/.style={->, line width=0.9pt, draw=llmD!80, rounded corners=2pt},
-  fb/.style  ={->, line width=0.75pt, draw=llmD, dashed},
-  truth/.style={->, line width=0.8pt, draw=evD, densely dotted},
-  elab/.style={font=\footnotesize\itshape, text=subC, inner sep=1.2pt},
-  rq/.style={rectangle, rounded corners=2.5pt, fill=rqC, text=white,
-        font=\scriptsize\bfseries\sffamily, inner sep=1.6pt, minimum height=0.36cm},
-  frame/.style={rounded corners=5pt, draw=laneD, fill=laneC, line width=0.6pt},
-  hframe/.style={rounded corners=5pt, draw=evD!70, fill=evC!35, line width=0.9pt, dashed},
+  >={Stealth[length=2.2mm,width=1.6mm]},
+  arr/.style={->,line width=0.7pt,draw=#1},
+  arr/.default={txt},
+  box/.style={draw=#1,line width=0.7pt,rounded corners=2.5pt,align=flush center,
+              inner sep=2.5pt,text=txt,font=\footnotesize},
+  frame/.style={draw=#1,line width=0.7pt,rounded corners=4pt},
+  stg/.style={circle,fill=#1,text=white,inner sep=0pt,minimum size=3.6mm,
+              font=\scriptsize\bfseries},
+  ttl/.style={font=\small\bfseries,text=txt},
+  sub/.style={font=\scriptsize,text=txt},
+  lbl/.style={font=\scriptsize,text=txt,inner sep=1pt},
 }
+\newcommand{\st}[2]{\tikz[baseline=(s.base)]\node[stg=#1,minimum size=3.0mm](s){#2};}
+\newcommand{\hd}[1]{\textbf{#1}}
 
 \begin{document}
-\begin{tikzpicture}
+\frenchspacing\hyphenpenalty=10000\exhyphenpenalty=10000
+\begin{tikzpicture}[x=1cm,y=1cm]
+% ---------------- region frames (top row: y 0 .. 5.4) ----------------
+\def\top{5.6}
+\draw[frame=inD,fill=inF!35] (0,0) rectangle (3.55,\top);
+\draw[frame=laneD,fill=laneF] (3.75,0) rectangle (13.85,\top);
+\draw[frame=evD,dashed,fill=evF!30] (14.05,0) rectangle (18.0,\top);
 
-% =====================================================================
-% INPUTS
-% =====================================================================
-\node[data] (target) at (\xIn,1.05)
-      {\T{Target Function}\\or clone under analysis};
-\node[db] (kb) at (\xIn,-1.55)
-      {\T{Vulnerability}\\\T{Knowledge Base}\\CVE records, known fixes};
+\node[ttl,anchor=north] at (1.775,\top-0.08) {Inputs};
+\node[ttl,anchor=north] at (8.8,\top-0.08) {Agent under study (Claude Haiku 4.5)};
+\node[ttl,anchor=north,text=evD] (evt) at (16.025,\top-0.08) {Evaluation harness};
+\node[sub,anchor=north,text width=3.7cm,align=flush center,text=evD,inner sep=0pt]
+  at (evt.south) {the only part that sees the\\official fix and labels};
 
-% =====================================================================
-% DETECTION + GROUNDING SOURCES
-% =====================================================================
-\node[llm] (det) at (\xGr,2.45)
-      {\T{LLM Detector}\\vulnerable or safe?};
-\node[slicer, minimum height=0.86cm] (slicer) at (\xGr,0.75)
-      {\T{Program Slicer}\\sink-based slice (A3, A4)};
-\node[data, minimum height=0.86cm] (cvetext) at (\xGr,-0.4)
-      {\T{CVE Text}\\description, CWE (A2--A4)};
-\node[slicer, minimum height=1.05cm] (retr) at (\xGr,-1.75)
-      {\T{Known Fix}\\source fix given (P2--P4);\\srcVul map (P3), slices (P4)};
-\node[elab, anchor=north, align=center] (gsrc) at (\xGr,-2.32)
-      {retrieval by srcVul vectors:\\[-1pt]evaluated separately (Fig.~5)};
+% ---------------- (a) inputs ----------------
+\node[box=inD,fill=inF,text width=3.0cm,minimum height=1.25cm] (tf) at (1.775,3.85)
+  {\hd{Target function}\\[1pt]{\scriptsize a vulnerable C function, or its clone on another release branch}};
 
-% =====================================================================
-% REPAIR AGENT
-% =====================================================================
-\node[llm, minimum width=3.2cm, minimum height=2.55cm] (agent) at (\xAg,-0.15)
-      {\T{LLM Repair Agent}\\[3pt]
-       \color{inkC}invents a fix, or\\\color{inkC}ports a known fix\\[3pt]
-       returns the complete\\patched function};
-\node[slicer, minimum width=3.2cm, minimum height=0.95cm] (checks) at (\xAg,-2.45)
-      {\T{Self-Checks}\\static (A1, A2, A4);\\severance (A4)};
+% evidence cylinder
+\def\cx{1.775}\def\crx{1.62}\def\cry{0.13}\def\cyt{2.95}\def\cyb{0.3}
+\path[draw=inD,line width=0.7pt,fill=inF] (\cx-\crx,\cyt) -- (\cx-\crx,\cyb) arc[start angle=180,end angle=360,x radius=\crx,y radius=\cry] -- (\cx+\crx,\cyt) arc[start angle=0,end angle=180,x radius=\crx,y radius=\cry] -- cycle;
+\draw[inD,line width=0.7pt,fill=inF!60] (\cx,\cyt) ellipse[x radius=\crx,y radius=\cry];
+\coordinate (eve) at (\cx+\crx,0);
+\node[font=\footnotesize\bfseries,text=txt] at (1.775,2.58) {Evidence sources};
+\tikzset{item/.style={draw=inD!70,fill=white,rounded corners=1.5pt,line width=0.4pt,
+      text width=2.9cm,align=flush left,font=\scriptsize,inner sep=1.8pt,text=txt}}
+\node[item] (e1) at (1.775,2.04) {\textbf{CVE record} (description, CWE)};
+\node[item] (e2) at (1.775,1.39) {\textbf{vulnerability slice} (sink-based identifier slice)};
+\node[item] (e3) at (1.775,0.74) {\textbf{known source fix} (backport on another branch)};
 
-\node[data] (patched) at (\xOut,-0.15) {\T{Patched Function}};
+% ---------------- (b) agent lane ----------------
+\node[box=llmD,fill=llmF,text width=4.2cm,minimum height=1.0cm] (d1) at (6.75,3.85)
+  {\hd{Detect}\\LLM verdict: vulnerable or safe?\\{\scriptsize one function, or both versions}};
+\node[stg=llmD] at (d1.north west) {1};
 
-% =====================================================================
-% EVALUATION HARNESS (separate; the only place the ground truth enters)
-% =====================================================================
-\node[eval] (pairc) at (\xEv,2.45) {\T{Pair-Correctness}\\verdicts on vulnerable\\and fixed versions};
-\node[eval, minimum height=1.35cm] (oracle) at (\xEv,-0.15) {\T{Independent Oracle}\\makes every change of\\the official fix? $\to$ VPR;\\edits a fix line? $\to$ touch};
-\node[db, minimum height=1.05cm] (fixes) at (\xEv,-2.35) {\T{Target's Official}\\\T{Fix} and labels};
+\def\rowB{2.15}
+\node[box=toolD,fill=toolF,text width=2.65cm,minimum height=1.45cm] (d2) at (5.68,\rowB)
+  {\hd{Ground}\\{\scriptsize build the repair prompt: the function + chosen evidence (none, CVE text, slice, or known fix)}};
+\node[box=llmD,fill=llmF,text width=1.9cm,minimum height=1.45cm] (d3) at (8.4,\rowB)
+  {\hd{Repair}\\{\scriptsize LLM writes the complete patched function}};
+\node[box=toolD,fill=toolF,text width=1.9cm,minimum height=1.45cm] (d4) at (10.74,\rowB)
+  {\hd{Self-check}\\{\scriptsize static checks; is the slice still intact?}};
+\node[box=inD,fill=white,text width=1.35cm,minimum height=1.45cm] (sp) at (12.95,\rowB)
+  {\hd{Submitted patch}\\{\scriptsize one per run}};
+\node[stg=toolD] at (d2.north west) {2};
+\node[stg=llmD]  at (d3.north west) {3};
+\node[stg=toolD] at (d4.north west) {4};
 
-% =====================================================================
-% FLOWS
-% =====================================================================
-% target into the system (one trunk: detector, slicer, agent)
-\coordinate (tt) at ($(target.east)+(0.5,0)$);
-\draw[flow] (target.east) -- (tt) |- (det.west);
-\draw[flow] (tt) |- (slicer.west);
-\draw[flow] (tt) |- (\xAg-0.95,1.62) -- ([xshift=-9.5mm]agent.north);
-% knowledge base feeds CVE text and known fixes
-\coordinate (kt) at ($(kb.east)+(0.32,0)$);
-\draw[flow, draw=dataD] (kb.east) -- (kt) |- (cvetext.west);
-\draw[flow, draw=dataD] (kb.east) -- (kt) |- (retr.west);
-% grounding into the agent
-\draw[ground] (slicer.east)  -- (slicer.east -| agent.west);
-\draw[ground] (cvetext.east) -- (cvetext.east -| agent.west);
-\draw[ground] (retr.east) -- ++(0.55,0) |- ([yshift=-8mm]agent.west);
-% P0: the source fix applied as a line patch, bypassing the LLM
-\draw[flow, draw=dataD] ([yshift=-3mm]retr.east) -- ++(0.3,0) |- node[elab, pos=0.75, below=0pt]{P0: naive line patch (no LLM)} ($(patched.south)+(0,-2.85)$) -- (patched.south);
-% self-check loop
-\draw[flow] ([xshift=-6mm]agent.south) -- node[elab, left=1pt, pos=0.75]{candidate} ([xshift=-6mm]checks.north);
-\draw[fb]   ([xshift=6mm]checks.north) -- node[elab, right=1pt, text=llmD]{feedback} ([xshift=6mm]agent.south);
-% outputs to the harness
-\draw[flow] (agent) -- (patched);
-\draw[flow] (patched) -- (oracle);
-\draw[flow] (det.east) -- node[elab, above=1pt, pos=0.5]{verdict} (pairc.west);
-\draw[truth] (fixes) -- (oracle);
-\draw[truth] (fixes.east) -- ++(0.35,0) |- (pairc.east);
+\draw[arr] (d2) -- (d3);
+\draw[arr] (d3) -- (d4);
+\draw[arr] (d4) -- (sp);
+% feedback 4 -> 3
+\draw[arr,dashed] ([xshift=-3mm]d4.south) -- ++(0,-0.32) -| node[lbl,pos=0.25,below]{feedback, up to 5 attempts} ([xshift=3mm]d3.south);
 
-% =====================================================================
-% FRAMES (background) + RQ BADGES
-% =====================================================================
-\begin{scope}[on background layer]
-  \node[frame, fit=(target)(kb), inner xsep=0.22cm, inner ysep=0.8cm, yshift=-0.08cm] (inframe) {};
-  \node[frame, fit=(det)(retr)(agent)(checks)(patched)(gsrc), inner sep=0.3cm, yshift=0.08cm] (sysframe) {};
-  \node[hframe, fit=(pairc)(oracle)(fixes), inner xsep=0.32cm, inner ysep=0.42cm, yshift=0.1cm] (harness) {};
-\end{scope}
-\node[font=\small\bfseries, text=inkC!85, anchor=south] at (inframe.north) {Inputs};
-\node[font=\small\bfseries, text=inkC!85, anchor=south] at (sysframe.north) {Agent under study};
-\node[font=\small\bfseries, text=evD, anchor=south] at (harness.north) {Evaluation harness};
-\node[elab, anchor=north, align=center, text=evD] at (harness.south)
-      {only place the ground truth enters};
+% inputs -> agent
+\coordinate (j) at (3.95,3.85);
+\draw[line width=0.7pt,draw=txt] (tf.east) -- (j);
+\fill[txt] (j) circle (0.9pt);
+\draw[arr] (j) -- (d1.west);
+\draw[arr] (j) |- ([yshift=3mm]d2.west);
+\draw[arr] (eve |- 0,1.79) -- ([yshift=-3.5mm]d2.west);
+% naive patch path
+\draw[arr=inD,dashed,line width=0.5pt] (e3.east) -- (3.95,0.74) |- (12.95,0.35) -- (sp.south);
+\node[lbl,anchor=south west,text=inD] at (4.0,0.37) {\textit{naive patch:} apply the source fix as a line patch (no LLM)};
 
-% RQ badges
-\node[rq, anchor=south east] at ([xshift=1.5mm,yshift=-1.5mm]inframe.north east) {RQ3};
-\node[elab, anchor=north, align=center] at ([yshift=-1.2mm]kb.south)
-      {pre/post-cutoff CVEs,\\[-1pt]certified variants};
-\node[rq, anchor=south east] at ([xshift=1.5mm,yshift=-1.5mm]det.north east) {RQ2};
-\node[rq, anchor=south east] at ([xshift=1.5mm,yshift=-1.5mm]slicer.north east) {RQ1};
-\node[rq, anchor=south east] at ([xshift=1.5mm,yshift=-1.5mm]cvetext.north east) {RQ1};
-\node[rq, anchor=south east] at ([xshift=1.5mm,yshift=-1.5mm]retr.north east) {RQ4};
-\node[rq, anchor=south east] at ([xshift=1.5mm,yshift=-1.5mm]agent.north east) {RQ1\,/\,RQ4};
+% ---------------- (c) evaluation harness ----------------
+\node[box=evD,fill=evF,text width=3.0cm,minimum height=1.0cm] (pc) at (15.85,3.85)
+  {\hd{Pair-correctness}\\{\scriptsize verdicts on the vulnerable and the fixed version}};
+\node[box=evD,fill=evF,text width=3.0cm,minimum height=1.45cm] (or) at (15.85,\rowB)
+  {\hd{Independent oracle}\\{\scriptsize \emph{validated:} makes every change of the official fix (VPR); \emph{touch:} edits a line the fix changes}};
+\node[cylinder,shape border rotate=90,aspect=0.2,draw=evD,line width=0.7pt,fill=evF,
+      minimum width=2.6cm,minimum height=0.85cm,align=flush center,font=\scriptsize\bfseries,text=txt,inner sep=1pt]
+  (of) at (15.6,0.55) {Official fix and labels};
 
-% =====================================================================
-% LEGEND
-% =====================================================================
-\begin{scope}[shift={(0.2,-4.6)}, every node/.style={font=\footnotesize, text=inkC}]
-  \tikzset{key/.style={minimum width=0.5cm, minimum height=0.3cm, inner sep=0}}
-  \node[data, key] (k1) at (0.25,0) {};
-  \node[anchor=west] (t1) at (k1.east) {Data \& inputs};
-  \node[slicer, key, right=0.4cm of t1] (k2) {};
-  \node[anchor=west] (t2) at (k2.east) {Slicing / static analysis};
-  \node[llm, key, right=0.4cm of t2] (k3) {};
-  \node[anchor=west] (t3) at (k3.east) {LLM component};
-  \node[eval, key, right=0.4cm of t3] (k4) {};
-  \node[anchor=west] (t4) at (k4.east) {Evaluation};
-  \draw[ground] (0,-0.55) -- ++(0.55,0) node[anchor=west] (t5) {grounding};
-  \draw[fb]     ($(t5.east)+(0.35,0)$) -- ++(0.55,0) node[anchor=west] (t6) {feedback};
-  \draw[truth]  ($(t6.east)+(0.35,0)$) -- ++(0.55,0) node[anchor=west] (t7) {ground truth};
-  \node[rq, right=0.4cm of t7] (k8) {RQ};
-  \node[anchor=west] (t8) at (k8.east) {probed by research question};
-  \node[anchor=west, right=0.4cm of t8] {A$\ast$, P$\ast$: arms using a component};
-\end{scope}
+\draw[arr] (d1.east) -- node[lbl,above]{verdict} (pc.west);
+\draw[arr] (sp.east) -- (or.west);
+\draw[arr=evD,dotted,line width=0.7pt] (of.north) -- (of.north |- or.south);
+\draw[arr=evD,dotted,line width=0.7pt] (of.east) -| (17.7,3.6) -- ([yshift=-3.5mm]pc.east);
 
+% ---------------- bottom row: RQ cards ----------------
+\def\cw{4.35}\def\cg{0.2}\def\ctop{-0.2}\def\cbot{-2.6}
+\newcommand{\card}[6]{%
+  \pgfmathsetmacro{\xl}{#1*(\cw+\cg)}
+  \draw[frame=laneD,fill=laneF] (\xl,\cbot) rectangle ++(\cw,\ctop-\cbot);
+  \node[fill=txt!85,text=white,rounded corners=2pt,font=\scriptsize\bfseries,inner sep=2pt,anchor=north west]
+    (b#1) at (\xl+0.12,\ctop-0.12) {#2};
+  \node[ttl,anchor=west] at (b#1.east) {#3};
+  \node[anchor=north west,text width=\cw cm-0.3cm,align=flush left,font=\scriptsize,text=txt,inner sep=0pt]
+    at (\xl+0.15,\ctop-0.6) {\textbf{Varies:} #4\\[1.5pt]\textbf{Measures:} #5\\[1.5pt]\textbf{Data:} #6};
+}
+\card{0}{RQ1}{Grounding}{evidence in \st{toolD}{2} and checks in \st{toolD}{4} (ladder A0--A4)}{VPR, touch}{150 CVEs before the cutoff + 56 after}
+\card{1}{RQ2}{Detection}{prompts, reasoning, models in \st{llmD}{1} (Haiku 4.5; Qwen2.5-Coder 7B/14B)}{pair-correct}{the same 206 CVEs}
+\card{2}{RQ3}{Contamination}{the inputs: pre/post-cutoff CVEs, certified slice-preserving variants, likelihood probe}{accuracy change vs.\ lookup controls}{217 matched functions}
+\card{3}{RQ4}{Porting}{\st{toolD}{2} gets the known source fix (P0--P4)}{VPR}{88 hard clones, 23 CVEs}
 \end{tikzpicture}
 \end{document}
