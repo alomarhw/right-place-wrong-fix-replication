@@ -119,7 +119,7 @@ def fig3_ladder() -> None:
         label_points(ax, xi, info("bigvul", "vpr"), BLUE, dy=-5)
         label_points(ax, xi, info("postcutoff", "vpr"), ORANGE)
         ymax_a = max(ymax_a, 1.18 * max(hi + info("postcutoff", "vpr")))
-    ax.set_title("(a) Validated patches (%)")
+    ax.set_title("(a) Validated patches"); ax.set_ylabel("% of patches")
     ax.set_ylim(0, ymax_a)
     ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(0.05 if ymax_a < 0.3 else 0.1))
     # (b) touch rate, with the chance line
@@ -138,7 +138,7 @@ def fig3_ladder() -> None:
         label_points(ax, xi, info("bigvul", "touch"), BLUE, dy=-5)
         label_points(ax, xi, info("postcutoff", "touch"), ORANGE)
         ymax_b = min(1.08, max(ymax_b, 0.1 + max(info("bigvul", "touch") + info("postcutoff", "touch"))))
-    ax.set_title("(b) Touch a fix line (%)")
+    ax.set_title("(b) Touch a fix line"); ax.set_ylabel("% of patches")
     ax.set_ylim(0, ymax_b)
     # (c) line-level evidence, pre-cutoff Haiku
     ax = axs[2]
@@ -154,7 +154,7 @@ def fig3_ladder() -> None:
         label_points(ax, xi, info("bigvul", "line_f1", 1.0), INK2)
         label_points(ax, xi, info("bigvul", "line_recall", 1.0), PURPLE, dy=-5)
         ymax_c = min(1.05, max(ymax_c, 0.08 + max(info("bigvul", "line_f1", 1.0) + info("bigvul", "line_recall", 1.0))))
-    ax.set_title("(c) Fix lines found (%)")
+    ax.set_title("(c) Fix lines found"); ax.set_ylabel("% (recall, F1)")
     ax.set_ylim(0.08, ymax_c)
     ax.legend(loc="upper left", frameon=False, handlelength=1.4, borderaxespad=0.1)
     # (d) outcome shares, pre-cutoff Haiku
@@ -170,7 +170,7 @@ def fig3_ladder() -> None:
         ax.plot(xi, r_i, "-.X", color=BROWN)
         label_points(ax, xi, w_i, GREY)
         label_points(ax, xi, r_i, BROWN, dy=-5)
-    ax.set_title("(d) Rejected patches (%)")
+    ax.set_title("(d) Rejected patches"); ax.set_ylabel("% of patches")
     ax.set_ylim(0.0, 0.72)
     ax.legend(loc="lower right", frameon=False, handlelength=1.4, borderaxespad=0.1)
 
@@ -201,7 +201,7 @@ def fig4_retrieval() -> None:
     ax = axs[0]
     ax.plot(ks, hit, "-o", color=BLUE)
     label_points(ax, ks, hit, BLUE)
-    ax.set_title("(a) Right fix in top-$k$ (%)")
+    ax.set_title("(a) Right fix in top-$k$"); ax.set_ylabel("% of hard targets")
     ax.set_xlabel("$k$ (of %d fixes)" % r["db_entries"])
     ax.set_xticks(ks)
     ax.set_ylim(0.3, 0.9)
@@ -211,7 +211,7 @@ def fig4_retrieval() -> None:
     ax.axvline(r["db_entries"], color=GREY, lw=1.0, ls="--")
     ax.set_title("(b) Fixes with cosine $\\geq$ 0.8")
     ax.set_xlabel("fixes over threshold (of %d)" % r["db_entries"])
-    ax.set_ylabel("hard targets")
+    ax.set_ylabel("number of hard targets")
     save(fig, "fig4_rq4_retrieval")
 
 
