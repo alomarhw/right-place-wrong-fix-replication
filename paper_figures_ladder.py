@@ -63,9 +63,9 @@ def save(fig, name: str) -> None:
     print(f"[paper_figures_ladder] wrote {OUT / name}.{{pdf,png}}")
 
 
-def label_points(ax, xs, ys, color, dy=4, fmt="{:.0f}", scale=100.0):
+def label_points(ax, xs, ys, color, dy=4, fmt="{:.0f}", scale=100.0, dx=0):
     for x, y in zip(xs, ys):
-        ax.annotate(fmt.format(y * scale), (x, y), textcoords="offset points", xytext=(0, dy),
+        ax.annotate(fmt.format(y * scale), (x, y), textcoords="offset points", xytext=(dx, dy),
                     ha="center", va="bottom" if dy >= 0 else "top", fontsize=6.3, color=INK)
 
 
@@ -94,7 +94,7 @@ def fig3_ladder() -> None:
     wrong = [out[a]["wrong_place"] / n for a in ARMS]
     sx = [SONNET_IDX[k] for k in ("A0", "A2", "A4")]
 
-    fig, axs = plt.subplots(1, 4, figsize=(7.0, 2.45))
+    fig, axs = plt.subplots(1, 4, figsize=(7.5, 2.0))
     pre_v, post_v = [v[0] for v in vpr], [post[a]["vpr_post"][0] for a in ARMS]
     son_v, son_t = [son[k]["vpr"] for k in ("A0", "A2", "A4")], [son[k]["touch"] for k in ("A0", "A2", "A4")]
     post_t = [post[a]["touch_post"][0] for a in ARMS]
@@ -104,11 +104,14 @@ def fig3_ladder() -> None:
     ax.plot(x, pre_v, "-o", color=BLUE, label="Haiku 4.5, pre-cutoff")
     ax.plot(x, post_v, "--s", color=ORANGE, label="Haiku 4.5, post-cutoff")
     ax.plot(sx, son_v, "^", color=AQUA, linestyle="none", label="Sonnet 4.6, pre-cutoff (1 rep.; A0, A2, A4)")
-    label_points(ax, x, pre_v, BLUE, dy=-5)
+    label_points(ax, x, pre_v, BLUE, dy=-6, dx=3)
     label_points(ax, x, post_v, ORANGE)
+    # Sonnet labels sit to the right of the triangle, below it at A2 and above it at A4, clear of the Haiku labels
+    son_off = {0: (6, 0, "center"), 2: (5, -5, "top"), 4: (2, 4, "bottom")}
     for xx, yy in zip(sx, son_v):
-        ax.annotate(f"{yy * 100:.0f}", (xx, yy), textcoords="offset points", xytext=(-7, 1), ha="right",
-                    va="center", fontsize=6.3, color=INK)
+        ox, oy, va = son_off[xx]
+        ax.annotate(f"{yy * 100:.0f}", (xx, yy), textcoords="offset points", xytext=(ox, oy), ha="left",
+                    va=va, fontsize=6.3, color=INK)
     ymax_a = 0.17
     if e6:
         lo = [e6["bigvul"]["summary"][k]["vpr_ci95"][0] / 100 for k in INFO]
@@ -160,7 +163,7 @@ def fig3_ladder() -> None:
     # (d) outcome shares, pre-cutoff Haiku
     ax = axs[3]
     ax.plot(x, wrong, "-p", color=GREY, label="Wrong place")
-    ax.plot(x, rpwf, "-.X", color=BROWN, label="Right place,\nwrong fix")
+    ax.plot(x, rpwf, "-.X", color=BROWN, label="Right place, wrong fix")
     label_points(ax, x, wrong, GREY)
     label_points(ax, x, rpwf, BROWN, dy=-5)
     if e6:
@@ -168,11 +171,11 @@ def fig3_ladder() -> None:
         r_i = [e6["bigvul"]["summary"][k]["outcomes"]["right_place_wrong_fix"] / 100 for k in INFO]
         ax.plot(xi, w_i, "-p", color=GREY)
         ax.plot(xi, r_i, "-.X", color=BROWN)
-        label_points(ax, xi, w_i, GREY)
-        label_points(ax, xi, r_i, BROWN, dy=-5)
+        label_points(ax, xi, w_i, GREY, dy=-6)
+        label_points(ax, xi, r_i, BROWN, dy=4)
     ax.set_title("(d) Rejected patches"); ax.set_ylabel("% of patches")
-    ax.set_ylim(0.0, 0.72)
-    ax.legend(loc="lower right", frameon=False, handlelength=1.4, borderaxespad=0.1)
+    ax.set_ylim(0.0, 0.78)
+    ax.legend(loc="lower left", frameon=False, handlelength=1.2, borderaxespad=0.0, labelspacing=0.2, bbox_to_anchor=(0.0, -0.02))
 
     for ax in axs:
         if e6:
