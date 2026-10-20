@@ -78,12 +78,14 @@ def style() -> None:
     })
 
 
-def save(fig, name: str) -> None:
-    OUT.mkdir(parents=True, exist_ok=True)
+def save(fig, name: str, supplementary: bool = False) -> None:
+    # Figures not in the submitted paper (the DiD plot and the earlier ladder) go to figures/supplementary/.
+    out = OUT.parent / "supplementary" if supplementary else OUT
+    out.mkdir(parents=True, exist_ok=True)
     for ext in ("pdf", "png"):
-        fig.savefig(OUT / f"{name}.{ext}", bbox_inches="tight")
+        fig.savefig(out / f"{name}.{ext}", bbox_inches="tight")
     plt.close(fig)
-    print(f"[paper_figures] wrote {OUT / name}.{{pdf,png}}")
+    print(f"[paper_figures] wrote {out / name}.{{pdf,png}}")
 
 
 def _provenance_of_matched(seed: int) -> list[str]:
@@ -275,7 +277,7 @@ def fig2(r2: dict) -> None:
     ax.set_xlim(-0.15, 0.40)
     ax.set_xlabel("DiD vs. slice-signature match (95% CI)\n> 0: degrades more than the slice matcher")
     ax.xaxis.grid(True, color=GRID, lw=0.6)
-    save(fig, "fig2_rq2_did")
+    save(fig, "fig2_rq2_did", supplementary=True)
 
 
 # ---------------------------------------------------------------------------
@@ -349,7 +351,7 @@ def fig3(r3: dict, reasons: dict | None = None) -> None:
         bx.legend(handles=[Patch(color=cc, label=cl) for _, cl, cc in cats], loc="upper center",
                   bbox_to_anchor=(0.3, -0.3), ncol=2, frameon=False, fontsize=6.5,
                   handlelength=1.0, columnspacing=0.8)
-    save(fig, "fig3_rq3_patching")
+    save(fig, "fig3_rq3_patching", supplementary=True)
 
 
 def main() -> None:

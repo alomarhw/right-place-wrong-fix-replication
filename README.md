@@ -1,6 +1,6 @@
 # Replication package: *Right Place, Wrong Fix*
 
-This package contains the data, code, frozen model responses and results behind every number in the paper *Right Place, Wrong Fix: A Contamination-Controlled Study of Grounding in LLM Vulnerability-Repair Agents*.
+This package contains the data, code, frozen model responses and results behind every number in the paper *Right Place, Wrong Fix: What LLM Vulnerability-Repair Agents Still Need*.
 
 **Everything replays offline.** All 12,000+ LLM responses are frozen in `data/_llm_cache.sqlite`, so the scripts below regenerate the paper's numbers **without an API key and without API cost**. An API key (`ANTHROPIC_API_KEY`) is needed only to run new configurations; a cache miss without a key fails loudly instead of falling back to a proxy.
 
@@ -22,7 +22,7 @@ Script names follow the pipeline's internal numbering, which differs from the pa
 | Table I, §III-A | Big-Vul sample and post-cutoff mining | `mining/build_bigvul.py`, `mining/mine_postcutoff.py`, `mining/enrich_validate.py` | `data/bigvul/`, `data/postcutoff/`, `data/VALIDATION.json` |
 | §III-B | Certified slice-preserving variants | `variant_builder.py` (called by `main.py`) | `results/results.json` |
 | §III-E, Eq. (1)–(2) | Oracle and its calibration | `oracle.py` (called by `rq3_main.py`) | `results/results.json` (`RQ3`) |
-| **RQ1** Fig. 2, Table III | Grounding ladder, VPR, localization (paper RQ1 = internal "RQ3") | `rq3_main.py`, then `paper_tables.py` | `results/results.json`, `results/rq3_outcomes.json`, `paper_tables/` |
+| **RQ1** Fig. 2, Tables II–III | Grounding ladder, VPR, localization (paper RQ1 = internal "RQ3") | `rq3_main.py`, then `paper_tables.py` | `results/results.json`, `results/rq3_outcomes.json`, `paper_tables/` |
 | RQ1 | Line-level evidence P/R/F1 | `line_evidence.py` | `results/line_evidence.json` |
 | RQ1 | Power of the VPR null (paired-bootstrap interval of the VPR difference) | `rq1_power.py` | `results/rq1_power.json` |
 | RQ1 Table III, Fig. 2 | CVE-level bootstrap CIs of the validated-patch rate and patch outcomes; ladder and retrieval figures | `rq1_vpr_ci.py`, `paper_figures_ladder.py` | `results/rq1_vpr_ci.json`, `figures/paper/fig3_rq1_ladder.*`, `figures/paper/fig4_rq4_retrieval.*` |
@@ -34,17 +34,19 @@ Script names follow the pipeline's internal numbering, which differs from the pa
 | RQ2 Table V | Reasoning, extended-thinking and contrastive probes | `e1_absolute_reason.py [--thinking]`, `e1_contrastive.py [--reason \| --thinking]` | `results/e1_*.json` |
 | RQ2 Table V | Open-weight replication (Qwen2.5-Coder) | `gpu/open_detect.py` | `results/open_detect_*.json` |
 | RQ2 | Label-token ranking and calibration of the open-weight detectors | `gpu/logit_rank.py --model ...` | `results/logit_rank_*.json` |
-| **RQ3** Fig. 4 | Variant invariance and DiD (internal "RQ1"/"RQ2") | `main.py` (or `rq2_main.py`) | `results/results.json` |
-| RQ3 Table VI | Repair on post-cutoff CVEs | `rq3_postcutoff.py` | `results/rq3_postcutoff.json` |
+| **RQ3** Fig. 3, §IV-C | Variant invariance and DiD (internal "RQ1"/"RQ2"; the DiD plot is in `figures/supplementary/`) | `main.py` (or `rq2_main.py`) | `results/results.json` |
+| RQ3, Fig. 2 (dashed) | Repair on post-cutoff CVEs | `rq3_postcutoff.py` | `results/rq3_postcutoff.json` |
 | RQ3 | Min-K%++ memorization probe and positive control | `gpu/minkprobe.py`, `gpu/minkprobe_lines.py`, `gpu/positive_control.py`, `gpu/analyze_minkprobe.py` | `results/minkprobe_*`, `results/positive_control_*.json` |
-| **RQ4** Table VII | Porting vs. inventing on 88 hard clones | `mining/mine_backports.py`, `porting_pilot.py` | `data/porting/`, `results/porting_pilot.json` |
+| **RQ4** Table VI, Fig. 4 | Porting vs. inventing on 88 hard clones | `mining/mine_backports.py`, `porting_pilot.py` | `data/porting/`, `results/porting_pilot.json` |
 | RQ4 | srcVul grounding (P3) and retrieval | `srcvul_ground.py`, `srcvul_retrieval.py` | `results/srcvul_retrieval.json` |
 | RQ4 | Porting from slices (P4) | `e2_slice_reduction.py` | `results/e2_slice_reduction.json` |
 | RQ4 | CVE-level tests (exact Wilcoxon, Holm over the four RQ4 comparisons) | `rq4_tests.py` | `results/rq4_tests.json` |
-| Figures | Figs. 2–4 | `paper_figures.py` | `figures/paper/` |
+| Figures | Fig. 3 (detection); supplementary DiD and earlier ladder plots | `paper_figures.py` | `figures/paper/fig1_rq1_memorization.*`, `figures/supplementary/` |
 | Fig. 1 | Architecture (TikZ) | `pdflatex figures/src/fig1_architecture.tex` | `figures/paper/fig0_overview.pdf` |
 
 `paper_tables.py` and `paper_figures.py` make no LLM calls beyond cache replays.
+
+The paper's four figures are in `figures/paper/`: Fig. 1 `fig0_overview`, Fig. 2 `fig3_rq1_ladder`, Fig. 3 `fig1_rq1_memorization`, Fig. 4 `fig4_rq4_retrieval` (file names keep the pipeline's internal numbering). `figures/supplementary/` holds plots cut from the paper for space: the difference-in-differences plot (its numbers are in §IV-C) and the earlier five-arm ladder plot.
 
 ## Quick check
 
