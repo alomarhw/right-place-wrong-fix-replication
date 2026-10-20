@@ -118,7 +118,7 @@
   \node[anchor=north west,text width=\cw cm-0.3cm,align=flush left,font=\scriptsize,text=txt,inner sep=0pt]
     at (\xl+0.15,\ctop-0.6) {\textbf{Varies:} #4\\[1.5pt]\textbf{Measures:} #5\\[1.5pt]\textbf{Data:} #6};
 }
-\card{0}{RQ1}{Grounding}{evidence in \st{toolD}{2} and checks in \st{toolD}{4} (ladder A0--A4)}{VPR, touch}{150 Big-Vul CVEs}
+\card{0}{RQ1}{Grounding}{evidence in \st{toolD}{2} and checks in \st{toolD}{4} (ladder A0--A4; information arms L, M, LM)}{VPR, touch}{150 Big-Vul CVEs}
 \card{1}{RQ2}{Detection}{prompts, reasoning, models in \st{llmD}{1} (Haiku 4.5; Qwen2.5-Coder 7B/14B)}{pair-correct}{150 CVE pairs (94 pre-, 56 post-cutoff)}
 \card{2}{RQ3}{Contamination}{the inputs: pre/post-cutoff CVEs, certified slice-preserving variants, likelihood probe}{accuracy change vs.\ lookup controls}{217 matched functions; repair: 150 + 56 CVEs}
 \card{3}{RQ4}{Porting}{whether \st{toolD}{2} gets the known source fix (P0--P4)}{VPR}{88 hard clones, 23 CVEs}
