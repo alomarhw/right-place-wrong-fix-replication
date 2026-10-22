@@ -1,16 +1,16 @@
 {
- "labels_file": "e4_human_audit_labels_corrected.csv",
+ "labels_file": "e4_human_audit_labels.csv",
  "n": 30,
  "human_counts": {
   "equivalent": 6,
   "plausible": 6,
-  "over_restrictive": 1,
-  "incorrect": 17
+  "over_restrictive": 2,
+  "incorrect": 16
  },
  "vs": {
   "claude-opus-5-5": {
    "agree": 0.9333333333333333,
-   "kappa4": 0.8916967509025271,
+   "kappa4": 0.8943661971830986,
    "kappa_acc": 0.8611111111111112,
    "kappa_eq": 1.0,
    "rater_counts": {
@@ -21,20 +21,20 @@
    },
    "disagreements": [
     {
-     "case": "H18",
-     "author": "incorrect",
-     "rater": "plausible"
-    },
-    {
-     "case": "H21",
+     "case": "H10",
      "author": "plausible",
      "rater": "over_restrictive"
+    },
+    {
+     "case": "H14",
+     "author": "over_restrictive",
+     "rater": "plausible"
     }
    ]
   },
   "claude-opus-4-8": {
-   "agree": 0.8666666666666667,
-   "kappa4": 0.7744360902255639,
+   "agree": 0.8333333333333334,
+   "kappa4": 0.7262773722627739,
    "kappa_acc": 0.7142857142857143,
    "kappa_eq": 1.0,
    "rater_counts": {
@@ -55,14 +55,19 @@
      "rater": "plausible"
     },
     {
-     "case": "H14",
+     "case": "H10",
      "author": "plausible",
+     "rater": "over_restrictive"
+    },
+    {
+     "case": "H14",
+     "author": "over_restrictive",
      "rater": "incorrect"
     },
     {
-     "case": "H21",
+     "case": "H18",
      "author": "plausible",
-     "rater": "over_restrictive"
+     "rater": "incorrect"
     }
    ]
   }
@@ -71,16 +76,16 @@
   "no_grounding_no_feedback": {
    "n": 15,
    "equivalent": 2,
-   "acceptable": 5,
+   "acceptable": 4,
    "vpr_with_equivalent": 0.08577777777777779,
-   "vpr_with_acceptable": 0.14444444444444446
+   "vpr_with_acceptable": 0.12488888888888888
   },
   "slice_grounded_full": {
    "n": 15,
    "equivalent": 4,
-   "acceptable": 7,
+   "acceptable": 8,
    "vpr_with_equivalent": 0.17377777777777778,
-   "vpr_with_acceptable": 0.2657777777777778
+   "vpr_with_acceptable": 0.29644444444444445
   }
  }
 }

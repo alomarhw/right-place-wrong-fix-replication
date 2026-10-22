@@ -1,0 +1,86 @@
+{
+ "labels_file": "e4_human_audit_labels_corrected.csv",
+ "n": 30,
+ "human_counts": {
+  "equivalent": 6,
+  "plausible": 6,
+  "over_restrictive": 1,
+  "incorrect": 17
+ },
+ "vs": {
+  "claude-opus-5-5": {
+   "agree": 0.9333333333333333,
+   "kappa4": 0.8916967509025271,
+   "kappa_acc": 0.8611111111111112,
+   "kappa_eq": 1.0,
+   "rater_counts": {
+    "equivalent": 6,
+    "plausible": 6,
+    "over_restrictive": 2,
+    "incorrect": 16
+   },
+   "disagreements": [
+    {
+     "case": "H18",
+     "author": "incorrect",
+     "rater": "plausible"
+    },
+    {
+     "case": "H21",
+     "author": "plausible",
+     "rater": "over_restrictive"
+    }
+   ]
+  },
+  "claude-opus-4-8": {
+   "agree": 0.8666666666666667,
+   "kappa4": 0.7744360902255639,
+   "kappa_acc": 0.7142857142857143,
+   "kappa_eq": 1.0,
+   "rater_counts": {
+    "equivalent": 6,
+    "plausible": 4,
+    "over_restrictive": 2,
+    "incorrect": 18
+   },
+   "disagreements": [
+    {
+     "case": "H04",
+     "author": "plausible",
+     "rater": "incorrect"
+    },
+    {
+     "case": "H08",
+     "author": "incorrect",
+     "rater": "plausible"
+    },
+    {
+     "case": "H14",
+     "author": "plausible",
+     "rater": "incorrect"
+    },
+    {
+     "case": "H21",
+     "author": "plausible",
+     "rater": "over_restrictive"
+    }
+   ]
+  }
+ },
+ "by_arm": {
+  "no_grounding_no_feedback": {
+   "n": 15,
+   "equivalent": 2,
+   "acceptable": 5,
+   "vpr_with_equivalent": 0.08577777777777779,
+   "vpr_with_acceptable": 0.14444444444444446
+  },
+  "slice_grounded_full": {
+   "n": 15,
+   "equivalent": 4,
+   "acceptable": 7,
+   "vpr_with_equivalent": 0.17377777777777778,
+   "vpr_with_acceptable": 0.2657777777777778
+  }
+ }
+}

@@ -19,25 +19,27 @@ Script names follow the pipeline's internal numbering, which differs from the pa
 
 | Paper | What | Script(s) | Output |
 |---|---|---|---|
-| Table I, §III-A | Big-Vul sample and post-cutoff mining | `mining/build_bigvul.py`, `mining/mine_postcutoff.py`, `mining/enrich_validate.py` | `data/bigvul/`, `data/postcutoff/`, `data/VALIDATION.json` |
+| Table II, §III-A | Big-Vul sample and post-cutoff mining | `mining/build_bigvul.py`, `mining/mine_postcutoff.py`, `mining/enrich_validate.py` | `data/bigvul/`, `data/postcutoff/`, `data/VALIDATION.json` |
 | §III-B | Certified slice-preserving variants | `variant_builder.py` (called by `main.py`) | `results/results.json` |
 | §III-E, Eq. (1)–(2) | Oracle and its calibration | `oracle.py` (called by `rq3_main.py`) | `results/results.json` (`RQ3`) |
-| **RQ1** Fig. 2, Tables II–III | Grounding ladder, VPR, localization (paper RQ1 = internal "RQ3") | `rq3_main.py`, then `paper_tables.py` | `results/results.json`, `results/rq3_outcomes.json`, `paper_tables/` |
+| **RQ1** Fig. 2, Tables III–IV | Grounding ladder, VPR, localization (paper RQ1 = internal "RQ3") | `rq3_main.py`, then `paper_tables.py` | `results/results.json`, `results/rq3_outcomes.json`, `paper_tables/` |
 | RQ1 | Line-level evidence P/R/F1 | `line_evidence.py` | `results/line_evidence.json` |
 | RQ1 | Power of the VPR null (paired-bootstrap interval of the VPR difference) | `rq1_power.py` | `results/rq1_power.json` |
-| RQ1 Table III, Fig. 2 | CVE-level bootstrap CIs of the validated-patch rate and patch outcomes; ladder and retrieval figures | `rq1_vpr_ci.py`, `paper_figures_ladder.py` | `results/rq1_vpr_ci.json`, `figures/paper/fig3_rq1_ladder.*`, `figures/paper/fig4_rq4_retrieval.*` |
-| RQ1 | Blind author audit (30 patches) vs. the two LLM raters | `e4_human_agreement.py results/e4_human_audit_labels_corrected.csv` | `results/e4_human_audit_agreement.json` |
+| RQ1 Table IV, Fig. 2 | CVE-level bootstrap CIs of the validated-patch rate and patch outcomes; ladder and retrieval figures | `rq1_vpr_ci.py`, `paper_figures_ladder.py` | `results/rq1_vpr_ci.json`, `figures/paper/fig3_rq1_ladder.*`, `figures/paper/fig4_rq4_retrieval.*` |
+| RQ1 | Blind author audit (30 patches) vs. the two LLM raters; the paper reports the first, blind pass | `e4_human_agreement.py results/e4_human_audit_labels.csv` | `results/e4_human_audit_agreement.json` |
+| RQ1 | The same audit after the author's later revision of 4 labels (agreement on equivalent fixes unchanged, kappa = 1) | `e4_human_agreement.py results/e4_human_audit_labels_corrected.csv`, then rename the output | `results/e4_human_audit_agreement_revised.json` |
 | RQ1 | Bootstrap CI of the A4-minus-A0 gap after counting equivalent fixes | `e4_gap_ci.py` | `results/e4_gap_ci.json` |
 | RQ1 | Oracle-strictness check (two LLM raters) | `e4_sample.py [arm]`, `e4_judge.py` | `results/e4_*.json`, `results/e4_sample*.md` |
 | RQ1 | Second closed model (Claude Sonnet 4.6, exploratory) | `RP_LLM_MODEL=claude-sonnet-4-6 python3 e3_cross_model.py`, `e3_compare.py` | `results/e3_*.json` |
-| **RQ2** Table IV, Fig. 3 | Detection, pairwise analysis (paper RQ2 = internal "RQ1") | `main.py`, `paper_tables.py` | `results/results.json` |
-| RQ2 Table V | Reasoning, extended-thinking and contrastive probes | `e1_absolute_reason.py [--thinking]`, `e1_contrastive.py [--reason \| --thinking]` | `results/e1_*.json` |
-| RQ2 Table V | Open-weight replication (Qwen2.5-Coder) | `gpu/open_detect.py` | `results/open_detect_*.json` |
+| **RQ2** Table V, Fig. 3 | Detection, pairwise analysis (paper RQ2 = internal "RQ1") | `main.py`, `paper_tables.py` | `results/results.json` |
+| RQ2 Table VI | Reasoning, extended-thinking and contrastive probes | `e1_absolute_reason.py [--thinking]`, `e1_contrastive.py [--reason \| --thinking]` | `results/e1_*.json` |
+| RQ2 Table VI | Open-weight replication (Qwen2.5-Coder) | `gpu/open_detect.py` | `results/open_detect_*.json` |
 | RQ2 | Label-token ranking and calibration of the open-weight detectors | `gpu/logit_rank.py --model ...` | `results/logit_rank_*.json` |
 | **RQ3** Fig. 3, §IV-C | Variant invariance and DiD (internal "RQ1"/"RQ2"; the DiD plot is in `figures/supplementary/`) | `main.py` (or `rq2_main.py`) | `results/results.json` |
 | RQ3, Fig. 2 (dashed) | Repair on post-cutoff CVEs | `rq3_postcutoff.py` | `results/rq3_postcutoff.json` |
 | RQ3 | Min-K%++ memorization probe and positive control | `gpu/minkprobe.py`, `gpu/minkprobe_lines.py`, `gpu/positive_control.py`, `gpu/analyze_minkprobe.py` | `results/minkprobe_*`, `results/positive_control_*.json` |
-| **RQ4** Table VI, Fig. 4 | Porting vs. inventing on 88 hard clones | `mining/mine_backports.py`, `porting_pilot.py` | `data/porting/`, `results/porting_pilot.json` |
+| **RQ4** Table VII, Fig. 4 | Porting vs. inventing on 88 hard clones | `mining/mine_backports.py`, `porting_pilot.py` | `data/porting/`, `results/porting_pilot.json` |
+| §III-A, §IV-A, §IV-D, §VI | Counts stated in the text: L edits within two lines of the fix, the split of P3's rejected ports, Big-Vul CVEs with an unrelated fix, post-cutoff CVE commits | `e9_paper_counts.py [--clones DIR]` (no LLM calls; `--clones` recounts the commits from blobless clones of the 12 mined projects) | `results/e9_paper_counts.json` |
 | RQ4 | srcVul grounding (P3) and retrieval | `srcvul_ground.py`, `srcvul_retrieval.py` | `results/srcvul_retrieval.json` |
 | RQ4 | Porting from slices (P4) | `e2_slice_reduction.py` | `results/e2_slice_reduction.json` |
 | RQ4 | CVE-level tests (exact Wilcoxon, Holm over the four RQ4 comparisons) | `rq4_tests.py` | `results/rq4_tests.json` |

@@ -1,0 +1,146 @@
+{
+ "near_fix_location": {
+  "A2": {
+   "patches": 450,
+   "touch_pct": 47.1,
+   "within_two_lines_pct": 66.0
+  },
+  "L": {
+   "patches": 450,
+   "touch_pct": 78.2,
+   "within_two_lines_pct": 90.9
+  },
+  "M": {
+   "patches": 450,
+   "touch_pct": 63.6,
+   "within_two_lines_pct": 78.0
+  },
+  "LM": {
+   "patches": 450,
+   "touch_pct": 83.3,
+   "within_two_lines_pct": 94.4
+  }
+ },
+ "p3_failures_rep1": {
+  "rejected": 17,
+  "omit_part_of_source_fix": 11,
+  "faithful_to_source_fix": 6,
+  "faithful": [
+   {
+    "cve_id": "CVE-2026-31789",
+    "target_branch": "openssl-3.0",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-31790",
+    "target_branch": "openssl-3.5",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-31790",
+    "target_branch": "openssl-3.4",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-31790",
+    "target_branch": "openssl-3.3",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-31790",
+    "target_branch": "openssl-3.0",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-72897",
+    "target_branch": "openssl-3.5",
+    "clone_type": "identical"
+   }
+  ],
+  "omit": [
+   {
+    "cve_id": "CVE-2026-34181",
+    "target_branch": "openssl-3.6",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-34181",
+    "target_branch": "openssl-3.5",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-34181",
+    "target_branch": "openssl-3.4",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-34182",
+    "target_branch": "openssl-3.5",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-34182",
+    "target_branch": "openssl-3.4",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-34182",
+    "target_branch": "openssl-3.0",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-63074",
+    "target_branch": "openssl-3.0",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-72897",
+    "target_branch": "openssl-3.4",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-9076",
+    "target_branch": "openssl-3.5",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-9076",
+    "target_branch": "openssl-3.4",
+    "clone_type": "modified"
+   },
+   {
+    "cve_id": "CVE-2026-9076",
+    "target_branch": "openssl-3.0",
+    "clone_type": "modified"
+   }
+  ]
+ },
+ "unrelated_fix_cves": {
+  "n": 3,
+  "cve_ids": [
+   "CVE-2012-5156",
+   "CVE-2013-0839",
+   "CVE-2016-5220"
+  ],
+  "source": "e4_labels_full.json notes"
+ },
+ "postcutoff_cve_commits": {
+  "n": 143,
+  "until": "2026-10-08",
+  "per_repo": {
+   "FFmpeg": 3,
+   "ImageMagick": 0,
+   "cpython": 6,
+   "curl": 7,
+   "libexpat": 24,
+   "libssh2": 0,
+   "libxml2": 2,
+   "mruby": 1,
+   "openssl": 80,
+   "php-src": 20,
+   "radare2": 0,
+   "vim": 0
+  },
+  "repos": 12
+ }
+}
