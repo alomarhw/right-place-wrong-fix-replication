@@ -190,7 +190,7 @@ def fig0() -> None:
 # ---------------------------------------------------------------------------
 def fig1(r1: dict) -> None:
     per = r1["per_detector"]
-    fig, (ax, bx) = plt.subplots(1, 2, figsize=(7.1, 3.0), width_ratios=[1.75, 1])
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(7.1, 2.4), width_ratios=[1.75, 1])
 
     rows = [d for d in DETECTORS if d[0] in per]
     y = np.arange(len(rows))[::-1]

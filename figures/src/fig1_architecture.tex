@@ -37,26 +37,27 @@
 \draw[frame=evD,dashed,fill=evF!30] (14.05,0) rectangle (18.0,\top);
 
 \node[ttl,anchor=north] at (1.775,\top-0.08) {Inputs};
-\node[ttl,anchor=north] at (8.8,\top-0.08) {Agent under study (Claude Haiku 4.5)};
+\node[ttl,anchor=north] at (8.8,\top-0.08) {Agent under study (Claude Haiku 4.5; Sonnet 4.6 exploratory)};
 \node[ttl,anchor=north,text=evD] (evt) at (16.025,\top-0.08) {Evaluation harness};
 \node[sub,anchor=north,text width=3.7cm,align=flush center,text=evD,inner sep=0pt]
-  at (evt.south) {the only part that sees the\\target's official fix and label};
+  at (evt.south) {the only part that sees the target's\\official fixed code and label};
 
 % ---------------- (a) inputs ----------------
-\node[box=inD,fill=inF,text width=3.0cm,minimum height=1.25cm] (tf) at (1.775,3.85)
+\node[box=inD,fill=inF,text width=3.0cm,minimum height=1.1cm] (tf) at (1.775,3.95)
   {\hd{Target function}\\[1pt]{\scriptsize a vulnerable or fixed C function, or a clone on another release branch}};
 
 % evidence cylinder
-\def\cx{1.775}\def\crx{1.62}\def\cry{0.13}\def\cyt{2.95}\def\cyb{0.3}
+\def\cx{1.775}\def\crx{1.62}\def\cry{0.13}\def\cyt{3.10}\def\cyb{0.25}
 \path[draw=inD,line width=0.7pt,fill=inF] (\cx-\crx,\cyt) -- (\cx-\crx,\cyb) arc[start angle=180,end angle=360,x radius=\crx,y radius=\cry] -- (\cx+\crx,\cyt) arc[start angle=0,end angle=180,x radius=\crx,y radius=\cry] -- cycle;
 \draw[inD,line width=0.7pt,fill=inF!60] (\cx,\cyt) ellipse[x radius=\crx,y radius=\cry];
 \coordinate (eve) at (\cx+\crx,0);
-\node[font=\footnotesize\bfseries,text=txt] at (1.775,2.58) {Evidence sources};
+\node[font=\footnotesize\bfseries,text=txt] at (1.775,2.87) {Evidence sources};
 \tikzset{item/.style={draw=inD!70,fill=white,rounded corners=1.5pt,line width=0.4pt,
       text width=2.9cm,align=flush left,font=\scriptsize,inner sep=1.8pt,text=txt}}
-\node[item] (e1) at (1.775,2.04) {\textbf{CVE record} (description, CWE)};
-\node[item] (e2) at (1.775,1.39) {\textbf{vulnerability slice} (sink-based identifier slice)};
-\node[item] (e3) at (1.775,0.74) {\textbf{known source fix} (backport on another branch)};
+\node[item] (e1) at (1.775,2.40) {\textbf{CVE record} (description, CWE)};
+\node[item] (e2) at (1.775,1.84) {\textbf{vulnerability slice} (sink-based identifier slice)};
+\node[item] (e4) at (1.775,1.28) {\textbf{fix hints} (L: lines it changes; M: commit message)};
+\node[item] (e3) at (1.775,0.72) {\textbf{known source fix} (backport on another branch)};
 
 % ---------------- (b) agent lane ----------------
 \node[box=llmD,fill=llmF,text width=4.2cm,minimum height=1.0cm] (d1) at (6.75,3.85)
@@ -65,7 +66,7 @@
 
 \def\rowB{2.15}
 \node[box=toolD,fill=toolF,text width=2.65cm,minimum height=1.45cm] (d2) at (5.68,\rowB)
-  {\hd{Ground}\\{\scriptsize build the repair prompt: the function + chosen evidence (none, CVE text, slice, or known fix)}};
+  {\hd{Ground}\\{\scriptsize build the repair prompt: the function + evidence (none, CVE text, slice, fix hints, or known fix)}};
 \node[box=llmD,fill=llmF,text width=1.9cm,minimum height=1.45cm] (d3) at (8.4,\rowB)
   {\hd{Repair}\\{\scriptsize LLM writes the complete patched function}};
 \node[box=toolD,fill=toolF,text width=1.9cm,minimum height=1.45cm] (d4) at (10.74,\rowB)
@@ -84,13 +85,13 @@
 
 % inputs -> agent
 \coordinate (j) at (3.95,3.85);
-\draw[line width=0.7pt,draw=txt] (tf.east) -- (j);
+\draw[line width=0.7pt,draw=txt] (tf.east |- j) -- (j);
 \fill[txt] (j) circle (0.9pt);
 \draw[arr] (j) -- (d1.west);
 \draw[arr] (j) |- ([yshift=3mm]d2.west);
 \draw[arr] (eve |- 0,1.79) -- ([yshift=-3.5mm]d2.west);
 % naive patch path
-\draw[arr=inD,dashed,line width=0.5pt] (e3.east) -- (3.95,0.74) |- (12.95,0.35) -- (sp.south);
+\draw[arr=inD,dashed,line width=0.5pt] (e3.east) -- (3.95,0.72) |- (12.95,0.35) -- (sp.south);
 \node[lbl,anchor=south west,text=inD] at (4.0,0.37) {\textit{naive patch:} apply the source fix as a line patch (no LLM)};
 
 % ---------------- (c) evaluation harness ----------------
@@ -107,20 +108,20 @@
 \draw[arr=evD,dotted,line width=0.7pt] (of.north) -- (of.north |- or.south);
 \draw[arr=evD,dotted,line width=0.7pt] (of.east) -| (17.7,3.6) -- ([yshift=-3.5mm]pc.east);
 
-% ---------------- bottom row: RQ cards ----------------
-\def\cw{4.35}\def\cg{0.2}\def\ctop{-0.2}\def\cbot{-2.85}
-\newcommand{\card}[6]{%
-  \pgfmathsetmacro{\xl}{#1*(\cw+\cg)}
-  \draw[frame=laneD,fill=laneF] (\xl,\cbot) rectangle ++(\cw,\ctop-\cbot);
+% ---------------- bottom row: RQ cards (RQ3 widest: it carries the most text) ----------------
+\def\ctop{-0.2}\def\cbot{-2.5}
+% \card{x-left}{width}{badge}{title}{varies}{measures}{data}
+\newcommand{\card}[7]{%
+  \draw[frame=laneD,fill=laneF] (#1,\cbot) rectangle ++(#2,\ctop-\cbot);
   \node[fill=txt!85,text=white,rounded corners=2pt,font=\scriptsize\bfseries,inner sep=2pt,anchor=north west]
-    (b#1) at (\xl+0.12,\ctop-0.12) {#2};
-  \node[ttl,anchor=west] at (b#1.east) {#3};
-  \node[anchor=north west,text width=\cw cm-0.3cm,align=flush left,font=\scriptsize,text=txt,inner sep=0pt]
-    at (\xl+0.15,\ctop-0.6) {\textbf{Varies:} #4\\[1.5pt]\textbf{Measures:} #5\\[1.5pt]\textbf{Data:} #6};
+    (b#3) at (#1+0.12,\ctop-0.12) {#3};
+  \node[ttl,anchor=west] at (b#3.east) {#4};
+  \node[anchor=north west,text width=#2 cm-0.3cm,align=flush left,font=\scriptsize,text=txt,inner sep=0pt]
+    at (#1+0.15,\ctop-0.6) {\textbf{Varies:} #5\\[1.5pt]\textbf{Measures:} #6\\[1.5pt]\textbf{Data:} #7};
 }
-\card{0}{RQ1}{Grounding}{evidence in \st{toolD}{2} and checks in \st{toolD}{4} (ladder A0--A4; information arms L, M, LM)}{VPR, touch}{150 Big-Vul CVEs}
-\card{1}{RQ2}{Detection}{prompts, reasoning, models in \st{llmD}{1} (Haiku 4.5; Qwen2.5-Coder 7B/14B)}{pair-correct}{150 CVE pairs (94 pre-, 56 post-cutoff)}
-\card{2}{RQ3}{Contamination}{the inputs: pre/post-cutoff CVEs, certified slice-preserving variants, likelihood probe}{accuracy change vs.\ lookup controls}{217 matched functions; repair: 150 + 56 CVEs}
-\card{3}{RQ4}{Porting}{whether \st{toolD}{2} gets the known source fix (P0--P4)}{VPR}{88 hard clones, 23 CVEs}
+\card{0}{4.35}{RQ1}{Grounding}{evidence in \st{toolD}{2} and checks in \st{toolD}{4} (ladder A0--A4; information arms L, M, LM)}{VPR, touch}{150 Big-Vul CVEs}
+\card{4.55}{4.35}{RQ2}{Detection}{prompts, reasoning, models in \st{llmD}{1} (Haiku 4.5; Qwen2.5-Coder 7B/14B)}{pair-correct}{150 CVE pairs (94 pre-, 56 post-cutoff)}
+\card{9.1}{5.15}{RQ3}{Contamination}{the inputs: pre/post-cutoff CVEs, certified slice-preserving variants, likelihood probe}{accuracy change vs.\ lookup controls}{217 matched functions; repair: 206 CVEs}
+\card{14.45}{3.55}{RQ4}{Porting}{whether \st{toolD}{2} gets the known source fix (P0--P4)}{VPR}{88 hard clones, 23 CVEs}
 \end{tikzpicture}
 \end{document}
